@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link th:href="@{/img/favicon.ico}" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<style>
+    /* === PRODUCT DETAIL PAGE === */
+    .product-card {
+        border-radius: 0.75rem;
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+    .product-card img {
+        border-top-left-radius: 0.75rem;
+        border-top-right-radius: 0.75rem;
+        transition: transform 0.3s ease;
+    }
+    .product-card:hover img {
+        transform: scale(1.05);
+    }
+
+    /* === PRODUCT DETAIL LAYOUT === */
+    section.container {
+        background-color: #fafafa;
+        border-radius: 10px;
+        padding: 40px;
+    }
+
+    section.container h2,
+    section.container h4 {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    section.container p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        transition: all 0.2s ease;
+    }
+    .btn-danger:hover {
+        background-color: #b02a37;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #dc3545;
+        color: #fff;
+        border-color: #dc3545;
+    }
+
+    /* Badge mềm mại hơn */
+    .badge {
+        padding: 0.5em 0.75em;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        section.container {
+            padding: 20px;
+        }
+    }
+    .breadcrumb {
+        background-color: transparent;
+        font-size: 0.95rem;
+    }
+    .breadcrumb a {
+        text-decoration: none;
+    }
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+    /* === ZOOM HÌNH ẢNH SẢN PHẨM === */
+    .zoom-container {
+        position: relative;
+        overflow: hidden;
+        cursor: zoom-in;
+    }
+
+    .zoom-image {
+        width: 100%;
+        height: auto;
+        transition: transform 0.5s ease;
+        transform-origin: center center;
+    }
+
+    /* Khi hover: phóng to nhẹ */
+    .zoom-container:hover .zoom-image {
+        transform: scale(1.5);
+    }
+
+</style>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description', {
+        language: 'vi',
+        height: 300,
+        removeButtons: 'PasteFromWord'
+    });
+</script>
+<script>
+    document.querySelectorAll('.zoom-container').forEach(container => {
+        const img = container.querySelector('img');
+        container.addEventListener('mousemove', e => {
+            const rect = container.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            img.style.transformOrigin = `${x}% ${y}%`;
+        });
+        container.addEventListener('mouseleave', () => {
+            img.style.transformOrigin = 'center center';
+        });
+    });
+</script>
+
+<body>
+
+<!-- Header -->
+<header th:replace="fragments/header :: siteHeader"></header>
+
+<!-- MAIN PRODUCT DETAIL -->
+<section class="container py-5" style="min-height: 80vh;">
+    <div class="row g-5 align-items-start">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/products}">Sản phẩm</a></li>
+                <li class="breadcrumb-item active" aria-current="page" th:text="${product.name}"></li>
+            </ol>
+        </nav>
+
+
+        <!-- Hình ảnh sản phẩm -->
+        <div class="col-md-5">
+            <div class="zoom-container border rounded shadow-sm p-2 bg-white">
+                <img th:src="${product.image}" th:alt="${product.name}" class="zoom-image rounded img-fluid">
+            </div>
+        </div>
+
+        <!-- Thông tin sản phẩm -->
+        <div class="col-md-7">
+            <h2 class="fw-bold mb-3 text-danger" th:text="${product.name}">Tên sản phẩm</h2>
+
+            <div class="mb-3">
+                <span class="badge bg-danger me-2" th:if="${product.stockStatus?.name() == 'IN_STOCK'}">Còn hàng</span>
+                <span class="badge bg-secondary me-2" th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">Hết hàng</span>
+                <span class="badge bg-warning text-dark" th:text="${product.category?.name}">Danh mục</span>
+            </div>
+
+            <p class="lead fw-bold text-danger mb-3"
+               th:if="${product.priceDisplay?.name() == 'SHOW'}"
+               th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'">
+                0 ₫
+            </p>
+
+            <p th:if="${product.priceDisplay?.name() == 'CONTACT'}"
+               class="lead text-muted fst-italic mb-3">Liên hệ để báo giá</p>
+
+            <div class="mb-4">
+                <p><strong>Thương hiệu:</strong> <span th:text="${product.brand?.name}">Thương hiệu</span></p>
+                <p><strong>Xuất xứ:</strong> <span th:text="${product.origin}">Việt Nam</span></p>
+                <p><strong>Bảo hành:</strong> <span th:text="${product.warrantyMonths + ' tháng'}">12 tháng</span></p>
+            </div>
+
+            <div class="d-flex flex-wrap gap-3 mb-4">
+                <a href="#" class="btn btn-danger px-4 py-2">Liên hệ mua hàng</a>
+                <a th:href="@{/products}" class="btn btn-outline-secondary px-4 py-2">← Quay lại danh sách</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mô tả chi tiết -->
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <h4 class="border-bottom border-danger pb-2 mb-3 text-uppercase">Mô tả sản phẩm</h4>
+            <p th:utext="${product.description}" class="text-secondary lh-lg">
+                Thông tin chi tiết sản phẩm...
+            </p>
+        </div>
+    </div>
+
+    <!-- Sản phẩm liên quan -->
+    <div class="row mt-5">
+        <h4 class="border-bottom border-danger pb-2 mb-4 text-uppercase">Sản phẩm cùng loại</h4>
+
+        <div class="col-md-3 mb-4" th:each="rel : ${relatedProducts}">
+            <div class="card h-100 border-0 shadow-sm product-card">
+                <img th:src="${rel.image}" th:alt="${rel.name}"
+                     class="card-img-top" style="height: 200px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h6 class="fw-semibold text-truncate" th:text="${rel.name}"></h6>
+                    <p class="text-danger fw-bold small mb-2"
+                       th:if="${rel.priceDisplay?.name() == 'SHOW'}"
+                       th:text="${#numbers.formatDecimal(rel.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></p>
+                    <p class="text-muted small mb-2 fst-italic"
+                       th:if="${rel.priceDisplay?.name() == 'CONTACT'}">Liên hệ</p>
+                    <a th:href="@{'/products/' + ${rel.id}}" class="btn btn-outline-danger btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer th:replace="fragments/footer :: siteFooter"></footer>
+
+</body>
+<script>
+    $(document).ready(function() {
+        var hideTimeout;
+        var dropdownToggle = $('#productsDropdown');
+        var dropdownMenu = dropdownToggle.siblings('.dropdown-menu');
+
+        // Hiển thị dropdown khi hover vào toggle
+        dropdownToggle.on('mouseenter', function() {
+            clearTimeout(hideTimeout);
+            dropdownMenu.addClass('show');
+        });
+
+        // Ẩn dropdown sau 200ms khi rời khỏi toggle
+        dropdownToggle.on('mouseleave', function() {
+            hideTimeout = setTimeout(function() {
+                dropdownMenu.removeClass('show');
+            }, 600);
+        });
+
+        // Ẩn dropdown sau 200ms khi rời khỏi menu
+        dropdownMenu.on('mouseleave', function() {
+            hideTimeout = setTimeout(function() {
+                dropdownMenu.removeClass('show');
+            }, 200);
+        });
+    });
+</script>
+</html>

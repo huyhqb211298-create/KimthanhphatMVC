@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${isEdit} ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm mới'">Form sản phẩm</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/lib/fontawesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<script src="https://cdn.ckeditor.com/4.25.1-lts/full/ckeditor.js"></script>
+
+
+<body>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0" th:text="${isEdit} ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm mới'"></h5>
+        </div>
+
+        <div class="card-body">
+            <form th:action="@{/admin/products/save}"
+                  th:object="${product}"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <input type="hidden" th:field="*{id}">
+
+                <!-- Tên sản phẩm -->
+                <div class="mb-3">
+                    <label class="form-label">Tên sản phẩm</label>
+                    <input type="text" class="form-control" th:field="*{name}" placeholder="Nhập tên sản phẩm" required>
+                </div>
+                <!-- giá sản phẩm -->
+                <div class="mb-3" id="priceInputGroup">
+                    <label class="form-label">Giá sản phẩm</label>
+                    <input type="number" name="price" th:value="${product.price}"
+                           id="priceInput" class="form-control" min="0" step="1000" placeholder="Nhập giá (VNĐ)">
+                </div>
+
+                <!-- Mô tả -->
+                <div class="mb-3">
+                    <label for="description" class="form-label">Mô tả sản phẩm</label>
+                    <textarea id="description" name="description" class="form-control"
+                              th:field="*{description}" rows="10"></textarea>
+                </div>
+                <!-- Hình ảnh -->
+                <div class="mb-3">
+                    <label class="form-label">Hình ảnh sản phẩm</label>
+                    <input type="file" class="form-control" th:field="*{image}" accept="image/*">
+
+                    <div th:if="${product.imageUrl}">
+                        <img th:src="@{${product.imageUrl}}" alt="preview" style="max-height:120px;margin-top:10px;">
+                    </div>
+                </div>
+
+
+                <!-- Xuất xứ -->
+                <div class="mb-3">
+                    <label class="form-label">Xuất xứ</label>
+                    <input type="text" class="form-control" th:field="*{origin}" placeholder="VD: Việt Nam, Nhật Bản...">
+                </div>
+
+                <!-- Bảo hành -->
+                <div class="mb-3">
+                    <label class="form-label">Bảo hành (tháng)</label>
+                    <select class="form-select" th:field="*{warrantyMonths}">
+                        <option value="" disabled selected>-- Chọn thời gian bảo hành --</option>
+                        <option value="12">12 tháng</option>
+                        <option value="24">24 tháng</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Hiển thị giá</label>
+                    <select id="priceDisplay" name="priceDisplay" class="form-select" required>
+                        <option th:each="pd : ${T(com.example.kimthanhphatmvc.model.enums.PriceDisplay).values()}"
+                                th:value="${pd.name()}"
+                                th:text="${pd.label}"
+                                th:selected="${product.priceDisplay == pd}">
+                        </option>
+                    </select>
+                </div>
+
+                <select class="form-select" th:field="*{stockStatus}">
+                    <option value="" disabled selected>-- Chọn trạng thái --</option>
+                    <option th:each="ss : ${T(com.example.kimthanhphatmvc.model.enums.StockStatus).values()}"
+                            th:value="${ss}" th:text="${ss.label}"></option>
+                </select>
+
+
+                <!-- Chọn Category -->
+                <div class="mb-3">
+                    <label class="form-label">Danh mục</label>
+                    <div class="input-group">
+                        <select class="form-select" th:field="*{categoryId}">
+                            <option value="" disabled selected>-- Chọn danh mục --</option>
+                            <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+                        </select>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chọn Brand -->
+                <div class="mb-3">
+                    <label class="form-label">Thương hiệu</label>
+                    <div class="input-group">
+                        <select class="form-select" th:field="*{brandId}">
+                            <option value="" disabled selected>-- Chọn thương hiệu --</option>
+                            <option th:each="b : ${brands}" th:value="${b.id}" th:text="${b.name}"></option>
+                        </select>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addBrandModal">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Nút hành động -->
+                <div class="text-end">
+                    <a th:href="@{/admin/products}" class="btn btn-secondary">Quay lại</a>
+                    <button type="submit" class="btn btn-success">Lưu sản phẩm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal thêm Category -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryLabel">Thêm danh mục mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="newCategoryName" class="form-control" placeholder="Nhập tên danh mục">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="addCategory()">Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal thêm Brand -->
+<div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addBrandLabel">Thêm thương hiệu mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="newBrandName" class="form-control" placeholder="Nhập tên thương hiệu">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="addBrand()">Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Preview ảnh -->
+<script>
+    const imageFile = document.getElementById("imageFile");
+    const preview = document.getElementById("preview");
+
+    imageFile.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+<!-- Gọi API thêm nhanh Brand & Category -->
+<script>
+    async function addCategory() {
+        const name = document.getElementById("newCategoryName").value.trim();
+        if (!name) return alert("Vui lòng nhập tên danh mục!");
+
+        const res = await fetch("/admin/categories", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({name})
+        });
+        if (res.ok) location.reload();
+        else alert("Lỗi khi thêm danh mục!");
+    }
+
+    async function addBrand() {
+        const name = document.getElementById("newBrandName").value.trim();
+        if (!name) return alert("Vui lòng nhập tên thương hiệu!");
+
+        const res = await fetch("/admin/brands", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({name})
+        });
+        if (res.ok) location.reload();
+        else alert("Lỗi khi thêm thương hiệu!");
+    }
+</script>
+<script>
+    CKEDITOR.replace('description', {
+        language: 'vi',
+        height: 300,
+        removeButtons: 'PasteFromWord'
+    });
+</script>
+<script>
+    // Khi trang load hoặc khi chọn thay đổi
+    function togglePriceInput() {
+        const priceDisplay = document.getElementById('priceDisplay').value;
+        const priceInputGroup = document.getElementById('priceInputGroup');
+        const priceInput = document.getElementById('priceInput');
+
+        if (priceDisplay === 'CONTACT') {
+            priceInput.disabled = true;
+            priceInput.value = '';
+            priceInput.placeholder = 'Không cần nhập giá';
+            priceInputGroup.style.opacity = '0.6';
+        } else {
+            priceInput.disabled = false;
+            priceInput.placeholder = 'Nhập giá (VNĐ)';
+            priceInputGroup.style.opacity = '1';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', togglePriceInput);
+    document.getElementById('priceDisplay').addEventListener('change', togglePriceInput);
+</script>
+
+</body>
+</html>

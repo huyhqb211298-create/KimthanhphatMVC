@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link th:href="@{/img/favicon.ico}" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<style>
+    /* card */
+    .product-card {
+        transition: transform .25s ease, box-shadow .25s ease;
+        border-radius: 0.75rem;
+        background-color: #fff;
+        overflow: hidden; /* quan trọng: ngăn shadow/hover tràn ra */
+    }
+
+    /* hover nhẹ nhàng, không làm thay đổi kích thước (chỉ transform) */
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+
+    /* img */
+    .product-card img {
+        border-top-left-radius: .75rem;
+        border-top-right-radius: .75rem;
+        display: block;
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    /* badge */
+    .product-card .badge {
+        font-size: 0.8rem;
+    }
+
+
+</style>
+<body>
+
+<div th:replace="fragments/header :: siteHeader"></div>
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">Sản phẩm</h2>
+
+    <form th:action="@{/products}" method="get" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <select class="form-select" name="categoryId">
+                <option value="">Tất cả danh mục</option>
+                <option th:each="c : ${categories}"
+                        th:value="${c.id}"
+                        th:text="${c.name}"
+                        th:selected="${c.id} == ${selectedCategory}">
+                </option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-select" name="brandId">
+                <option value="">Tất cả thương hiệu</option>
+                <option th:each="b : ${brands}"
+                        th:value="${b.id}"
+                        th:text="${b.name}"
+                        th:selected="${b.id} == ${selectedBrand}">
+                </option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-danger w-100" type="submit">Lọc</button>
+        </div>
+    </form>
+
+    <!-- ROW CHÍNH -->
+    <div class="row">
+        <div class="col-md-3 mb-4" th:each="p : ${products}">
+            <div class="card h-100 shadow-sm border-0 position-relative product-card">
+                <!-- Ảnh sản phẩm -->
+                <div class="position-relative">
+                    <img th:src="${p.image}" th:alt="${p.name}"
+                         style="width:100%; height:220px; object-fit:cover; display:block;">
+                    <span th:if="${p.stockStatus?.name() == 'OUT_OF_STOCK'}"
+                          class="badge bg-danger position-absolute top-0 start-0 m-2 p-2">Hết hàng</span>
+                </div>
+
+                <!-- Nội dung sản phẩm -->
+                <div class="card-body text-center d-flex flex-column justify-content-between">
+                    <h6 th:text="${p.name}" class="fw-semibold mb-2 text-truncate"></h6>
+
+                    <p th:if="${p.priceDisplay?.name() == 'SHOW'}"
+                       th:text="${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                       class="text-danger fw-bold mb-2"></p>
+
+                    <p th:if="${p.priceDisplay?.name() == 'CONTACT'}"
+                       class="text-muted mb-2 fst-italic">Liên hệ</p>
+
+                    <a th:href="@{'/products/' + ${p.slug}}" class="btn btn-outline-danger btn-sm mt-auto">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- pagination -->
+    <div class="d-flex justify-content-center mt-4">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                    <a class="page-link" th:href="@{/products(page=${currentPage - 1}, categoryId=${selectedCategory}, brandId=${selectedBrand})}">«</a>
+                </li>
+
+                <li th:each="i : ${#numbers.sequence(1, totalPages)}"
+                    class="page-item"
+                    th:classappend="${i == currentPage} ? 'active'">
+                    <a class="page-link" th:text="${i}"
+                       th:href="@{/products(page=${i}, categoryId=${selectedCategory}, brandId=${selectedBrand})}"></a>
+                </li>
+
+                <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                    <a class="page-link" th:href="@{/products(page=${currentPage + 1}, categoryId=${selectedCategory}, brandId=${selectedBrand})}">»</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<footer th:replace="fragments/footer :: siteFooter"></footer>
+
+</body>
+<script>
+    $(document).ready(function() {
+        var hideTimeout;
+        var dropdownToggle = $('#productsDropdown');
+        var dropdownMenu = dropdownToggle.siblings('.dropdown-menu');
+
+        // Hiển thị dropdown khi hover vào toggle
+        dropdownToggle.on('mouseenter', function() {
+            clearTimeout(hideTimeout);
+            dropdownMenu.addClass('show');
+        });
+
+        // Ẩn dropdown sau 200ms khi rời khỏi toggle
+        dropdownToggle.on('mouseleave', function() {
+            hideTimeout = setTimeout(function() {
+                dropdownMenu.removeClass('show');
+            }, 600);
+        });
+
+        // Ẩn dropdown sau 200ms khi rời khỏi menu
+        dropdownMenu.on('mouseleave', function() {
+            hideTimeout = setTimeout(function() {
+                dropdownMenu.removeClass('show');
+            }, 200);
+        });
+    });
+</script>
+
+</html>

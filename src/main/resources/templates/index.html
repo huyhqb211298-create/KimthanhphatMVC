@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="description" content="Kim Thành Phát - Cung cấp thiết bị, thi công, kiểm định và bảo trì hệ thống PCCC tại Đà Nẵng. Bình chữa cháy, đầu báo, tủ báo cháy, sprinkler, van, dịch vụ lắp đặt và tư vấn PCCC.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link th:href="@{/img/favicon.ico}" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+
+</head>
+
+<body>
+<div class="container-fluid bg-white p-0">
+  <!-- Spinner Start -->
+  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border" style="width: 3rem; height: 3rem; color: #d9534f;" role="status">
+      <span class="sr-only">Đang tải...</span>
+    </div>
+  </div>
+  <!-- Spinner End -->
+
+    <!-- Gọi header -->
+    <div th:replace="fragments/header :: siteHeader"></div>
+  <!-- Carousel Start -->
+  <div class="container-fluid p-0 mb-5">
+    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="w-100" src="img/pccc-carousel-1.jpg" alt="Thiết bị & sản phẩm">
+          <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+            <div class="p-3" style="max-width: 700px;">
+              <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Cung Cấp Thiết Bị Chính Hãng</h6>
+              <h1 class="display-3 text-white mb-4 animated slideInDown">Thiết bị PCCC – Đạt Chuẩn Quốc Gia</h1>
+              <a href="products.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Sản Phẩm</a>
+              <a href="contact.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Liên Hệ Ngay</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img class="w-100" src="img/pccc-carousel-2.jpg" alt="THI CÔNG LẮP ĐẶT HỆ THÔNG PCCC">
+          <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+            <div class="p-3" style="max-width: 700px;">
+              <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Thi Công Chuyên Nghiệp</h6>
+              <h1 class="display-3 text-white mb-4 animated slideInDown">Thi Công & Lắp Đặt Trọn GóI</h1>
+              <a href="projects.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Dự án tiêu biểu</a>
+              <a href="contact.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Yêu cầu báo giá</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img class="w-100" src="img/pccc-carousel-3.jpg" alt="GIOI THIỆU DOANH NGHIỆP">
+          <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+            <div class="p-3" style="max-width: 700px;">
+              <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">An Toàn Là Trách Nhiệm – PCCC Là Nghĩa Vụ</h6>
+              <h1 class="display-3 text-white mb-4 animated slideInDown">“Kim Thành Phát – Giải Pháp PCCC Toàn Diện Cho Mọi Công Trình</h1>
+              <a href="projects.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">TÌM HIỂU NGAY</a>
+              <a href="contact.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">LIÊN HỆ </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- Carousel End -->
+  <!-- About Start -->
+  <div class="container-xxl py-5">
+    <div class="container-fluid p-0">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <h6 class="section-title text-start text-primary text-uppercase">Giới thiệu</h6>
+          <h1 class="mb-4">Kim Thành Phát - <span class="text-primary text-uppercase">Thiết Bị PCCC Đà Nẵng</span></h1>
+          <p class="mb-4">Với hơn 10 năm kinh nghiệm trong lĩnh vực phòng cháy chữa cháy, Kim Thành Phát cung cấp giải pháp toàn diện: cung cấp thiết bị chính hãng, thiết kế & thi công hệ thống báo cháy, hệ thống chữa cháy tự động, bảo trì & kiểm định định kỳ cho nhà ở, chung cư, văn phòng và nhà xưởng.</p>
+          <ul>
+            <li>Phân phối: bình chữa cháy, đầu báo, tủ báo cháy, sprinkler, van, họng nước, ống mềm.</li>
+            <li>Thi công: thi công hệ thống báo cháy địa chỉ/đơn giản, hệ thống chữa cháy CO2, FM200, sprinkler.</li>
+            <li>Dịch vụ: kiểm định, bảo trì, tư vấn hoàn thiện hồ sơ PCCC.</li>
+          </ul>
+          <a class="btn btn-primary py-3 px-5 mt-2" href="contact.html">Yêu cầu tư vấn</a>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+
+            <!-- Sản phẩm 1 -->
+            <div class="col-6 text-end">
+              <img class="img-fluid rounded w-75 wow zoomIn product-img" data-wow-delay="0.1s"
+                   src="img/about-pccc-1.jpg" style="margin-top: 25%;" alt="Thiết bị PCCC"
+                   data-bs-toggle="modal" data-bs-target="#product1Modal">
+            </div>
+
+            <!-- Sản phẩm 2 -->
+            <div class="col-6 text-start">
+              <img class="img-fluid rounded w-100 wow zoomIn product-img" data-wow-delay="0.3s"
+                   src="img/about-pccc-2.jpg" alt="Lăng phun chữa cháy Victory"
+                   data-bs-toggle="modal" data-bs-target="#product2Modal">
+            </div>
+
+            <!-- Sản phẩm 3 -->
+            <div class="col-6 text-end">
+              <img class="img-fluid rounded w-50 wow zoomIn product-img" data-wow-delay="0.5s"
+                   src="img/about-pccc-3.jpg" alt="Vòi chữa cháy Victory"
+                   data-bs-toggle="modal" data-bs-target="#product3Modal">
+            </div>
+
+            <!-- Sản phẩm 4 -->
+            <div class="col-6 text-start">
+              <img class="img-fluid rounded w-75 wow zoomIn product-img" data-wow-delay="0.7s"
+                   src="img/about-pccc-4.jpg" alt="Kiểm định"
+                   data-bs-toggle="modal" data-bs-target="#product4Modal">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About End -->
+
+
+  <!-- Services Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center text-primary text-uppercase">Dịch Vụ</h6>
+        <h1 class="mb-5">Dịch Vụ & <span class="text-primary text-uppercase">Sản Phẩm</span></h1>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <a class="service-item rounded" href="products.html#fire-extinguishers">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-fire-extinguisher fa-2x"></i>
+              </div>
+            </div>
+            <h5 class="mb-3">Bình chữa cháy & Phụ kiện</h5>
+            <p class="text-body mb-0">Cung cấp bình chữa cháy CO2, bột ABC, khí FM200, nạp lại, van, họng chữa cháy.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+          <a class="service-item rounded" href="service.html#installation">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-tools fa-2x"></i>
+              </div>
+            </div>
+            <h5 class="mb-3">Thi công & Lắp đặt</h5>
+            <p class="text-body mb-0">Thi công hệ thống báo cháy, hệ thống sprinkler, họng chữa cháy, tủ báo cháy địa chỉ.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+          <a class="service-item rounded" href="service.html#maintenance">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-wrench fa-2x"></i>
+              </div>
+            </div>
+            <h5 class="mb-3">Bảo trì & Kiểm định</h5>
+            <p class="text-body mb-0">Bảo trì định kỳ, kiểm tra, nạp lại bình chữa cháy theo quy định QCVN và tiêu chuẩn nhà sản xuất.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+          <a class="service-item rounded" href="service.html#consulting">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-user-shield fa-2x"></i>
+              </div>
+            </div>
+            <h5 class="mb-3">Tư vấn PCCC</h5>
+            <p class="text-body mb-0">Tư vấn thiết kế, lập hồ sơ nghiệm thu PCCC, giải pháp giảm thiểu rủi ro cho công trình.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+          <a class="service-item rounded" href="projects.html">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-project-diagram fa-2x"></i>
+              </div>
+            </div>
+            <h5 class="mb-3">Dự án tiêu biểu</h5>
+            <p class="text-body mb-0">Các dự án lắp đặt hệ thống PCCC cho chung cư, nhà xưởng và tòa nhà văn phòng.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+          <a class="service-item rounded" href="contact.html">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-headset fa-2x"></i>
+              </div>
+            </div>
+            <h5 class="mb-3">Hỗ trợ khách hàng</h5>
+            <p class="text-body mb-0">Hỗ trợ kỹ thuật 24/7, xử lý sự cố PCCC nhanh chóng.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Services End -->
+
+  <!-- Sản phẩm tiêu biểu -->
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h6 class="section-title text-primary text-uppercase mb-3">Sản phẩm nổi bật</h6>
+        <h1 class="fw-bold text-uppercase mb-4">Sản phẩm <span class="text-danger">Tiêu Biểu</span></h1>
+        <div class="mx-auto" style="width: 80px; height: 3px; background-color: #dc3545;"></div>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <!-- SP1 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="product-img-container">
+              <img src="img/product-1.jpg" class="card-img-top" alt="Bình chữa cháy 4kg Victory">
+            </div>
+            <div class="card-body text-center">
+              <h5 class="card-title text-danger fw-bold">Bình chữa cháy ABC 4kg Victory</h5>
+              <p class="card-text text-muted">
+                Bình tiêu chuẩn, nạp đầy, có tem kiểm định – phù hợp nhà ở, văn phòng, xe ô tô.
+              </p>
+              <a href="products.html#abc4kg" class="btn btn-outline-danger btn-sm mt-2">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SP2 - Sprinkler -->
+        <div class="col-md-4 col-sm-6">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="product-img-container">
+              <img src="img/product-2.jpg" class="card-img-top" alt="Đầu phun Sprinkler Victory">
+            </div>
+            <div class="card-body text-center">
+              <h5 class="card-title text-danger fw-bold">Đầu phun Sprinkler Victory</h5>
+              <p class="card-text text-muted">
+                Đầu phun chữa cháy tự động Sprinkler Victory – độ nhạy cao, vật liệu đồng mạ crom, đạt tiêu chuẩn UL/FM.
+              </p>
+              <a href="products.html#sprinkler" class="btn btn-outline-danger btn-sm mt-2">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SP3 -->
+        <div class="col-md-4 col-sm-6">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="product-img-container">
+              <img src="img/product-3.jpg" class="card-img-top" alt="Van chữa cháy Victory">
+            </div>
+            <div class="card-body text-center">
+              <h5 class="card-title text-danger fw-bold">Van, họng chữa cháy Victory</h5>
+              <p class="card-text text-muted">
+                Van và họng DN50/DN65 chất lượng cao, tiêu chuẩn cho hệ thống tòa nhà & công nghiệp.
+              </p>
+              <a href="products.html#valve" class="btn btn-outline-danger btn-sm mt-2">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <div class="container-fluid py-5 mt-5"
+       style="background: linear-gradient(135deg, #ff4d00 0%, #e63900 100%);">
+    <div class="container">
+      <div class="p-4 p-md-5 bg-white shadow-lg rounded-4 position-relative" style="z-index: 2;">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-9 text-center text-lg-start">
+            <h3 class="fw-bold mb-2 text-danger">Cần Tư Vấn Giải Pháp PCCC?</h3>
+            <p class="mb-0 text-muted">
+              Gọi ngay Hotline/Zalo
+              <strong class="text-dark">0777.54.2354</strong>
+              hoặc để lại thông tin, chúng tôi sẽ liên hệ sớm nhất!
+            </p>
+          </div>
+          <div class="col-lg-3 text-center text-lg-end">
+            <a href="contact.html" class="btn btn-danger py-3 px-4 fw-semibold shadow-sm">
+              <i class="bi bi-chat-dots me-2"></i>Yêu cầu tư vấn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Contact CTA End -->
+
+    <!-- Goi footer -->
+    <div th:replace="fragments/footer :: siteFooter"></div>
+
+
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+<!-- Modal Sản phẩm 1 -->
+<div class="modal fade" id="product1Modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-4">
+      <h4 class="mb-3 text-danger">Bình Chữa Cháy Victory</h4>
+      <img src="img/about-pccc-1.jpg" class="img-fluid rounded mb-3" alt="">
+      <p>Bình chữa cháy bột ABC hoặc CO₂ thương hiệu Victory – đạt tiêu chuẩn Việt Nam. Hiệu quả, an toàn và dễ sử dụng cho gia đình, văn phòng, nhà xưởng.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Sản phẩm 2 -->
+<div class="modal fade" id="product2Modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-4">
+      <h4 class="mb-3 text-danger">Lăng Phun Chữa Cháy Victory</h4>
+      <img src="img/about-pccc-2.jpg" class="img-fluid rounded mb-3" alt="">
+      <p>Lăng phun chữa cháy Victory – chất liệu hợp kim nhôm hoặc đồng, tạo tia nước mạnh, tầm xa, dễ điều chỉnh, phù hợp cho hệ thống cấp nước chữa cháy.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Sản phẩm 3 -->
+<div class="modal fade" id="product3Modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-4">
+      <h4 class="mb-3 text-danger">Vòi Chữa Cháy Victory</h4>
+      <img src="img/about-pccc-3.jpg" class="img-fluid rounded mb-3" alt="">
+      <p>Vòi chữa cháy Victory – vải tráng cao su chất lượng cao, chịu áp lực lớn, dùng cho hệ thống cấp nước và cứu hỏa chuyên nghiệp.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Sản phẩm 4 -->
+<div class="modal fade" id="product4Modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-4">
+      <h4 class="mb-3 text-danger">Đèn Exit Sự Cố Victory</h4>
+      <img src="img/about-pccc-4.jpg" class="img-fluid rounded mb-3" alt="">
+      <p>Đèn chỉ dẫn thoát hiểm và sự cố Victory – tự động sáng khi mất điện, thiết kế gọn gàng, đạt chuẩn PCCC Việt Nam.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
