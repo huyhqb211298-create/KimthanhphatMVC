@@ -1,6 +1,5 @@
 # Dùng image Java 17 (hoặc 21 nếu bạn dùng Java 21)
-FROM openjdk:17-jdk-slim
-
+FROM eclipse-temurin:17-jdk
 # Copy toàn bộ source code vào container
 COPY . .
 
