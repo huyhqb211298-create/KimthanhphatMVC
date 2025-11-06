@@ -5,7 +5,7 @@ import com.example.kimthanhphatmvc.model.enums.StockStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-
+import lombok.Data;
 import java.text.Normalizer;
 
 @Entity

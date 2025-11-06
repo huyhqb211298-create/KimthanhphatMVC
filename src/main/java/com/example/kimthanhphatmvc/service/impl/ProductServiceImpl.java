@@ -3,7 +3,6 @@ package com.example.kimthanhphatmvc.service.impl;
 import com.example.kimthanhphatmvc.model.Product;
 import com.example.kimthanhphatmvc.repository.ProductRepository;
 import com.example.kimthanhphatmvc.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +12,10 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     // ==================== CRUD ====================
     @Override

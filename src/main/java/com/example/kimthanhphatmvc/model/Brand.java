@@ -2,7 +2,7 @@ package com.example.kimthanhphatmvc.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
+import lombok.Data;
 import java.text.Normalizer;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -45,4 +45,4 @@ public class Brand {
                     .replaceAll("[^a-z0-9\\s-]", "")
                     .replaceAll("\\s+", "-")
                     .replaceAll("-+", "-");
-}}}
+        }}}

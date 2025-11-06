@@ -6,7 +6,7 @@ import lombok.*;
 import java.text.Normalizer;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import lombok.Data;
 
 @Entity
 @Data
@@ -46,4 +46,4 @@ public class Category {
                     .replaceAll("[^a-z0-9\\s-]", "")
                     .replaceAll("\\s+", "-")
                     .replaceAll("-+", "-");
-}}}
+        }}}
