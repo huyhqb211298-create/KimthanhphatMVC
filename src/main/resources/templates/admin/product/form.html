@@ -7,7 +7,6 @@
     <link rel="stylesheet" th:href="@{/lib/fontawesome/css/all.min.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<script src="https://cdn.ckeditor.com/4.25.1-lts/full/ckeditor.js"></script>
 
 
 <body>
@@ -214,13 +213,6 @@
     }
 </script>
 <script>
-    CKEDITOR.replace('description', {
-        language: 'vi',
-        height: 300,
-        removeButtons: 'PasteFromWord'
-    });
-</script>
-<script>
     // Khi trang load hoặc khi chọn thay đổi
     function togglePriceInput() {
         const priceDisplay = document.getElementById('priceDisplay').value;
@@ -242,6 +234,30 @@
     document.addEventListener('DOMContentLoaded', togglePriceInput);
     document.getElementById('priceDisplay').addEventListener('change', togglePriceInput);
 </script>
+<script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#description'), {
+            language: 'vi',
+            toolbar: [
+                'undo', 'redo', '|',
+                'bold', 'italic', 'underline', '|',
+                'link', 'bulletedList', 'numberedList', '|',
+                'blockQuote', 'insertTable', '|',
+                'alignment', 'outdent', 'indent'
+            ],
+            table: {
+                contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+            }
+        })
+        .then(editor => {
+            console.log('CKEditor5 initialized', editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 
 </body>
+
 </html>

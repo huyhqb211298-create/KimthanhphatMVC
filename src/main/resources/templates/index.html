@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="vi">
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -20,8 +19,6 @@
     <link th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -35,7 +32,7 @@
   <!-- Spinner End -->
 
     <!-- Gọi header -->
-    <div th:replace="fragments/header :: siteHeader"></div>
+    <div th:replace="~{fragments/header :: siteHeader}"></div>
   <!-- Carousel Start -->
   <div class="container-fluid p-0 mb-5">
     <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -306,7 +303,7 @@
   <!-- Contact CTA End -->
 
     <!-- Goi footer -->
-    <div th:replace="fragments/footer :: siteFooter"></div>
+    <div th:replace="~{fragments/footer :: siteFooter}"></div>
 
 
 
