@@ -1,19 +1,20 @@
-# Dùng image Java 17 (hoặc 21 nếu bạn dùng Java 21)
-FROM openjdk:17-jdk-slim
+# ============================
+# 🏗️ Stage 1: Build Application
+# ============================
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
-# Copy toàn bộ source code vào container
+WORKDIR /app
 COPY . .
+RUN mvn clean package -DskipTests
 
-# Build ứng dụng bằng Maven Wrapper
-RUN chmod +x mvnw
-RUN ./mvnw clean package -DskipTests
 
-# Copy file JAR đã build vào vị trí chạy chính
-ARG JAR_FILE=target/KimThanhPhatMVC-0.0.1.jar
-COPY ${JAR_FILE} app.jar
+# ============================
+# 🚀 Stage 2: Run Application
+# ============================
+FROM eclipse-temurin:17-jdk
 
-# Khai báo cổng
+WORKDIR /app
+COPY --from=build /app/target/KimThanhPhatMVC-0.0.1.jar app.jar
+
 EXPOSE 8080
-
-# Lệnh chạy app
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
