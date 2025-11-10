@@ -40,4 +40,9 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.findBySlug(slug);
     }
 
+    @Override
+    public boolean existsByName(String name) {
+        return categoryRepository.existsByName(name);
+    }
+
 }

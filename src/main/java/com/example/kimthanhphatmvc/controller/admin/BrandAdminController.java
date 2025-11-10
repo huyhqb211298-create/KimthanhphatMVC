@@ -13,12 +13,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BrandAdminController {
 
     private final BrandService brandService;
-    public BrandAdminController(BrandService brandService) {this.brandService = brandService;}
+
+    public BrandAdminController(BrandService brandService) {
+        this.brandService = brandService;
+    }
 
     @PostMapping("/save")
     public String saveBrand(@RequestParam("name") String name,
                             RedirectAttributes redirectAttributes) {
         try {
+            if (brandService.existsByName(name)) {
+                redirectAttributes.addFlashAttribute("message", "⚠️ Thương hiệu \"" + name + "\" đã tồn tại!");
+                return "redirect:/admin/products";
+            }
+
             Brand brand = new Brand();
             brand.setName(name);
             brandService.save(brand);

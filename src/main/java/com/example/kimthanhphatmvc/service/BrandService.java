@@ -8,13 +8,10 @@ import java.util.Optional;
 
 public interface BrandService {
     List<Brand> findAll();
-
     Brand findById(Long id);
-
     Brand save(Brand brand);
-
     void deleteById(Long id);
-
     Optional<Brand> findBySlug(String slug);
+    boolean existsByName(String name);
 
 }

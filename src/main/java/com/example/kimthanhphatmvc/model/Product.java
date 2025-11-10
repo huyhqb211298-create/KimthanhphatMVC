@@ -50,6 +50,12 @@ public class Product {
     @JsonBackReference
     private Brand brand;
 
+    @ManyToOne
+    @JoinColumn(name = "product_type_id")
+    @JsonBackReference
+    private ProductType productType;
+
+
     @PrePersist
     @PreUpdate
     public void generateSlug() {

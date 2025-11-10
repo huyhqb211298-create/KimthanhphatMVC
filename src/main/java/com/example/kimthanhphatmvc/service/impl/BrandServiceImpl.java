@@ -39,4 +39,10 @@ public class BrandServiceImpl implements BrandService {
     public Optional<Brand> findBySlug(String slug) {
         return Optional.empty();
     }
+
+    @Override
+    public boolean existsByName(String name) {
+        return brandRepository.existsByName(name);
+
+    }
 }

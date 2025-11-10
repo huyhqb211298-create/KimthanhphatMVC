@@ -23,6 +23,11 @@
             <button type="button" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#brandModal">
                 <i class="fa fa-tags"></i> Thêm thương hiệu
             </button>
+            <!-- ✅ Nút thêm loại sản phẩm -->
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#productTypeModal">
+                <i class="fa fa-layer-group"></i> Thêm loại sản phẩm
+            </button>
+
 
             <!-- ✅ Link sang trang thêm mới sản phẩm -->
             <a th:href="@{/admin/products/new}" class="btn btn-primary">
@@ -38,8 +43,6 @@
     <table class="table table-bordered align-middle">
         <thead class="table-light text-center">
         <tr>
-            <th>ID</th>
-            <th>Ảnh</th>
             <th>Tên sản phẩm</th>
             <th>Giá</th>
             <th>Hiển thị giá</th>
@@ -51,14 +54,6 @@
         </thead>
         <tbody class="align-middle">
         <tr th:each="p : ${products}">
-            <td class="text-center" th:text="${p.id}"></td>
-
-            <!-- Ảnh -->
-            <td class="text-center">
-                <img th:if="${p.image != null}" th:src="@{'/uploads/' + ${p.image}}" alt="Ảnh sản phẩm"
-                     style="max-height: 60px; max-width: 60px; object-fit: cover;">
-                <span th:if="${p.image == null}" class="text-muted">—</span>
-            </td>
 
             <!-- Tên -->
             <td th:text="${p.name}"></td>
@@ -81,6 +76,7 @@
 
             <!-- Thương hiệu -->
             <td th:text="${p.brand != null ? p.brand.name : '—'}"></td>
+
 
             <!-- Hành động -->
             <td class="text-center">
@@ -123,6 +119,28 @@
         </div>
     </div>
 </div>
+<!-- ✅ Modal thêm loại sản phẩm -->
+<div class="modal fade" id="productTypeModal" tabindex="-1" aria-labelledby="productTypeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form th:action="@{/admin/product-types/save}" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productTypeModalLabel">Thêm loại sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="productTypeName" class="form-label">Tên loại sản phẩm</label>
+                    <input type="text" id="productTypeName" name="name" class="form-control" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-dark">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <!-- ✅ Modal thêm thương hiệu -->
 <div class="modal fade" id="brandModal" tabindex="-1" aria-labelledby="brandModalLabel" aria-hidden="true">

@@ -1,11 +1,7 @@
 package com.example.kimthanhphatmvc.controller.admin;
 
 import com.example.kimthanhphatmvc.model.Category;
-import com.example.kimthanhphatmvc.service.BrandService;
 import com.example.kimthanhphatmvc.service.CategoryService;
-import com.example.kimthanhphatmvc.service.CloudinaryService;
-import com.example.kimthanhphatmvc.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +11,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/admin/categories")
 public class CategoryAdminController {
-    private final CategoryService categoryService;
-    public CategoryAdminController(CategoryService categoryService) {this.categoryService = categoryService;}
 
+    private final CategoryService categoryService;
+
+    public CategoryAdminController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @PostMapping("/save")
     public String saveCategory(@RequestParam("name") String name,
                                RedirectAttributes redirectAttributes) {
         try {
+            if (categoryService.existsByName(name)) {
+                redirectAttributes.addFlashAttribute("message", "⚠️ Danh mục \"" + name + "\" đã tồn tại!");
+                return "redirect:/admin/products";
+            }
+
             Category category = new Category();
             category.setName(name);
             categoryService.save(category);
@@ -31,6 +35,6 @@ public class CategoryAdminController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", "❌ Lỗi khi thêm danh mục!");
         }
-        return "redirect:/admin/products"; // trở về list
+        return "redirect:/admin/products";
     }
 }

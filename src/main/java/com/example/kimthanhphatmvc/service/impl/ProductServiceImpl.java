@@ -17,7 +17,6 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository = productRepository;
     }
 
-    // ==================== CRUD ====================
     @Override
     public List<Product> findAll() {
         return productRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
@@ -40,15 +39,23 @@ public class ProductServiceImpl implements ProductService {
 
     // ==================== FILTER + PAGINATION ====================
     @Override
-    public Page<Product> findFiltered(Long categoryId, Long brandId, int page, int size) {
+    public Page<Product> findFiltered(Long categoryId, Long brandId, Long productTypeId, int page, int size) {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "id"));
 
-        if (categoryId != null && brandId != null) {
+        if (categoryId != null && brandId != null && productTypeId != null) {
+            return productRepository.findByCategoryIdAndBrandIdAndProductTypeId(categoryId, brandId, productTypeId, pageable);
+        } else if (categoryId != null && brandId != null) {
             return productRepository.findByCategoryIdAndBrandId(categoryId, brandId, pageable);
+        } else if (categoryId != null && productTypeId != null) {
+            return productRepository.findByCategoryIdAndProductTypeId(categoryId, productTypeId, pageable);
+        } else if (brandId != null && productTypeId != null) {
+            return productRepository.findByBrandIdAndProductTypeId(brandId, productTypeId, pageable);
         } else if (categoryId != null) {
             return productRepository.findByCategoryId(categoryId, pageable);
         } else if (brandId != null) {
             return productRepository.findByBrandId(brandId, pageable);
+        } else if (productTypeId != null) {
+            return productRepository.findByProductTypeId(productTypeId, pageable);
         } else {
             return productRepository.findAll(pageable);
         }
@@ -60,20 +67,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> findFiltered(Long categoryId, Long brandId, int page) {
-        // Mặc định size = 12
-        return findFiltered(categoryId, brandId, page, 12);
-    }
-
-    @Override
     public List<Product> findRelated(Long categoryId, Long excludeProductId) {
-        return productRepository.findByCategoryId(categoryId, Pageable.ofSize(4)) // lấy 4 sp liên quan
+        return productRepository.findByCategoryId(categoryId, Pageable.ofSize(4))
                 .stream()
                 .filter(p -> !p.getId().equals(excludeProductId))
                 .toList();
     }
 
-    // ==================== FILTER (KHÔNG PHÂN TRANG) ====================
     @Override
     public List<Product> findByCategory(Long categoryId) {
         return productRepository.findByCategoryId(categoryId, Pageable.unpaged()).getContent();

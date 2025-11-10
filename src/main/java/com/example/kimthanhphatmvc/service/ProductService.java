@@ -11,10 +11,9 @@ public interface ProductService {
     Product findById(Long id);
     void save(Product product);
     void deleteById(Long id);
-    Page<Product> findFiltered(Long categoryId, Long brandId, int page, int size);
+    Page<Product> findFiltered(Long categoryId, Long brandId, Long productTypeId, int page, int size);
     Optional<Product> findBySlug(String slug);
 
-    Page<Product> findFiltered(Long categoryId, Long brandId, int page);
     List<Product> findRelated(Long categoryId, Long excludeProductId);
     List<Product> findByCategory(Long categoryId);
     List<Product> findByBrand(Long brandId);

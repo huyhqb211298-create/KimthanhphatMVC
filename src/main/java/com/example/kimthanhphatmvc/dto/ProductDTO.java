@@ -19,4 +19,5 @@ public class ProductDTO {
     private PriceDisplay priceDisplay;
     private Long categoryId;
     private Long brandId;
+    private Long productTypeId;
 }

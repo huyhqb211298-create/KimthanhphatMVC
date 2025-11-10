@@ -101,6 +101,21 @@
                         </button>
                     </div>
                 </div>
+                <!-- Chọn ProductType -->
+                <div class="mb-3">
+                    <label class="form-label">Loại sản phẩm</label>
+                    <div class="input-group">
+                        <select class="form-select" th:field="*{productTypeId}">
+                            <option value="" disabled selected>-- Chọn loại sản phẩm --</option>
+                            <option th:each="pt : ${productTypes}"
+                                    th:value="${pt.id}"
+                                    th:text="${pt.name}"></option>
+                        </select>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addProductTypeModal">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
 
                 <!-- Chọn Brand -->
                 <div class="mb-3">
@@ -145,6 +160,7 @@
     </div>
 </div>
 
+
 <!-- Modal thêm Brand -->
 <div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -159,6 +175,24 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                 <button type="button" class="btn btn-primary" onclick="addBrand()">Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal thêm ProductType -->
+<div class="modal fade" id="addProductTypeModal" tabindex="-1" aria-labelledby="addProductTypeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductTypeLabel">Thêm loại sản phẩm mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="newProductTypeName" class="form-control" placeholder="Nhập tên loại sản phẩm">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="addProductType()">Thêm</button>
             </div>
         </div>
     </div>
@@ -198,7 +232,18 @@
         if (res.ok) location.reload();
         else alert("Lỗi khi thêm danh mục!");
     }
+    async function addProductType() {
+        const name = document.getElementById("newProductTypeName").value.trim();
+        if (!name) return alert("Vui lòng nhập tên loại sản phẩm!");
 
+        const res = await fetch("/admin/product-types", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({name})
+        });
+        if (res.ok) location.reload();
+        else alert("Lỗi khi thêm loại sản phẩm!");
+    }
     async function addBrand() {
         const name = document.getElementById("newBrandName").value.trim();
         if (!name) return alert("Vui lòng nhập tên thương hiệu!");
