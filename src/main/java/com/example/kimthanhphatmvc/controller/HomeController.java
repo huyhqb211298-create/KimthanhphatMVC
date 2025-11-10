@@ -25,6 +25,11 @@ public class HomeController {
         model.addAttribute("categories", categories != null ? categories : Collections.emptyList());
         return "index";
     }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
+    }
     @GetMapping("/about")
     public String about() {
         return "about"; // Template: about.html

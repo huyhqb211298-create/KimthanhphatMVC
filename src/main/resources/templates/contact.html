@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - Kim Thành Phát</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+<!-- Header -->
+<div th:replace="~{fragments/header :: siteHeader}"></div>
+
+<!-- Page Header -->
+<div class="container-fluid text-white py-5 mb-5"
+     style="background:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url('/img/contact-banner.jpg') center/cover no-repeat;
+            position: relative;">
+    <div class="container text-center py-5">
+
+        <h1 class="display-4 fw-bold text-warning mb-3"
+            style="text-shadow: 0 3px 6px rgba(0,0,0,0.7);">
+            Liên hệ với chúng tôi
+        </h1>
+
+        <p class="lead mb-0" style="font-size:1.4rem; text-shadow: 0 2px 6px rgba(0,0,0,0.6);">
+            Kim Thành Phát – Giải pháp PCCC toàn diện cho mọi công trình
+        </p>
+
+    </div>
+</div>
+
+
+<!-- Contact Section -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Thông tin liên hệ -->
+            <div class="col-lg-5 col-md-6">
+                <h6 class="section-title text-start text-warning text-uppercase">Thông tin liên hệ</h6>
+                <h2 class="mb-4">Kim Thành Phát PCCC</h2>
+                <p class="mb-4">
+                    Chúng tôi sẵn sàng hỗ trợ quý khách về mọi vấn đề liên quan đến thiết bị, thi công và bảo trì hệ thống PCCC.
+                    Hãy để lại thông tin, đội ngũ chúng tôi sẽ liên hệ trong thời gian sớm nhất.
+                </p>
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fa fa-map-marker-alt text-danger me-3 fs-5"></i>
+                    <span>182 Lê Thanh Nghị, TP. Đà Nẵng</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fa fa-phone-alt text-danger me-3 fs-5"></i>
+                    <div>
+                        <span class="d-block">0777.54.2354 (Zalo)</span>
+                        <span class="d-block">0934.752.114</span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fa fa-envelope text-danger me-3 fs-5"></i>
+                    <span>info@kimthanhphatpccc.vn</span>
+                </div>
+                <div class="d-flex align-items-center mt-4">
+                    <a class="btn btn-outline-danger btn-social me-2"
+                       href="https://www.facebook.com/profile.php?id=61581028044022" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="btn btn-outline-danger btn-social me-2"
+                       href="https://www.instagram.com/pccckimthanhphat/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="btn btn-outline-danger btn-social"
+                       href="https://www.youtube.com" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Form liên hệ -->
+            <div class="col-lg-7 col-md-6">
+                <h6 class="section-title text-start text-warning text-uppercase">Gửi tin nhắn</h6>
+                <h2 class="mb-4">Liên hệ trực tuyến</h2>
+
+                <form th:action="@{/contact/submit}" method="post" class="bg-light p-4 rounded shadow-sm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" name="name" class="form-control border-0 py-3" placeholder="Họ và tên" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" name="email" class="form-control border-0 py-3" placeholder="Email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="phone" class="form-control border-0 py-3" placeholder="Số điện thoại" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="subject" class="form-control border-0 py-3" placeholder="Chủ đề">
+                        </div>
+                        <div class="col-12">
+                            <textarea name="message" rows="5" class="form-control border-0 py-3"
+                                      placeholder="Nội dung tin nhắn..." required></textarea>
+                        </div>
+                        <div class="col-12 text-end">
+                            <button class="btn btn-danger py-3 px-5" type="submit">
+                                Gửi liên hệ <i class="fa fa-paper-plane ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bản đồ -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <iframe class="w-100 rounded shadow-sm" height="400"
+                        src="https://www.google.com/maps?q=182%20L%C3%AA%20Thanh%20Ngh%E1%BB%8B,%20%C4%90%C3%A0%20N%E1%BA%B5ng&output=embed"
+                        allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: siteFooter}"></div>
+<script>
+    $(document).ready(function() {
+        var hideTimeout;
+        var dropdownToggle = $('#productsDropdown');
+        var dropdownMenu = dropdownToggle.siblings('.dropdown-menu');
+
+        // Hiển thị dropdown khi hover vào toggle
+        dropdownToggle.on('mouseenter', function() {
+            clearTimeout(hideTimeout);
+            dropdownMenu.addClass('show');
+        });
+
+        // Ẩn dropdown sau 200ms khi rời khỏi toggle
+        dropdownToggle.on('mouseleave', function() {
+            hideTimeout = setTimeout(function() {
+                dropdownMenu.removeClass('show');
+            }, 600);
+        });
+
+        // Ẩn dropdown sau 200ms khi rời khỏi menu
+        dropdownMenu.on('mouseleave', function() {
+            hideTimeout = setTimeout(function() {
+                dropdownMenu.removeClass('show');
+            }, 200);
+        });
+    });
+</script>
+</body>
+</html>
