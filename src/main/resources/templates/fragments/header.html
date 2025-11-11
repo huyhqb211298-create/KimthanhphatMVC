@@ -118,16 +118,20 @@
 
                     <!-- Dropdown Sản phẩm -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            Sản phẩm
+                        <a class="nav-link dropdown-toggle"
+                           th:href="@{/products}"  
+                        id="productsDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        onclick="if(!this.parentElement.querySelector('.dropdown-menu').classList.contains('show')){window.location=this.href;}">
+                        Sản phẩm
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="productsDropdown" th:if="${categories != null}">
                             <li th:each="category : ${categories}">
                                 <a class="dropdown-item"
                                    th:href="@{'/products/category/' + ${category.id}}"
-                                   th:text="${category.name}">
-                                </a>
+                                   th:text="${category.name}"></a>
                             </li>
                         </ul>
                     </li>

@@ -25,7 +25,10 @@ public class HomeController {
         model.addAttribute("categories", categories != null ? categories : Collections.emptyList());
         return "index";
     }
-
+    @GetMapping("/hsnl")
+    public String hoSo() {
+        return "hsnl"; // tên file trong /templates/hsnl.html
+    }
     @GetMapping("/contact")
     public String contact() {
         return "contact";
