@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Văn bản pháp quy PCCC | Kim Thành Phát</title>
+
+    <!-- CSS & Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+
+    <style>
+        /* Tiêu đề trang */
+        .page-header {
+            background: linear-gradient(135deg, #ff4d00 0%, #e63900 100%);
+            color: #fff;
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Card văn bản */
+        .document-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255,77,0,0.25);
+        }
+        .document-card img {
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .document-card .card-body {
+            padding: 20px;
+        }
+        .document-card h5 {
+            color: #d32f2f;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+        .document-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .document-card small {
+            color: #999;
+        }
+        .btn-outline-danger {
+            border-radius: 50px;
+            padding: 6px 16px;
+        }
+        .document-card {
+            border-radius: 10px;             /* Bo tròn toàn thẻ */
+            overflow: hidden;                /* Giữ bo tròn ảnh trên */
+            transition: all 0.3s ease;       /* Hiệu ứng hover */
+            background-color: #fff;
+        }
+
+        .document-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(255, 77, 0, 0.2);
+        }
+
+        .document-card .card-img-top {
+            border-top-left-radius: 10px;    /* Bo góc ảnh */
+            border-top-right-radius: 10px;
+            height: 200px;
+            object-fit: cover;               /* Ảnh luôn đẹp, không méo */
+        }
+
+        .document-card .card-body {
+            padding: 1rem 1.25rem;
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Header -->
+<div th:replace="~{fragments/header :: siteHeader}"></div>
+
+<!-- Page Header -->
+<div class="container-fluid text-white py-5 mb-5"
+     style="background:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url('/img/documents-banner.jpg') center/cover no-repeat;
+            position: relative;">
+    <div class="container text-center py-5">
+
+        <h1 class="display-4 fw-bold text-warning mb-3"
+            style="text-shadow: 0 3px 6px rgba(0,0,0,0.7);">
+            Văn bản pháp quy
+        </h1>
+
+        <p class="lead mb-0" style="font-size:1.4rem; text-shadow: 0 2px 6px rgba(0,0,0,0.6);">
+            Tổng hợp quy định & thông tư liên quan đến công tác PCCC
+        </p>
+
+    </div>
+</div>
+<!-- Nội dung chính -->
+<div class="container py-5">
+    <div class="row g-4">
+        <!-- Bài 1 -->
+        <div class="col-md-4">
+            <div class="card document-card h-100">
+                <img src="/img/doc-1.jpg" alt="Tổng hợp quy định thiết kế PCCC">
+                <div class="card-body">
+                    <h5>Tổng hợp quy định thiết kế PCCC</h5>
+                    <small>Ngày đăng: 25/12/2022</small>
+                    <p class="mt-2">Một công trình trước khi thi công phải được cấp giấy phép PCCC theo quy định...</p>
+                    <a th:href="@{/documents/quy-dinh-thiet-ke-pccc}" class="btn btn-outline-danger btn-sm">
+                        Chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bài 2 -->
+        <div class="col-md-4">
+            <div class="card document-card h-100">
+                <img src="/img/law.jpg" alt="Thủ tục phê duyệt phương án chữa cháy">
+                <div class="card-body">
+                    <h5>Thủ tục phê duyệt phương án chữa cháy</h5>
+                    <small>Ngày đăng: 16/02/2023</small>
+                    <p class="mt-2">Hướng dẫn các bước phê duyệt, hồ sơ cần chuẩn bị và quy trình xét duyệt PCCC...</p>
+                    <a th:href="@{/documents/thu-tuc-phe-duyet-phuong-an-pccc}" class="btn btn-outline-danger btn-sm">Chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bài 3 -->
+        <div class="col-md-4">
+            <div class="card document-card h-100">
+                <img src="/img/law.jpg" alt="Hồ sơ nghiệm thu PCCC">
+                <div class="card-body">
+                    <h5>Hồ sơ nghiệm thu PCCC</h5>
+                    <small>Ngày đăng: 07/02/2023</small>
+                    <p class="mt-2">Danh mục hồ sơ cần có khi nộp nghiệm thu phương án PCCC cho các công trình...</p>
+                    <a th:href="@{/documents/ho-so-nghiem-thu-pccc}" class="btn btn-outline-danger btn-sm">Chi tiết</a>
+                </div>
+            </div>
+        </div>
+        <!-- Bài 4 -->
+        <div class="col-md-4">
+            <div class="card document-card h-100">
+                <img src="/img/law.jpg" alt="Hồ sơ thẩm duyệt PCCC">
+                <div class="card-body">
+                    <h5>Hồ sơ thẩm duyệt PCCC</h5>
+                    <small>Ngày đăng: 07/02/2023</small>
+                    <p class="mt-2">Danh mục hồ sơ cần có khi nộp thẩm duyệt phương án PCCC cho các công trình...</p>
+                    <a th:href="@{/documents/ho-so-tham-duyet-pccc}" class="btn btn-outline-danger btn-sm">Chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bài 5 -->
+        <div class="col-md-4">
+            <div class="card document-card h-100">
+                <img src="/img/law.jpg" alt="Thông tư 47/2015 hướng dẫn PCCC">
+                <div class="card-body">
+                    <h5>Thông tư 47/2015 hướng dẫn an toàn PCCC</h5>
+                    <small>Ngày đăng: 06/02/2023</small>
+                    <p class="mt-2">Thông tư hướng dẫn bảo đảm an toàn PCCC cho các cơ sở, doanh nghiệp, nhà xưởng...</p>
+                    <a th:href="@{/documents/thong-tu-47}" class="btn btn-outline-danger btn-sm">Chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer th:replace="~{fragments/footer :: siteFooter}"></footer>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Bootstrap bundle (đã bao gồm PopperJS) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Thư viện bổ sung -->
+<script th:src="@{/lib/wow/wow.min.js}"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- JS chính -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

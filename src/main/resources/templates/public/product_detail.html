@@ -164,7 +164,7 @@
 <body>
 
 <!-- Header -->
-<header th:replace="fragments/header :: siteHeader"></header>
+<div th:replace="~{fragments/header :: siteHeader}"></div>
 
 <!-- MAIN PRODUCT DETAIL -->
 <section class="container py-5" style="min-height: 80vh;">
@@ -255,7 +255,7 @@
 </section>
 
 <!-- Footer -->
-<footer th:replace="fragments/footer :: siteFooter"></footer>
+<footer th:replace="~{fragments/footer :: siteFooter}"></footer>
 
 </body>
 <!-- jQuery -->

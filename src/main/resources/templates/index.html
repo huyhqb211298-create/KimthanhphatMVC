@@ -78,7 +78,7 @@
                                 Thiết bị PCCC – Đạt Chuẩn Quốc Gia
                             </h1>
                             <a th:href="@{/products}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Sản Phẩm</a>
-                            <a href="contact.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Liên Hệ Ngay</a>
+                            <a th:href="@{/contact}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Liên Hệ Ngay</a>
                         </div>
                     </div>
                 </div>
@@ -94,10 +94,10 @@
                             <h1 class="display-3 text-white mb-4 animated slideInDown">
                                 Dịch Vụ Sau Bán Hàng Chuẩn Mực & Uy Tín
                             </h1>
-                            <a href="service.html#maintenance" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
+                            <a th:href="@{/about.html}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
                                 Xem Dịch Vụ
                             </a>
-                            <a href="contact.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">
+                            <a th:href="@{/contact}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">
                                 Đặt Lịch Ngay
                             </a>
                         </div>
@@ -115,8 +115,8 @@
                             <h1 class="display-3 text-white mb-4 animated slideInDown">
                                 “Kim Thành Phát – Giải Pháp PCCC Toàn Diện Cho Mọi Công Trình”
                             </h1>
-                            <a href="about.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Tìm Hiểu Ngay</a>
-                            <a href="contact.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Liên Hệ</a>
+                            <a th:href="@{/about}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Tìm Hiểu Ngay</a>
+                            <a th:href="@{/contact}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Liên Hệ</a>
                         </div>
                     </div>
                 </div>
@@ -131,10 +131,10 @@
                             <h1 class="display-3 text-white mb-4 animated slideInDown">
                                 Hệ Thống Chữa Cháy Khí Sạch – STEC-Vina
                             </h1>
-                            <a href="products.html#fm-200" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
+                            <a th:href="@{/products/he-thong-chua-chay-khi-fm-200-stec-vina}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
                                 Tìm Hiểu Ngay
                             </a>
-                            <a href="contact.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">
+                            <a th:href="@{/contact}" class="btn  btn-light py-md-3 px-md-5 animated slideInRight">
                                 Liên Hệ Báo Giá
                             </a>
                         </div>
@@ -171,7 +171,7 @@
             <li>Thi công: thi công hệ thống báo cháy địa chỉ/đơn giản, hệ thống chữa cháy CO2, FM200, sprinkler.</li>
             <li>Dịch vụ: kiểm định, bảo trì, tư vấn hoàn thiện hồ sơ PCCC.</li>
           </ul>
-          <a class="btn btn-primary py-3 px-5 mt-2" href="contact.html">Yêu cầu tư vấn</a>
+          <a class="btn btn-primary py-3 px-5 mt-2" th:href="@{/contact}">Yêu cầu tư vấn</a>
         </div>
         <div class="col-lg-6">
           <div class="row g-3">
@@ -224,7 +224,7 @@
             <div class="row g-4 justify-content-center">
                 <!-- Bình chữa cháy -->
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a class="service-item rounded text-center shadow-sm p-4 h-100" href="products.html#fire-extinguishers">
+                    <a class="service-item rounded text-center shadow-sm p-4 h-100" th:href="@{/products}">
                         <div class="service-icon mx-auto bg-transparent border rounded-circle p-3 mb-3"
                              style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;">
                             <i class="fa fa-fire-extinguisher fa-2x text-danger"></i>
@@ -252,7 +252,7 @@
 
                 <!-- Hỗ trợ khách hàng -->
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <a class="service-item rounded text-center shadow-sm p-4 h-100" href="contact.html">
+                    <a class="service-item rounded text-center shadow-sm p-4 h-100" th:href="@{/contact}">
                         <div class="service-icon mx-auto bg-transparent border rounded-circle p-3 mb-3"
                              style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;">
                             <i class="fa fa-headset fa-2x text-danger"></i>
@@ -267,63 +267,43 @@
         </div>
     </div>
 
-  <!-- Sản phẩm tiêu biểu -->
-  <div class="container-xxl py-5">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h6 class="section-title text-primary text-uppercase mb-3">Sản phẩm nổi bật</h6>
-        <h1 class="fw-bold text-uppercase mb-4">Sản phẩm <span class="text-danger">Tiêu Biểu</span></h1>
-        <div class="mx-auto" style="width: 80px; height: 3px; background-color: #dc3545;"></div>
-      </div>
+    <!-- Đối tác & Dự án -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="section-title text-primary text-uppercase mb-3">Đối tác & Dự án</h6>
+                <h1 class="fw-bold text-uppercase">Khách hàng <span class="text-danger">Tiêu biểu</span></h1>
+            </div>
 
-      <div class="row g-4 justify-content-center">
-        <!-- SP1 -->
-        <div class="col-md-4 col-sm-6">
-          <div class="card product-card h-100 border-0 shadow-sm">
-            <div class="product-img-container">
-              <img src="img/product-1.jpg" class="card-img-top" alt="Bình chữa cháy 4kg Victory">
+            <div class="row g-4">
+                <div class="col-md-4 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100 text-center p-3">
+                        <div class="card-body">
+                            <i class="fa fa-industry fa-3x text-danger mb-3"></i>
+                            <h5 class="fw-bold mb-2">Kim Long Motor Huế</h5>
+                            <p>Cung cấp hệ thống chữa cháy khí FM-200 đạt chuẩn quốc tế.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100 text-center p-3">
+                        <div class="card-body">
+                            <i class="fa fa-warehouse fa-3x text-danger mb-3"></i>
+                            <h5 class="fw-bold mb-2">Nhà kho Sơn Trà</h5>
+                            <p>Thi công hệ thống báo cháy & cung cấp thiết bị chữa cháy tự động.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100 text-center p-3">
+                        <div class="card-body">
+                            <i class="fa fa-hand-holding fa-3x text-danger mb-3"></i>
+                            <h5 class="fw-bold mb-2">Đối tác</h5>
+                            <p>S-Tec Vina, Dahua, Utec, Notifier, Victory – các thương hiệu hàng đầu trong lĩnh vực PCCC.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body text-center">
-              <h5 class="card-title text-danger fw-bold">Bình chữa cháy ABC 4kg Victory</h5>
-              <p class="card-text text-muted">
-                Bình tiêu chuẩn, nạp đầy, có tem kiểm định – phù hợp nhà ở, văn phòng, xe ô tô.
-              </p>
-              <a href="products.html#abc4kg" class="btn btn-outline-danger btn-sm mt-2">Xem chi tiết</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- SP2 - Sprinkler -->
-        <div class="col-md-4 col-sm-6">
-          <div class="card product-card h-100 border-0 shadow-sm">
-            <div class="product-img-container">
-              <img src="img/product-2.jpg" class="card-img-top" alt="Đầu phun Sprinkler Victory">
-            </div>
-            <div class="card-body text-center">
-              <h5 class="card-title text-danger fw-bold">Đầu phun Sprinkler Victory</h5>
-              <p class="card-text text-muted">
-                Đầu phun chữa cháy tự động Sprinkler Victory – độ nhạy cao, vật liệu đồng mạ crom, đạt tiêu chuẩn UL/FM.
-              </p>
-              <a href="products.html#sprinkler" class="btn btn-outline-danger btn-sm mt-2">Xem chi tiết</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- SP3 -->
-        <div class="col-md-4 col-sm-6">
-          <div class="card product-card h-100 border-0 shadow-sm">
-            <div class="product-img-container">
-              <img src="img/product-3.jpg" class="card-img-top" alt="Van chữa cháy Victory">
-            </div>
-            <div class="card-body text-center">
-              <h5 class="card-title text-danger fw-bold">Van, họng chữa cháy Victory</h5>
-              <p class="card-text text-muted">
-                Van và họng DN50/DN65 chất lượng cao, tiêu chuẩn cho hệ thống tòa nhà & công nghiệp.
-              </p>
-              <a href="products.html#valve" class="btn btn-outline-danger btn-sm mt-2">Xem chi tiết</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

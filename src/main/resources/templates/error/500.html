@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lỗi máy chủ | Kim Thành Phát</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: siteHeader}"></div>
+
+<div class="container text-center py-5 my-5">
+    <h1 class="display-1 fw-bold text-warning">500</h1>
+    <h2 class="text-uppercase fw-bold mb-3 text-danger">Lỗi hệ thống</h2>
+    <p class="text-muted mb-4">
+        Có lỗi xảy ra khi xử lý yêu cầu của bạn. Chúng tôi đang cố gắng khắc phục sớm nhất có thể.
+    </p>
+    <a th:href="@{/}" class="btn btn-danger px-4 py-2 rounded-pill">
+        <i class="fa fa-rotate-left me-2"></i> Quay lại trang chủ
+    </a>
+</div>
+
+<div th:replace="~{fragments/footer :: siteFooter}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Thư viện bổ sung -->
+<script th:src="@{/lib/wow/wow.min.js}"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- JS chính -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

@@ -27,20 +27,26 @@ public class HomeController {
     }
     @GetMapping("/hsnl")
     public String hoSo() {
-        return "hsnl"; // tên file trong /templates/hsnl.html
+        return "hsnl";
     }
     @GetMapping("/contact")
     public String contact() {
         return "contact";
     }
+
     @GetMapping("/about")
     public String about() {
-        return "about"; // Template: about.html
+        return "about";
     }
 
-    @GetMapping("/projects")
-    public String projects() {
-        return "projects"; // Template: projects.html
+    @GetMapping("/cookies")
+    public String cookies() {
+        return "cookies";
+    }
+
+    @GetMapping("/faq")
+    public String faq() {
+        return "faq"; // Template: projects.html
     }
 
     @GetMapping("/consulting")
@@ -53,9 +59,5 @@ public class HomeController {
         return "news"; // Template: news.html
     }
 
-    @GetMapping("/laws")
-    public String laws() {
-        return "laws"; // Template: laws.html
-    }
 
 }

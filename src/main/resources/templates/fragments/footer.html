@@ -5,7 +5,7 @@
         <div class="row g-5">
             <div class="col-md-6 col-lg-4">
                 <div class="bg-danger rounded p-4">
-                    <a href="index.html"><h2 class="text-white text-uppercase mb-3">Kim Thành Phát</h2></a>
+                    <a th:href="@{/}"><h2 class="text-white text-uppercase mb-3">Kim Thành Phát</h2></a>
                     <p class="text-white mb-0">
                         Cung cấp thiết bị PCCC, thi công & bảo trì.
                         Địa chỉ: 182 Lê Thanh Nghị - Tp Đà Nẵng.
@@ -28,17 +28,15 @@
                 <div class="row gy-5 g-4">
                     <div class="col-md-6">
                         <h6 class="section-title text-start text-warning text-uppercase mb-4">Công ty</h6>
-                        <a class="btn btn-link text-white" href="about.html">Giới thiệu</a>
-                        <a class="btn btn-link text-white" href="contact.html">Liên hệ</a>
-                        <a class="btn btn-link text-white" href="policy.html">Chính sách</a>
-                        <a class="btn btn-link text-white" href="terms.html">Điều khoản</a>
+                        <a class="btn btn-link text-white" th:href="@{/about}">Giới thiệu</a>
+                        <a class="btn btn-link text-white" th:href="@{/contact}">Liên hệ</a>
+                        <a class="btn btn-link text-white" th:href="@{/contact}">Điều khoản</a>
                     </div>
                     <div class="col-md-6">
                         <h6 class="section-title text-start text-warning text-uppercase mb-4">Dịch vụ</h6>
-                        <a class="btn btn-link text-white" href="service.html">Thi công</a>
-                        <a class="btn btn-link text-white" href="service.html#maintenance">Bảo trì</a>
-                        <a class="btn btn-link text-white" href="products.html">Sản phẩm</a>
-                        <a class="btn btn-link text-white" href="projects.html">Dự án</a>
+                        <a class="btn btn-link text-white" th:href="@{/contact}">Bảo trì</a>
+                        <a class="btn btn-link text-white" th:href="@{/products}">Sản phẩm</a>
+                        <a class="btn btn-link text-white" th:href="@{/about}">Dự án</a>
                     </div>
                 </div>
             </div>
@@ -48,14 +46,14 @@
     <div class="container border-top border-secondary pt-3">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0 small">
-                &copy; <a class="border-bottom text-white" href="#">Kim Thành Phát</a>. Thiết kế bởi đội ngũ nội bộ.
+                &copy; <a class="border-bottom text-white" th:href="@{/}">Kim Thành Phát</a>. Thiết kế bởi đội ngũ nội bộ.
             </div>
             <div class="col-md-6 text-center text-md-end small">
                 <div class="footer-menu">
-                    <a href="#">Trang chủ</a>
-                    <a href="#">Cookies</a>
-                    <a href="#">Hỗ trợ</a>
-                    <a href="#">FAQ</a>
+                    <a th:href="@{/}">Trang chủ</a>
+                    <a th:href="@{/cookies}">Cookies</a>
+                    <a th:href="@{/contact}">Hỗ trợ</a>
+                    <a th:href="@{/faq}">FAQ</a>
                 </div>
             </div>
         </div>

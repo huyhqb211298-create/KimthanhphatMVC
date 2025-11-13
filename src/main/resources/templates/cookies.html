@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chính sách Cookie | Kim Thành Phát</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: siteHeader}"></div>
+
+<!-- Header -->
+<div class="container-fluid text-white py-5 mb-5"
+     style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+            url('/img/about-banner.jpg') center/cover no-repeat;">
+    <div class="container text-center py-5">
+        <h1 class="display-4 fw-bold text-warning mb-3">Chính sách Cookie</h1>
+        <p class="lead mb-0">Cách chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn</p>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="container my-5">
+    <h3 class="text-danger fw-bold mb-3">1. Cookie là gì?</h3>
+    <p>Cookie là các tệp nhỏ được lưu trữ trên trình duyệt của bạn khi truy cập website. Chúng giúp nhận diện thiết bị, ghi nhớ tùy chọn và cải thiện hiệu suất website.</p>
+
+    <h3 class="text-danger fw-bold mt-4 mb-3">2. Chúng tôi sử dụng cookie để làm gì?</h3>
+    <ul>
+        <li>Ghi nhớ tùy chọn ngôn ngữ, bố cục giao diện.</li>
+        <li>Phân tích hành vi truy cập (Google Analytics).</li>
+        <li>Cải thiện tốc độ tải trang và trải nghiệm người dùng.</li>
+    </ul>
+
+    <h3 class="text-danger fw-bold mt-4 mb-3">3. Cách kiểm soát cookie</h3>
+    <p>Bạn có thể tắt cookie trong phần cài đặt trình duyệt. Tuy nhiên, một số tính năng của website có thể không hoạt động chính xác nếu cookie bị tắt.</p>
+
+    <div class="alert alert-warning mt-4">
+        <i class="fa fa-info-circle me-2"></i>
+        Website Kim Thành Phát có thể hiển thị thông báo “Chấp nhận cookie” khi bạn truy cập lần đầu để tuân thủ quy định về quyền riêng tư.
+    </div>
+
+    <div class="mt-5" th:replace="~{fragments/related-news :: relatedNews}"></div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: siteFooter}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Thư viện bổ sung -->
+<script th:src="@{/lib/wow/wow.min.js}"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- JS chính -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

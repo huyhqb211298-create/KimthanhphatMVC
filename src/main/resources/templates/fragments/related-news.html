@@ -1,0 +1,105 @@
+<!-- fragments/related-news.html -->
+<style>
+    .related-card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background-color: #fff;
+    }
+
+    .related-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .related-img {
+        height: 160px;
+        overflow: hidden;
+    }
+
+    .related-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .related-card:hover .related-img img {
+        transform: scale(1.1);
+    }
+
+    .btn-outline-danger {
+        border-radius: 30px;
+        font-size: 0.85rem;
+        padding: 6px 14px;
+    }
+</style>
+<div th:fragment="relatedNews">
+    <section class="container my-5">
+        <h4 class="fw-bold text-danger mb-4 text-uppercase">
+            <i class="fa-solid fa-newspaper me-2"></i>Tin liên quan
+        </h4>
+
+        <div class="row g-4">
+            <!-- Bài 1 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="related-card h-100 shadow-sm">
+                    <div class="related-img">
+                        <img src="/img/law.jpg" alt="Thông tư 47/2015" class="img-fluid">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="fw-bold text-danger mb-1 text-uppercase">Thông tư 47/2015 hướng dẫn về bảo đảm an toàn PCCC</h6>
+                        <small class="text-muted d-block mb-2">Ngày 06/02/2017</small>
+                        <p class="small text-secondary">Hướng dẫn đảm bảo an toàn phòng cháy chữa cháy đối với cơ sở sản xuất, kinh doanh...</p>
+                        <a href="/documents/thong-tu-47-2015.html" class="btn btn-outline-danger btn-sm">Chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bài 2 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="related-card h-100 shadow-sm">
+                    <div class="related-img">
+                        <img src="/img/law.jpg" alt="QCVN 12-2014" class="img-fluid">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="fw-bold text-danger mb-1 text-uppercase">QCVN 12:2014/BXD – Hệ thống điện nhà ở</h6>
+                        <small class="text-muted d-block mb-2">Ngày 06/02/2017</small>
+                        <p class="small text-secondary">Quy chuẩn kỹ thuật quốc gia về hệ thống điện trong nhà ở và công trình công cộng...</p>
+                        <a href="/documents/qcvn-12-2014.html" class="btn btn-outline-danger btn-sm">Chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bài 3 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="related-card h-100 shadow-sm">
+                    <div class="related-img">
+                        <img src="/img/law.jpg" alt="QCVN 08-2009" class="img-fluid">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="fw-bold text-danger mb-1 text-uppercase">QCVN 08:2009/BXD – Công trình ngầm đô thị</h6>
+                        <small class="text-muted d-block mb-2">Ngày 06/02/2017</small>
+                        <p class="small text-secondary">Quy chuẩn kỹ thuật quốc gia về công trình ngầm đô thị, phần 1 và phần 2...</p>
+                        <a href="/documents/qcvn-08-2009.html" class="btn btn-outline-danger btn-sm">Chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bài 4 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="related-card h-100 shadow-sm">
+                    <div class="related-img">
+                        <img src="/img/law.jpg" alt="Thông tư 66/2014" class="img-fluid">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="fw-bold text-danger mb-1 text-uppercase">Thông tư 66/2014/TT-BCA – Quy định thi hành luật PCCC</h6>
+                        <small class="text-muted d-block mb-2">Ngày 31/07/2014</small>
+                        <p class="small text-secondary">Hướng dẫn chi tiết thi hành Luật Phòng cháy chữa cháy và Luật sửa đổi bổ sung...</p>
+                        <a href="/documents/thong-tu-66-2014.html" class="btn btn-outline-danger btn-sm">Chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

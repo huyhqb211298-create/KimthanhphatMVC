@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ | Kim Thành Phát</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: siteHeader}"></div>
+
+<!-- Banner -->
+<div class="container-fluid text-white py-5 mb-5"
+     style="background:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url('/img/about-banner.jpg') center/cover no-repeat;">
+    <div class="container text-center py-5">
+        <h1 class="display-4 fw-bold text-warning mb-3"
+            style="text-shadow: 0 3px 6px rgba(0,0,0,0.7);">Câu hỏi thường gặp</h1>
+        <p class="lead mb-0" style="font-size:1.3rem; text-shadow: 0 2px 6px rgba(0,0,0,0.6);">
+            Giải đáp nhanh các thắc mắc phổ biến của khách hàng về PCCC
+        </p>
+    </div>
+</div>
+
+<!-- FAQ Content -->
+<div class="container my-5">
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1">
+                <button class="accordion-button fw-bold text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                    1. Hồ sơ xin thẩm duyệt PCCC gồm những gì?
+                </button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Hồ sơ bao gồm bản vẽ kiến trúc, kết cấu, điện, hồ sơ PCCC, giấy tờ đất, thuyết minh, và đơn đề nghị thẩm duyệt.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mt-3">
+            <h2 class="accordion-header" id="faq2">
+                <button class="accordion-button collapsed fw-bold text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                    2. Bao lâu có thể hoàn tất nghiệm thu PCCC?
+                </button>
+            </h2>
+            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Thời gian thường từ 5–10 ngày làm việc sau khi hồ sơ hợp lệ và công trình được kiểm tra thực tế.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mt-3">
+            <h2 class="accordion-header" id="faq3">
+                <button class="accordion-button collapsed fw-bold text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                    3. Kim Thành Phát cung cấp những dịch vụ nào?
+                </button>
+            </h2>
+            <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Chúng tôi chuyên thiết kế, thi công, kiểm định, bảo trì và tư vấn hồ sơ thẩm duyệt, nghiệm thu PCCC tại Đà Nẵng và toàn quốc.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mt-3">
+            <h2 class="accordion-header" id="faq4">
+                <button class="accordion-button collapsed fw-bold text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                    4. Có cần xin phép PCCC cho nhà ở riêng lẻ không?
+                </button>
+            </h2>
+            <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Nhà ở riêng lẻ thông thường không thuộc đối tượng bắt buộc thẩm duyệt PCCC, nhưng vẫn nên tuân thủ các quy định an toàn tối thiểu như lối thoát hiểm, bình chữa cháy, và hệ thống điện an toàn.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related News -->
+    <div class="mt-5" th:replace="~{fragments/related-news :: relatedNews}"></div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: siteFooter}"></div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+
+<!-- Thư viện bổ sung -->
+<script th:src="@{/lib/wow/wow.min.js}"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- JS chính -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
