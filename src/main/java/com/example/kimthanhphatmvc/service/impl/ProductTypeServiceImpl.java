@@ -3,6 +3,7 @@ package com.example.kimthanhphatmvc.service.impl;
 import com.example.kimthanhphatmvc.model.ProductType;
 import com.example.kimthanhphatmvc.repository.ProductTypeRepository;
 import com.example.kimthanhphatmvc.service.ProductTypeService;
+import com.example.kimthanhphatmvc.service.SlugService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.Optional;
 public class ProductTypeServiceImpl implements ProductTypeService {
 
     private final ProductTypeRepository productTypeRepository;
+    private final SlugService slugService;
 
-    public ProductTypeServiceImpl(ProductTypeRepository productTypeRepository) {
+    public ProductTypeServiceImpl(ProductTypeRepository productTypeRepository, SlugService slugService) {
         this.productTypeRepository = productTypeRepository;
+        this.slugService = slugService;
     }
 
     @Override
@@ -29,6 +32,13 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
     @Override
     public ProductType save(ProductType productType) {
+
+        // ⭐ CHỈ TẠO SLUG KHI PRODUCTTYPE MỚI
+        if (productType.getId() == null || productType.getSlug() == null || productType.getSlug().isEmpty()) {
+            String slug = slugService.createSlug(productType.getName());
+            productType.setSlug(slug);
+        }
+
         return productTypeRepository.save(productType);
     }
 

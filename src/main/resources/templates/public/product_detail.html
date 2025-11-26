@@ -3,48 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Danh sách sản phẩm</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link th:href="@{/img/favicon.ico}" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
     <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
     <link th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+
 </head>
+
 <style>
-    /* Ảnh sản phẩm chính trong trang chi tiết */
     .product-main-image {
         width: 100%;
-        height: 400px; /* Chiều cao cố định, có thể chỉnh 350–450px tùy bố cục */
+        height: 400px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #f8f9fa; /* nền nhạt khi ảnh đang tải */
+        background-color: #f8f9fa;
         overflow: hidden;
         position: relative;
     }
-
     .product-main-image img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Giữ tỉ lệ ảnh, không méo */
+        object-fit: cover;
         transition: transform 0.5s ease;
     }
-
     .product-main-image:hover img {
         transform: scale(1.05);
     }
 
-    /* === PRODUCT DETAIL PAGE === */
     .product-card {
         border-radius: 0.75rem;
         background-color: #fff;
@@ -63,194 +58,113 @@
         transform: scale(1.05);
     }
 
-    /* === PRODUCT DETAIL LAYOUT === */
     section.container {
         background-color: #fafafa;
         border-radius: 10px;
         padding: 40px;
     }
+    .breadcrumb a { text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
 
-    section.container h2,
-    section.container h4 {
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    section.container p {
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-
-    .btn-danger {
-        background-color: #dc3545;
-        border: none;
-        transition: all 0.2s ease;
-    }
-    .btn-danger:hover {
-        background-color: #b02a37;
-    }
-
-    .btn-outline-secondary:hover {
-        background-color: #dc3545;
-        color: #fff;
-        border-color: #dc3545;
-    }
-
-    /* Badge mềm mại hơn */
-    .badge {
-        padding: 0.5em 0.75em;
-        font-size: 0.85rem;
-        border-radius: 6px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        section.container {
-            padding: 20px;
-        }
-    }
-    .breadcrumb {
-        background-color: transparent;
-        font-size: 0.95rem;
-    }
-    .breadcrumb a {
-        text-decoration: none;
-    }
-    .breadcrumb a:hover {
-        text-decoration: underline;
-    }
-    /* === ZOOM HÌNH ẢNH SẢN PHẨM === */
-    .zoom-container {
-        position: relative;
-        overflow: hidden;
-        cursor: zoom-in;
-    }
-
-    .zoom-image {
-        width: 100%;
-        height: auto;
-        transition: transform 0.5s ease;
-        transform-origin: center center;
-    }
-
-    /* Khi hover: phóng to nhẹ */
-    .zoom-container:hover .zoom-image {
-        transform: scale(1.5);
-    }
-
+    .zoom-container { position: relative; overflow: hidden; cursor: zoom-in; }
+    .zoom-image { width: 100%; transition: transform 0.5s ease; transform-origin: center; }
+    .zoom-container:hover .zoom-image { transform: scale(1.5); }
 </style>
-<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('description', {
-        language: 'vi',
-        height: 300,
-        removeButtons: 'PasteFromWord'
-    });
-</script>
-<script>
-    document.querySelectorAll('.zoom-container').forEach(container => {
-        const img = container.querySelector('img');
-        container.addEventListener('mousemove', e => {
-            const rect = container.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            img.style.transformOrigin = `${x}% ${y}%`;
-        });
-        container.addEventListener('mouseleave', () => {
-            img.style.transformOrigin = 'center center';
-        });
-    });
-</script>
 
 <body>
 
 <!-- Header -->
 <div th:replace="~{fragments/header :: siteHeader}"></div>
 
-<!-- MAIN PRODUCT DETAIL -->
+<!-- MAIN -->
 <section class="container py-5" style="min-height: 80vh;">
     <div class="row g-5 align-items-start">
+
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a th:href="@{/}">Trang chủ></a></li>
-                <li class="breadcrumb-item"><a th:href="@{/products}">Sản phẩm></a></li>
-                <li class="breadcrumb-item active" aria-current="page" th:text="${product.name}"></li>
+                <li class="breadcrumb-item"><a th:href="@{/}">Trang chủ</a></li>
+                <li class="breadcrumb-item">
+                    <a th:href="@{'/' + ${product.category.slug}}"
+                       th:text="${product.category.name}"></a>
+                </li>
+                <li class="breadcrumb-item active" th:text="${product.name}"></li>
             </ol>
         </nav>
 
-
-        <!-- Hình ảnh sản phẩm -->
+        <!-- Hình ảnh sản phẩm – ĐÃ SỬA -->
         <div class="col-md-5">
             <div class="product-main-image shadow-sm rounded-4 overflow-hidden bg-white border">
-                <img th:src="${product.image}"
+                <img th:src="${#strings.isEmpty(product.image) ? '/img/no-image.jpg' : product.image}"
                      th:alt="${product.name}"
                      class="img-fluid w-100 h-100"
                      style="object-fit: cover;">
             </div>
         </div>
 
-
-        <!-- Thông tin sản phẩm -->
+        <!-- Thông tin -->
         <div class="col-md-7">
-            <h2 class="fw-bold mb-3 text-danger" th:text="${product.name}">Tên sản phẩm</h2>
+            <h2 class="fw-bold mb-3 text-danger" th:text="${product.name}"></h2>
 
             <div class="mb-3">
-                <span class="badge bg-danger me-2" th:if="${product.stockStatus?.name() == 'IN_STOCK'}">Còn hàng</span>
-                <span class="badge bg-secondary me-2" th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">Hết hàng</span>
-                <span class="badge bg-warning text-dark" th:text="${product.category?.name}">Danh mục</span>
+                <span class="badge bg-danger" th:if="${product.stockStatus?.name() == 'IN_STOCK'}">Còn hàng</span>
+                <span class="badge bg-secondary" th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">Hết hàng</span>
+                <span class="badge bg-warning text-dark" th:text="${product.category?.name}"></span>
             </div>
 
-            <p class="lead fw-bold text-danger mb-3"
+            <p class="lead fw-bold text-danger"
                th:if="${product.priceDisplay?.name() == 'SHOW'}"
-               th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'">
-                0 ₫
-            </p>
+               th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></p>
 
             <p th:if="${product.priceDisplay?.name() == 'CONTACT'}"
-               class="lead text-muted fst-italic mb-3">Liên hệ để báo giá</p>
+               class="lead text-muted fst-italic">Liên hệ để báo giá</p>
 
-            <div class="mb-4">
-                <p><strong>Thương hiệu:</strong> <span th:text="${product.brand?.name}">Thương hiệu</span></p>
-                <p><strong>Xuất xứ:</strong> <span th:text="${product.origin}">Việt Nam</span></p>
-                <p><strong>Bảo hành:</strong> <span th:text="${product.warrantyMonths + ' tháng'}">12 tháng</span></p>
-            </div>
+            <p><strong>Thương hiệu:</strong> <span th:text="${product.brand?.name}"></span></p>
+            <p><strong>Xuất xứ:</strong> <span th:text="${product.origin}"></span></p>
+            <p><strong>Bảo hành:</strong> <span th:text="${product.warrantyMonths + ' tháng'}"></span></p>
 
-            <div class="d-flex flex-wrap gap-3 mb-4">
-                <a href="#" class="btn btn-danger px-4 py-2">Liên hệ mua hàng</a>
-                <a th:href="@{/products}" class="btn btn-outline-secondary px-4 py-2">← Quay lại danh sách</a>
+            <div class="d-flex gap-3 mb-4">
+                <a href="#" class="btn btn-danger px-4">Liên hệ mua hàng</a>
+                <a th:href="@{/products}" class="btn btn-outline-secondary px-4">← Quay lại danh sách</a>
             </div>
         </div>
     </div>
 
-    <!-- Mô tả chi tiết -->
+    <!-- Mô tả -->
     <div class="row mt-5">
         <div class="col-lg-12">
             <h4 class="border-bottom border-danger pb-2 mb-3 text-uppercase">Mô tả sản phẩm</h4>
-            <p th:utext="${product.description}" class="text-secondary lh-lg">
-                Thông tin chi tiết sản phẩm...
-            </p>
+            <p th:utext="${product.description}" class="text-secondary lh-lg"></p>
         </div>
     </div>
 
-    <!-- Sản phẩm liên quan -->
+    <!-- Sản phẩm liên quan – ĐÃ SỬA -->
     <div class="row mt-5">
         <h4 class="border-bottom border-danger pb-2 mb-4 text-uppercase">Sản phẩm cùng loại</h4>
 
         <div class="col-md-3 mb-4" th:each="rel : ${relatedProducts}">
             <div class="card h-100 border-0 shadow-sm product-card">
-                <img th:src="${rel.image}" th:alt="${rel.name}"
-                     class="card-img-top" style="height: 200px; object-fit: cover;">
+
+                <img th:src="${#strings.isEmpty(rel.image) ? '/img/no-image.jpg' : rel.image}"
+                     th:alt="${rel.name}"
+                     class="card-img-top"
+                     style="height: 200px; object-fit: cover;">
+
                 <div class="card-body text-center">
                     <h6 class="fw-semibold text-truncate" th:text="${rel.name}"></h6>
-                    <p class="text-danger fw-bold small mb-2"
+
+                    <p class="text-danger fw-bold small"
                        th:if="${rel.priceDisplay?.name() == 'SHOW'}"
                        th:text="${#numbers.formatDecimal(rel.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></p>
-                    <p class="text-muted small mb-2 fst-italic"
+
+                    <p class="text-muted small fst-italic"
                        th:if="${rel.priceDisplay?.name() == 'CONTACT'}">Liên hệ</p>
-                    <a th:href="@{'/products/' + ${rel.id}}" class="btn btn-outline-danger btn-sm">Xem chi tiết</a>
+
+                    <a th:href="@{/{slug}(slug=${rel.slug})}" class="btn btn-outline-danger btn-sm">Xem chi tiết</a>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 
@@ -258,20 +172,16 @@
 <footer th:replace="~{fragments/footer :: siteFooter}"></footer>
 
 </body>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!-- Bootstrap bundle (đã bao gồm PopperJS) -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Thư viện bổ sung -->
 <script th:src="@{/lib/wow/wow.min.js}"></script>
 <script th:src="@{/lib/easing/easing.min.js}"></script>
 <script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
 <script th:src="@{/lib/counterup/counterup.min.js}"></script>
 <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
 
-<!-- JS chính -->
 <script th:src="@{/js/main.js}"></script>
 
 </html>

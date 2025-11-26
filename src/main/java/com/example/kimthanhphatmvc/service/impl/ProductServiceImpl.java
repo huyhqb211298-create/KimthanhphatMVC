@@ -3,9 +3,11 @@ package com.example.kimthanhphatmvc.service.impl;
 import com.example.kimthanhphatmvc.model.Product;
 import com.example.kimthanhphatmvc.repository.ProductRepository;
 import com.example.kimthanhphatmvc.service.ProductService;
+import com.example.kimthanhphatmvc.service.SlugService;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,8 +15,11 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    public ProductServiceImpl(ProductRepository productRepository) {
+    private final SlugService slugService;
+
+    public ProductServiceImpl(ProductRepository productRepository, SlugService slugService) {
         this.productRepository = productRepository;
+        this.slugService = slugService;
     }
 
     @Override
@@ -29,6 +34,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void save(Product product) {
+
+        // ⭐ Chỉ tạo slug khi thêm mới (id == null)
+        if (product.getId() == null || product.getSlug() == null || product.getSlug().isEmpty()) {
+            String slug = slugService.createSlug(product.getName());
+            product.setSlug(slug);
+        }
+
         productRepository.save(product);
     }
 
@@ -37,25 +49,33 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(id);
     }
 
-    // ==================== FILTER + PAGINATION ====================
+    // ================= FILTER + PAGINATION ==================
+
     @Override
     public Page<Product> findFiltered(Long categoryId, Long brandId, Long productTypeId, int page, int size) {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "id"));
 
         if (categoryId != null && brandId != null && productTypeId != null) {
             return productRepository.findByCategoryIdAndBrandIdAndProductTypeId(categoryId, brandId, productTypeId, pageable);
+
         } else if (categoryId != null && brandId != null) {
             return productRepository.findByCategoryIdAndBrandId(categoryId, brandId, pageable);
+
         } else if (categoryId != null && productTypeId != null) {
             return productRepository.findByCategoryIdAndProductTypeId(categoryId, productTypeId, pageable);
+
         } else if (brandId != null && productTypeId != null) {
             return productRepository.findByBrandIdAndProductTypeId(brandId, productTypeId, pageable);
+
         } else if (categoryId != null) {
             return productRepository.findByCategoryId(categoryId, pageable);
+
         } else if (brandId != null) {
             return productRepository.findByBrandId(brandId, pageable);
+
         } else if (productTypeId != null) {
             return productRepository.findByProductTypeId(productTypeId, pageable);
+
         } else {
             return productRepository.findAll(pageable);
         }
@@ -88,4 +108,48 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findByCategoryAndBrand(Long categoryId, Long brandId) {
         return productRepository.findByCategoryIdAndBrandId(categoryId, brandId, Pageable.unpaged()).getContent();
     }
+    @Override
+    public List<Product> findRelatedProducts(Product product) {
+
+        List<Product> related = new ArrayList<>();
+
+        Long id = product.getId();
+
+        // 1️⃣ Ưu tiên cùng BRAND
+        if (product.getBrand() != null) {
+            related.addAll(
+                    productRepository.findTop4ByBrandIdAndIdNotOrderByIdDesc(
+                            product.getBrand().getId(),
+                            id
+                    )
+            );
+        }
+
+        // 2️⃣ Nếu chưa đủ 4 → bổ sung theo PRODUCT TYPE
+        if (related.size() < 4 && product.getProductType() != null) {
+            related.addAll(
+                    productRepository.findTop4ByProductTypeIdAndIdNotOrderByIdDesc(
+                            product.getProductType().getId(),
+                            id
+                    )
+            );
+        }
+
+        // 3️⃣ Nếu vẫn chưa đủ 4 → bổ sung theo CATEGORY
+        if (related.size() < 4 && product.getCategory() != null) {
+            related.addAll(
+                    productRepository.findTop4ByCategoryIdAndIdNotOrderByIdDesc(
+                            product.getCategory().getId(),
+                            id
+                    )
+            );
+        }
+
+        // 4️⃣ Trả về tối đa 4 sản phẩm, bỏ duplicate nếu trùng
+        return related.stream()
+                .distinct()
+                .limit(4)
+                .toList();
+    }
+
 }

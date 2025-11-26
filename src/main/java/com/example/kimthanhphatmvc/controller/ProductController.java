@@ -33,7 +33,7 @@ public class ProductController {
         this.productTypeService = productTypeService;
     }
 
-    /** 🟢 Danh sách sản phẩm (lọc bằng slug category/brand/productType nếu có) */
+    /** 🟢 Danh sách sản phẩm (lọc bằng slug category.html/brand.html/product_type.html nếu có) */
     @GetMapping
     public String listProducts(
             @RequestParam(value = "category", required = false) String categorySlug,

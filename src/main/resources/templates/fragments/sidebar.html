@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+
+<div th:fragment="sidebar(categories, brandList, productTypeList)" class="sidebar-modern">
+
+    <!-- DANH MỤC -->
+    <div class="sb-block">
+        <div class="sb-title active" onclick="toggleSB(this)">
+            <span>Danh mục</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="sb-content open">
+            <div th:each="c : ${categories}">
+                <a th:href="@{/${c.slug}}">
+                <i class="fa-solid fa-folder"></i>
+                    <span th:text="${c.name}"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- THƯƠNG HIỆU -->
+    <div class="sb-block">
+        <div class="sb-title active" onclick="toggleSB(this)">
+            <span>Thương hiệu</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <!-- mở sẵn -->
+        <div class="sb-content open">
+            <div th:each="b, iStat : ${brandList}">
+                <a th:href="@{'/' + ${b.slug}}"
+                   th:classappend="${iStat.index > 5} ? ' d-none brand-hidden'">
+                    <i class="fa-solid fa-tag"></i>
+                    <span th:text="${b.name}"></span>
+                </a>
+            </div>
+
+            <div class="sb-show-more" onclick="toggleShowMore('brand')" id="brand-btn">Xem thêm</div>
+        </div>
+    </div>
+
+    <!-- LOẠI SẢN PHẨM -->
+    <div class="sb-block">
+        <div class="sb-title active" onclick="toggleSB(this)">
+            <span>Loại sản phẩm</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <!-- mở sẵn -->
+        <div class="sb-content open">
+            <div th:each="t, iStat : ${productTypeList}">
+                <a th:href="@{'/' + ${t.slug}}"
+                   th:classappend="${iStat.index > 5} ? ' d-none type-hidden'">
+                    <i class="fa-solid fa-cube"></i>
+                    <span th:text="${t.name}"></span>
+                </a>
+            </div>
+
+            <div class="sb-show-more" onclick="toggleShowMore('type')" id="type-btn">Xem thêm</div>
+        </div>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

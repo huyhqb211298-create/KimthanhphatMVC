@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="filter(categories, brands, productTypes, selectedCategory, selectedBrand, selectedType, keyword)"
+     class="row g-3 mb-4 filter-bar">
+
+    <div class="col-md-3">
+        <select class="form-select" name="categoryId">
+            <option value="">Tất cả danh mục</option>
+            <option th:each="c : ${categories}"
+                    th:value="${c.id}"
+                    th:selected="${c.id == selectedCategory}"
+                    th:text="${c.name}"></option>
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select class="form-select" name="brandId">
+            <option value="">Tất cả thương hiệu</option>
+            <option th:each="b : ${brands}"
+                    th:value="${b.id}"
+                    th:selected="${b.id == selectedBrand}"
+                    th:text="${b.name}"></option>
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select class="form-select" name="productTypeId">
+            <option value="">Tất cả loại</option>
+            <option th:each="t : ${productTypes}"
+                    th:value="${t.id}"
+                    th:selected="${t.id == selectedType}"
+                    th:text="${t.name}"></option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <input type="text" class="form-control" name="keyword"
+               placeholder="Tìm theo tên..." th:value="${keyword}">
+    </div>
+
+    <div class="col-md-1">
+        <button class="btn btn-danger w-100" type="submit">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+
+</div>
+
+</body>
+</html>

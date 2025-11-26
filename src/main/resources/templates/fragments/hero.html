@@ -1,0 +1,38 @@
+<div th:fragment="hero(title, subtitle)" class="hero-soft">
+
+    <h1 th:text="${title}"></h1>
+    <p th:text="${subtitle}"></p>
+
+</div>
+
+<style>
+    .hero-soft {
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        padding: 55px 20px;
+        text-align: center;
+
+        background: linear-gradient(135deg, rgba(255,120,80,0.22), rgba(255,200,180,0.22));
+        border-radius: 22px;
+        border: 1px solid rgba(255,120,80,0.28);
+
+        backdrop-filter: blur(6px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    .hero-soft h1 {
+        font-size: 38px;
+        font-weight: 700;
+        color: #d64535;
+    }
+
+    .hero-soft p {
+        font-size: 16px;
+        margin-top: 6px;
+        color: #444;
+        opacity: .85;
+    }
+</style>

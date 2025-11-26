@@ -66,10 +66,11 @@
 
             <!-- Tình trạng hàng -->
             <td>
-                <span th:text="${p.stockStatus != null ? p.stockStatus.label : '—'}"
-                      th:classappend="${p.stockStatus == T(com.example.kimthanhphatmvc.model.enums.StockStatus).IN_STOCK} ? 'badge bg-success' : 'badge bg-secondary'">
+              <span th:text="${p.stockStatus != null ? p.stockStatus.label : '—'}"
+          th:classappend="${p.stockStatus?.name() == 'IN_STOCK'} ? 'badge bg-success' : 'badge bg-secondary'">
                 </span>
             </td>
+
 
             <!-- Danh mục -->
             <td th:text="${p.category != null ? p.category.name : '—'}"></td>

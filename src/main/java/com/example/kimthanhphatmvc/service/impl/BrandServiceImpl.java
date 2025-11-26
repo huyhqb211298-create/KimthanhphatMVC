@@ -1,20 +1,25 @@
 package com.example.kimthanhphatmvc.service.impl;
 
-import com.example.kimthanhphatmvc.repository.BrandRepository;
-import com.example.kimthanhphatmvc.repository.CategoryRepository;
-import com.example.kimthanhphatmvc.service.BrandService;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.example.kimthanhphatmvc.model.Brand;
+import com.example.kimthanhphatmvc.repository.BrandRepository;
+import com.example.kimthanhphatmvc.service.BrandService;
+import com.example.kimthanhphatmvc.service.SlugService;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BrandServiceImpl implements BrandService {
+
     private final BrandRepository brandRepository;
-    public BrandServiceImpl(BrandRepository brandRepository) {
+    private final SlugService slugService;
+
+    public BrandServiceImpl(BrandRepository brandRepository, SlugService slugService) {
         this.brandRepository = brandRepository;
+        this.slugService = slugService;
     }
+
     @Override
     public List<Brand> findAll() {
         return brandRepository.findAll();
@@ -27,6 +32,13 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public Brand save(Brand brand) {
+
+        // ⭐ CHỈ TẠO SLUG KHI BRAND MỚI
+        if (brand.getId() == null || brand.getSlug() == null || brand.getSlug().isEmpty()) {
+            String slug = slugService.createSlug(brand.getName());
+            brand.setSlug(slug);
+        }
+
         return brandRepository.save(brand);
     }
 
@@ -37,12 +49,11 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public Optional<Brand> findBySlug(String slug) {
-        return Optional.empty();
+        return brandRepository.findBySlug(slug);
     }
 
     @Override
     public boolean existsByName(String name) {
         return brandRepository.existsByName(name);
-
     }
 }

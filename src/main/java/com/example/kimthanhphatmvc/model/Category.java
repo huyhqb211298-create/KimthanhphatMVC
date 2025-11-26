@@ -29,21 +29,5 @@ public class Category {
     @JsonManagedReference
     private List<Product> products;
 
-    @PrePersist
-    @PreUpdate
-    public void generateSlug() {
-        if (this.slug == null || this.slug.isEmpty()) {
-            String normalized = Normalizer.normalize(name, Normalizer.Form.NFD);
 
-            // Xóa dấu tiếng Việt + chuyển Đ/đ thành D/d
-            normalized = normalized
-                    .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
-                    .replace("Đ", "D")
-                    .replace("đ", "d");
-
-            this.slug = normalized
-                    .toLowerCase()
-                    .replaceAll("[^a-z0-9\\s-]", "")
-                    .replaceAll("\\s+", "-")
-                    .replaceAll("-+", "-");
-        }}}
+}

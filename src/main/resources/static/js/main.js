@@ -44,7 +44,7 @@
     });
     
     
-    // Back to top button
+    // Back to top buttonx
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.back-to-top').fadeIn('slow');
@@ -117,3 +117,16 @@ $(document).ready(function() {
         }
     );
 });
+function toggleSB(el) {
+    el.classList.toggle("active");
+    const content = el.nextElementSibling;
+    content.classList.toggle("open");
+}
+
+function toggleShowMore(type) {
+    const hidden = document.querySelectorAll(`.${type}-hidden`);
+    const btn = document.getElementById(`${type}-btn`);
+
+    hidden.forEach(x => x.classList.toggle("d-none"));
+    btn.innerText = btn.innerText === "Xem thêm" ? "Thu gọn" : "Xem thêm";
+}

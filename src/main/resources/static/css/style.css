@@ -545,105 +545,6 @@ html, body {
   --contrast-white: #ffffff;
 }
 
-/* Top bar */
-.topbar {
-  background: #ffffff;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-  font-size: 14px;
-}
-.topbar .info { color: #333; }
-.topbar .info i { color: var(--pccc-red); margin-right:6px; }
-.topbar .social a { color: var(--pccc-red); margin-left:10px; }
-
-/* Main navbar */
-.site-navbar {
-  background: linear-gradient(90deg,var(--pccc-red),var(--pccc-orange));
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  padding: 12px 0;
-}
-
-/* Logo box — white small card so logo never blends with bg */
-.logo-box {
-  background: rgba(255,255,255,0.95);
-  padding: 6px 10px;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items:center;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.12);
-}
-.logo-box img {
-  display:block;
-  max-height:72px;   /* chỉnh cao thấp ở đây nếu cần */
-  width:auto;
-  object-fit:contain;
-}
-.brand-text {
-  margin-left:10px;
-  color: var(--pccc-dark);
-  font-weight:700;
-  font-size:18px;
-  letter-spacing:0.2px;
-}
-
-/* Navbar links */
-.site-navbar .nav-link {
-  color: #fff !important;
-  font-weight:600;
-  text-transform:uppercase;
-  padding: 10px 12px;
-  transition: all .18s ease;
-}
-.site-navbar .nav-link:hover,
-.site-navbar .nav-item.show > .nav-link {
-  color: #fff !important;
-  background: rgba(255,255,255,0.08);
-  border-radius:6px;
-}
-.site-navbar .dropdown-menu {
-  border-radius:6px;
-  min-width: 220px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-.site-navbar .dropdown-item:hover { background: rgba(230,70,30,0.08); }
-
-/* Search box */
-.search-inline {
-  background: #fff;
-  border-radius: 25px;
-  padding: 4px;
-  display:flex;
-  align-items:center;
-  gap:6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-}
-.search-inline input {
-  border: none;
-  outline: none;
-  width: 220px;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:14px;
-}
-.search-inline button {
-  border: none;
-  background: transparent;
-  color: var(--pccc-red);
-  font-size:16px;
-  padding:6px 8px;
-  cursor:pointer;
-}
-
-/* Call button */
-.call-btn {
-  background: var(--pccc-dark);
-  color: var(--contrast-white);
-  border-radius: 30px;
-  padding: 8px 18px;
-  font-weight:700;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  border: none;
-}
-.call-btn i { margin-left:8px; color: var(--pccc-orange); }
 
 /* Responsive tweaks */
 @media (max-width:991px){
@@ -957,3 +858,78 @@ body {
     }
 }
 
+/* Restore logo-box hover */
+.logo-box {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    cursor: pointer;
+}
+
+.logo-box:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(255, 60, 0, 0.4);
+}
+
+/* Tắt hover riêng của img (nếu đang override) */
+.logo-box img {
+    transition: none !important;
+}
+
+.logo-box img:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+/* ================================
+   FIX HERO TITLE — FORCE OVERRIDE
+/* ================= HERO SOFT STYLE ================= */
+.hero-soft {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 60px 30px;
+    text-align: center;
+
+    background: linear-gradient(90deg, rgba(255,180,150,0.22), rgba(255,120,80,0.18));
+    border-radius: 26px;
+    border: 1px solid rgba(255,120,80,0.22);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.05);
+}
+
+/* ================= HERO SOFT STYLE ================= */
+.hero-soft {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 60px 30px;
+    text-align: center;
+
+    background: linear-gradient(90deg, rgba(255,180,150,0.22), rgba(255,120,80,0.18));
+    border-radius: 26px;
+    border: 1px solid rgba(255,120,80,0.22);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.05);
+}
+
+.hero-soft h1 {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #c93a2e;
+}
+
+.hero-soft p {
+    margin-top: 10px;
+    font-size: 17px;
+    color: #444;
+}
+
+footer a {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+footer a:hover {
+    color: #ffcc00 !important; /* màu hover tùy bạn */
+}

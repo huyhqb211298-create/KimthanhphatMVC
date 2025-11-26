@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tư vấn kỹ thuật PCCC | Kim Thành Phát</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <style>
+        .service-box {
+            padding: 25px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+        .service-box i {
+            font-size: 36px;
+            color: #ff4d00;
+        }
+        .faq-item {
+            border-left: 4px solid #ff4d00;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        .consult-form input, .consult-form textarea, .consult-form select {
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            padding: 12px;
+        }
+        .consult-form button {
+            background: #ff4d00;
+            border: none;
+            padding: 12px 26px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: siteHeader}"></div>
+
+<!-- Banner -->
+<div class="container-fluid text-white py-5 mb-4"
+     style="background:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url('/img/about-banner.jpg') center/cover no-repeat;">
+
+    <div class="container text-center py-5">
+        <h1 class="display-4 fw-bold text-warning">Tư vấn kỹ thuật PCCC</h1>
+        <p class="lead">Hỗ trợ thiết kế – thẩm duyệt – nghiệm thu – lựa chọn thiết bị PCCC</p>
+        <div class="mt-3">
+            <a href="tel:0934752114" class="btn btn-danger px-4 py-2 me-2"><i class="fa fa-phone me-1"></i> GỌI NGAY</a>
+            <a href="https://zalo.me/0777542354" target="_blank" class="btn btn-light px-4 py-2">
+                <img src="/img/zalo-blue.png" width="20" class="me-1"> Chat Zalo
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Services -->
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h6 class="text-warning text-uppercase">Dịch vụ tư vấn</h6>
+        <h2 class="fw-bold">Chúng tôi hỗ trợ những gì?</h2>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="service-box text-center">
+                <i class="fa fa-pencil-ruler mb-3"></i>
+                <h5 class="fw-bold mb-2">Tư vấn thiết kế PCCC</h5>
+                <p class="text-muted">Thiết kế báo cháy – chữa cháy, tính toán thủy lực, bố trí thiết bị theo TCVN.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="service-box text-center">
+                <i class="fa fa-file-signature mb-3"></i>
+                <h5 class="fw-bold mb-2">Tư vấn thẩm duyệt</h5>
+                <p class="text-muted">Hướng dẫn chuẩn bị hồ sơ, bản vẽ, chi phí và quy trình thẩm duyệt theo QCVN.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="service-box text-center">
+                <i class="fa fa-check-double mb-3"></i>
+                <h5 class="fw-bold mb-2">Tư vấn nghiệm thu PCCC</h5>
+                <p class="text-muted">Hoàn thiện hồ sơ, kiểm tra thiết bị, checklist trước khi nghiệm thu công trình.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="service-box text-center">
+                <i class="fa fa-tools mb-3"></i>
+                <h5 class="fw-bold mb-2">Tư vấn thi công – lắp đặt</h5>
+                <p class="text-muted">Cung cấp giải pháp thi công đạt chuẩn, tiết kiệm chi phí – đúng quy định.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="service-box text-center">
+                <i class="fa fa-fire-extinguisher mb-3"></i>
+                <h5 class="fw-bold mb-2">Tư vấn chọn thiết bị</h5>
+                <p class="text-muted">Gợi ý thiết bị phù hợp: bình chữa cháy, đầu báo, trung tâm, FM200…</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="service-box text-center">
+                <i class="fa fa-headset mb-3"></i>
+                <h5 class="fw-bold mb-2">Tư vấn tổng hợp</h5>
+                <p class="text-muted">Giải đáp mọi thắc mắc liên quan đến pháp lý & kỹ thuật PCCC 24/7.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- FAQ -->
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h6 class="text-warning text-uppercase">FAQ</h6>
+        <h2 class="fw-bold">Câu hỏi thường gặp</h2>
+    </div>
+
+    <div class="faq-item">
+        <h5 class="fw-bold">1. Công trình nào cần thẩm duyệt PCCC?</h5>
+        <p>Nhà xưởng, kho hàng, khách sạn, karaoke, chung cư, quán bar… theo Nghị định 136/2020.</p>
+    </div>
+
+    <div class="faq-item">
+        <h5 class="fw-bold">2. Chi phí thẩm duyệt – nghiệm thu là bao nhiêu?</h5>
+        <p>Tùy loại công trình, diện tích, hồ sơ. Chúng tôi hỗ trợ báo giá nhanh qua Zalo.</p>
+    </div>
+
+    <div class="faq-item">
+        <h5 class="fw-bold">3. Tư vấn có miễn phí không?</h5>
+        <p>Có! Tất cả khách hàng đều được tư vấn miễn phí 100% qua Zalo hoặc hotline.</p>
+    </div>
+</div>
+
+<!-- Contact Form -->
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-danger">Nhận tư vấn trong 30 phút</h2>
+        <p class="text-muted">Điền thông tin – Kỹ sư PCCC sẽ liên hệ ngay cho bạn</p>
+    </div>
+
+    <form class="consult-form mx-auto" style="max-width: 700px;" method="post" th:action="@{/contact/submit}">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <input name="name" type="text" placeholder="Họ và tên" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <input name="phone" type="text" placeholder="Số điện thoại" required class="form-control">
+            </div>
+            <div class="col-12">
+                <select name="type" class="form-control">
+                    <option value="Thiết kế">Tư vấn thiết kế</option>
+                    <option value="Thẩm duyệt">Tư vấn thẩm duyệt</option>
+                    <option value="Nghiệm thu">Tư vấn nghiệm thu</option>
+                    <option value="Thi công - lắp đặt">Thi công - lắp đặt</option>
+                    <option value="Khác">Khác...</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <textarea name="message" placeholder="Nội dung cần hỗ trợ..." rows="5" required class="form-control"></textarea>
+            </div>
+            <div class="col-12 text-center">
+                <button class="btn btn-danger px-4 py-2"><i class="fa fa-paper-plane me-2"></i> Gửi yêu cầu</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: siteFooter}"></div>
+
+</body>
+</html>

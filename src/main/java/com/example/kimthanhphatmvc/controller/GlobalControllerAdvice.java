@@ -1,25 +1,32 @@
 package com.example.kimthanhphatmvc.controller;
 
-import com.example.kimthanhphatmvc.model.Category;
+
 import com.example.kimthanhphatmvc.service.CategoryService;
+import com.example.kimthanhphatmvc.service.BrandService;
+import com.example.kimthanhphatmvc.service.ProductTypeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
-import java.util.List;
+import org.springframework.ui.Model;
 
 @ControllerAdvice
 public class GlobalControllerAdvice {
 
-    private final CategoryService categoryService;
+    @Autowired
+    private CategoryService categoryService;
 
     @Autowired
-    public GlobalControllerAdvice(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
+    private BrandService brandService;
 
-    @ModelAttribute("categories")
-    public List<Category> getCategories() {
-        return categoryService.findAll();
+    @Autowired
+    private ProductTypeService productTypeService;
+
+    /** 🟢 TỰ ĐỘNG TRUYỀN DỮ LIỆU HEADER CHO MỌI VIEW */
+    @ModelAttribute
+    public void addHeaderData(Model model) {
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("brandList", brandService.findAll());
+        model.addAttribute("productTypeList", productTypeService.findAll());
     }
 }

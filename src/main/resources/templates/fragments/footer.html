@@ -1,27 +1,43 @@
+
 <footer th:fragment="siteFooter" class="container-fluid bg-dark text-light footer"
         style="padding-top: 80px; border-top: 5px solid #ff4d00;">
     <!-- Footer Start -->
     <div class="container pb-5">
         <div class="row g-5">
             <div class="col-md-6 col-lg-4">
-                <div class="bg-danger rounded p-4">
-                    <a th:href="@{/}"><h2 class="text-white text-uppercase mb-3">Kim Thành Phát</h2></a>
-                    <p class="text-white mb-0">
-                        Cung cấp thiết bị PCCC, thi công & bảo trì.
-                        Địa chỉ: 182 Lê Thanh Nghị - Tp Đà Nẵng.
+                <div class="bg-danger rounded p-4 text-center shadow-sm">
+
+                    <a th:href="@{/}">
+                        <h2 class="text-white text-uppercase fw-bold mb-3" style="letter-spacing: 1px;">
+                            Kim Thành Phát
+                        </h2>
+                    </a>
+
+                    <p class="text-white mb-0" style="line-height: 1.7; font-size: 15.5px;">
+                        Cung cấp thiết bị PCCC chính hãng – tư vấn & hỗ trợ an toàn PCCC.<br>
+                        Địa chỉ: 182 Lê Thanh Nghị, TP. Đà Nẵng.
                     </p>
+
                 </div>
+
             </div>
             <div class="col-md-6 col-lg-3">
                 <h6 class="section-title text-start text-warning text-uppercase mb-4">Liên hệ</h6>
                 <p class="mb-2"><i class="fa fa-map-marker-alt me-3 text-danger"></i>182 Lê Thanh Nghị, Tp Đà Nẵng</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3 text-danger"></i>0777.54.2354 (Zalo)</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3 text-danger"></i>0934.752.114 (Zalo)</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3 text-danger"></i>0777.54.2354 Mr.Huy (Zalo)</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3 text-danger"></i>0934.752.114 Ms.Phương (Zalo)</p>
                 <p class="mb-2"><i class="fa fa-envelope me-3 text-danger"></i>info@kimthanhphatpccc.vn</p>
                 <div class="d-flex pt-2">
                     <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/profile.php?id=61581028044022"><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-outline-light btn-social" href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
                     <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/pccckimthanhphat/"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social"
+                       href="https://zalo.me/0777542354"
+                       target="_blank" title="Chat Zalo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/1024px-Icon_of_Zalo.svg.png"
+                             style="width: 20px; height: 20px; object-fit: contain;">
+                    </a>
+
                 </div>
             </div>
             <div class="col-lg-5 col-md-12">
@@ -58,8 +74,5 @@
             </div>
         </div>
     </div>
-    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-    <script th:src="@{/js/main.js}"></script>
-
     <!-- Footer End -->
 </footer>

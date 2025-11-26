@@ -1,0 +1,82 @@
+.sidebar-modern {
+    background: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 100px;
+}
+
+.sb-block {
+    margin-bottom: 20px;
+}
+
+.sb-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #c8102e;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    text-transform: uppercase;
+}
+
+.sb-title i {
+    transition: .3s;
+}
+
+.sb-title.active i {
+    transform: rotate(180deg);
+}
+
+.sb-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .35s ease;
+}
+
+.sb-content.open {
+    max-height: 600px;
+}
+
+.sb-content a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    padding: 6px 6px;
+    border-radius: 6px;
+    color: #333 !important;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.sb-content a:hover {
+    background: #ffe8ea;
+    color: #c8102e !important;
+    transform: translateX(5px);
+}
+
+.sb-content a i {
+    color: #c8102e !important;
+}
+.sb-show-more {
+    color: #ff4d4d;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.25s ease;
+    padding: 4px 0;
+}
+
+.sb-show-more:hover {
+    transform: translateX(4px);
+    text-decoration: underline;
+    color: #c8102e;
+}

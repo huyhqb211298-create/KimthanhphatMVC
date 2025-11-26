@@ -13,6 +13,7 @@ public interface ProductService {
     void deleteById(Long id);
     Page<Product> findFiltered(Long categoryId, Long brandId, Long productTypeId, int page, int size);
     Optional<Product> findBySlug(String slug);
+    List<Product> findRelatedProducts(Product product);
 
     List<Product> findRelated(Long categoryId, Long excludeProductId);
     List<Product> findByCategory(Long categoryId);
