@@ -34,46 +34,48 @@ public class ProductController {
     }
 
     /** 🟢 Danh sách sản phẩm (lọc bằng slug category.html/brand.html/product_type.html nếu có) */
+    /** 🟢 Danh sách sản phẩm (lọc category, brand, type + tìm kiếm keyword) */
     @GetMapping
     public String listProducts(
             @RequestParam(value = "category", required = false) String categorySlug,
             @RequestParam(value = "brand", required = false) String brandSlug,
             @RequestParam(value = "productType", required = false) String productTypeSlug,
+            @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "page", defaultValue = "1") int page,
             Model model) {
 
-        Long categoryId = null;
-        Long brandId = null;
-        Long productTypeId = null;
+        Long categoryId = categorySlug == null ? null :
+                categoryService.findBySlug(categorySlug).map(c -> c.getId()).orElse(null);
 
-        if (categorySlug != null) {
-            categoryId = categoryService.findBySlug(categorySlug).map(c -> c.getId()).orElse(null);
-        }
+        Long brandId = brandSlug == null ? null :
+                brandService.findBySlug(brandSlug).map(b -> b.getId()).orElse(null);
 
-        if (brandSlug != null) {
-            brandId = brandService.findBySlug(brandSlug).map(b -> b.getId()).orElse(null);
-        }
-
-        if (productTypeSlug != null) {
-            productTypeId = productTypeService.findBySlug(productTypeSlug).map(t -> t.getId()).orElse(null);
-        }
+        Long productTypeId = productTypeSlug == null ? null :
+                productTypeService.findBySlug(productTypeSlug).map(t -> t.getId()).orElse(null);
 
         int size = 8;
-        Page<Product> productPage = productService.findFiltered(categoryId, brandId, productTypeId, page, size);
+
+        Page<Product> productPage = productService.findFiltered(
+                categoryId,
+                brandId,
+                productTypeId,
+                keyword,
+                page,
+                size
+        );
 
         model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", productPage.getTotalPages());
 
-        // ✅ Thêm danh sách các bộ lọc
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("brands", brandService.findAll());
         model.addAttribute("productTypes", productTypeService.findAll());
 
-        // ✅ Giữ lại lựa chọn đang chọn
         model.addAttribute("selectedCategory", categorySlug);
         model.addAttribute("selectedBrand", brandSlug);
         model.addAttribute("selectedProductType", productTypeSlug);
+        model.addAttribute("keyword", keyword);
 
         return "public/product_list";
     }
@@ -102,7 +104,7 @@ public class ProductController {
 
         int size = 8;
 
-        Page<Product> productPage = productService.findFiltered(categoryId, null, null, page, size);
+        Page<Product> productPage = productService.findFiltered(categoryId, null, null,null, page, size);
         var category = categoryService.findById(categoryId);
 
         model.addAttribute("products", productPage.getContent());

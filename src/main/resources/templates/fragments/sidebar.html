@@ -14,7 +14,7 @@
 
         <div class="sb-content open">
             <div th:each="c : ${categories}">
-                <a th:href="@{/${c.slug}}">
+                <a th:href="@{'/' + ${c.slug}}">
                 <i class="fa-solid fa-folder"></i>
                     <span th:text="${c.name}"></span>
                 </a>

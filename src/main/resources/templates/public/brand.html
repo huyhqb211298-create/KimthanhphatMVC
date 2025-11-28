@@ -122,8 +122,8 @@
                 <form th:action="@{/products}" method="get">
                     <div th:replace="~{fragments/filter :: filter(
                         categories=${categories},
-                        brands=${brands},
-                        productTypes=${productTypes},
+                        brands=${brandList},
+                        productTypes=${productTypeList},
                         selectedCategory=${selectedCategory},
                         selectedBrand=${selectedBrand},
                         selectedType=${selectedProductType},

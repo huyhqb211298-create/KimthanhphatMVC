@@ -4,6 +4,7 @@ import com.example.kimthanhphatmvc.model.Product;
 import com.example.kimthanhphatmvc.repository.ProductRepository;
 import com.example.kimthanhphatmvc.service.ProductService;
 import com.example.kimthanhphatmvc.service.SlugService;
+import com.example.kimthanhphatmvc.util.TextUtils;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
@@ -52,34 +53,31 @@ public class ProductServiceImpl implements ProductService {
     // ================= FILTER + PAGINATION ==================
 
     @Override
-    public Page<Product> findFiltered(Long categoryId, Long brandId, Long productTypeId, int page, int size) {
+    public Page<Product> findFiltered(Long categoryId,
+                                      Long brandId,
+                                      Long productTypeId,
+                                      String keyword,
+                                      int page,
+                                      int size) {
+
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "id"));
 
-        if (categoryId != null && brandId != null && productTypeId != null) {
-            return productRepository.findByCategoryIdAndBrandIdAndProductTypeId(categoryId, brandId, productTypeId, pageable);
+        // 🔥 CHUẨN HÓA KEYWORD: xoá dấu + lowercase
+        String normalizedKeyword = null;
 
-        } else if (categoryId != null && brandId != null) {
-            return productRepository.findByCategoryIdAndBrandId(categoryId, brandId, pageable);
-
-        } else if (categoryId != null && productTypeId != null) {
-            return productRepository.findByCategoryIdAndProductTypeId(categoryId, productTypeId, pageable);
-
-        } else if (brandId != null && productTypeId != null) {
-            return productRepository.findByBrandIdAndProductTypeId(brandId, productTypeId, pageable);
-
-        } else if (categoryId != null) {
-            return productRepository.findByCategoryId(categoryId, pageable);
-
-        } else if (brandId != null) {
-            return productRepository.findByBrandId(brandId, pageable);
-
-        } else if (productTypeId != null) {
-            return productRepository.findByProductTypeId(productTypeId, pageable);
-
-        } else {
-            return productRepository.findAll(pageable);
+        if (keyword != null && !keyword.isBlank()) {
+            normalizedKeyword = TextUtils.removeAccent(keyword).toLowerCase();
         }
+
+        return productRepository.filter(
+                categoryId,
+                brandId,
+                productTypeId,
+                normalizedKeyword,
+                pageable
+        );
     }
+
 
     @Override
     public Optional<Product> findBySlug(String slug) {

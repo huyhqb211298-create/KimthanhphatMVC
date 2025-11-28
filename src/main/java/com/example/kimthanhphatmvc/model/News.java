@@ -2,11 +2,15 @@ package com.example.kimthanhphatmvc.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "news")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -16,25 +20,35 @@ public class News {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String title; // Tiêu đề bài viết
+    @Column(nullable = false, length = 255)
+    private String title;
 
-    @Column(nullable = false, unique = true)
-    private String slug; // Dùng cho URL SEO-friendly, vd: "huong-dan-pccc-nha-o"
+    @Column(nullable = false, unique = true, length = 255)
+    private String slug;
+
+    @Column(length = 500)
+    private String thumbnail;   // URL ảnh Cloudinary
+
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String content;
 
     @Column(columnDefinition = "TEXT")
-    private String summary; // Tóm tắt ngắn hiển thị ở trang danh sách
+    private String summary;
 
-    @Column(columnDefinition = "LONGTEXT")
-    private String content; // Nội dung chính
+    @Column(name = "is_active")
+    private Boolean active = true;
 
-    private String thumbnail; // Ảnh đại diện bài viết
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
-    private String author; // Tác giả (tùy chọn)
-
-    private boolean published = true; // Trạng thái: đã xuất bản hay chưa
-
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    private LocalDateTime updatedAt = LocalDateTime.now();}
-
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+    @Column(nullable = false)
+    private Boolean published = true;
+    public String getPlainContent() {
+        return content == null ? "" : content.replaceAll("<[^>]*>", "");
+    }
+}

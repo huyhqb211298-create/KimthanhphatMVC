@@ -54,10 +54,5 @@ public class HomeController {
         return "consulting"; // Template: consulting.html
     }
 
-    @GetMapping("/news")
-    public String news() {
-        return "news"; // Template: news.html
-    }
-
 
 }

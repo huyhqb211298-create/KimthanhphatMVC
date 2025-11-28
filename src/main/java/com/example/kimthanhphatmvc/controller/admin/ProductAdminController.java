@@ -71,10 +71,10 @@ public class ProductAdminController {
         return "admin/product/form";
     }
 
-    // ===== Lưu (thêm / sửa) =====
     @PostMapping("/save")
     public String save(@ModelAttribute("product") ProductDTO dto,
                        RedirectAttributes ra) {
+
         try {
             Product entity = (dto.getId() != null)
                     ? productService.findById(dto.getId())
@@ -97,7 +97,7 @@ public class ProductAdminController {
                     ? categoryService.findById(dto.getCategoryId()).orElse(null)
                     : null);
 
-            // --- 🔹 Gán ProductType ---
+            // --- Gán ProductType ---
             entity.setProductType(dto.getProductTypeId() != null
                     ? productTypeService.findById(dto.getProductTypeId()).orElse(null)
                     : null);
@@ -115,9 +115,6 @@ public class ProductAdminController {
             productService.save(entity);
             ra.addFlashAttribute("message", "✅ Lưu sản phẩm thành công!");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            ra.addFlashAttribute("message", "❌ Lỗi khi upload ảnh: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             ra.addFlashAttribute("message", "❌ Lỗi khi lưu sản phẩm: " + e.getMessage());

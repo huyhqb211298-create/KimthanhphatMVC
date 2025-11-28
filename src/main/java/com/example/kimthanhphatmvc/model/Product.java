@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.Data;
+
 import java.text.Normalizer;
 
 @Entity
@@ -20,6 +21,9 @@ public class Product {
     private Long id;
 
     private String name;
+
+    @Column(name = "name_no_accent")
+    private String nameNoAccent; // 🔥 Thêm trường không dấu
 
     private String slug;
 
@@ -55,7 +59,21 @@ public class Product {
     @JsonBackReference
     private ProductType productType;
 
+    /* -----------------------------------------------------
+        🔥 Override setter name để tự tạo tên không dấu
+    ------------------------------------------------------ */
+    public void setName(String name) {
+        this.name = name;
+        this.nameNoAccent = removeAccent(name);
+    }
 
-
-
+    /* -------------------------------------
+        🔥 Hàm remove dấu tiếng Việt
+    -------------------------------------- */
+    private String removeAccent(String s) {
+        if (s == null) return null;
+        String normalized = Normalizer.normalize(s, Normalizer.Form.NFD);
+        String noAccent = normalized.replaceAll("\\p{M}", "");
+        return noAccent.replace("đ", "d").replace("Đ", "D");
+    }
 }

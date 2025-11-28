@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${isEdit} ? 'Chỉnh sửa tin tức' : 'Thêm tin tức mới'"></title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/lib/fontawesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0" th:text="${isEdit} ? 'Chỉnh sửa tin tức' : 'Thêm tin tức mới'"></h5>
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/admin/news/save}" th:object="${news}"
+                  method="post" enctype="multipart/form-data">
+
+                <input type="hidden" th:field="*{id}">
+
+                <!-- Title -->
+                <div class="mb-3">
+                    <label class="form-label">Tiêu đề bài viết</label>
+                    <input type="text" class="form-control" th:field="*{title}" required>
+                </div>
+
+                <!-- Summary -->
+                <div class="mb-3">
+                    <label class="form-label">Tóm tắt bài viết (Summary)</label>
+                    <textarea class="form-control" th:field="*{summary}"
+                              rows="3" placeholder="Nhập mô tả ngắn..." required></textarea>
+                </div>
+
+                <!-- Thumbnail -->
+                <div class="mb-3">
+                    <label class="form-label">Ảnh Thumbnail</label>
+                    <input type="file" class="form-control" th:field="*{thumbnailFile}" accept="image/*">
+
+                    <div th:if="*{thumbnail}" class="mt-2">
+                        <img th:src="*{thumbnail}" style="max-height:120px;border-radius:6px;">
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="mb-3">
+                    <label class="form-label">Nội dung</label>
+                    <textarea id="contentArea" th:field="*{content}" rows="12"></textarea>
+                </div>
+
+                <!-- Active -->
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" th:field="*{active}">
+                    <label class="form-check-label">Hiển thị</label>
+                </div>
+
+                <div class="text-end">
+                    <a th:href="@{/admin/news}" class="btn btn-secondary">Quay lại</a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-save"></i>
+                        <span th:text="${isEdit} ? 'Cập nhật' : 'Lưu mới'"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap -->
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+<!-- CKEditor 4 FULL -->
+<script src="https://cdn.ckeditor.com/4.22.1/full-all/ckeditor.js"></script>
+
+<script>
+    CKEDITOR.replace('contentArea', {
+        language: 'vi',
+        height: 500,
+        allowedContent: true,
+        extraPlugins: 'colorbutton,colordialog,font,justify,image2,uploadimage,autogrow',
+        toolbar: [
+            { name: 'document', items: ['Source', '-', 'Preview', 'Print'] },
+            { name: 'clipboard', items: ['Undo', 'Redo'] },
+            { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
+            { name: 'colors', items: ['TextColor', 'BGColor'] },
+            '/',
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+            { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
+            { name: 'links', items: ['Link', 'Unlink'] },
+            { name: 'tools', items: ['Maximize'] }
+        ],
+        autoGrow_maxHeight: 700,
+        autoGrow_minHeight: 300,
+    });
+</script>
+
+</body>
+</html>
