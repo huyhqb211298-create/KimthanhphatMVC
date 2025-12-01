@@ -1,16 +1,16 @@
 package com.example.kimthanhphatmvc.model;
 
+import com.example.kimthanhphatmvc.model.enums.Role;
 import jakarta.persistence.*;
+import lombok.*;
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "users")
+@Builder
 public class UserEntity {
 
     @Id
@@ -29,46 +29,14 @@ public class UserEntity {
     @Column(unique = true, length = 150)
     private String email;
 
-    @Column(length = 50)
-    private String role = "USER"; // hoặc ADMIN, EMPLOYEE
+    // Phân quyền đơn giản: ADMIN / USER
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Role role = Role.USER;
+
+    // Khóa/mở tài khoản
+    @Column(nullable = false)
+    private boolean enabled = true;
 
     private LocalDateTime createdAt = LocalDateTime.now();
-
-
-    public UserEntity(String username, String password, String fullName, String email, String role) {
-        this.username = username;
-        this.password = password;
-        this.fullName = fullName;
-        this.email = email;
-        this.role = role;
-    }
-
-    // Getters and Setters
-    public Long getId() { return id; }
-
-    public void setId(Long id) { this.id = id; }
-
-    public String getUsername() { return username; }
-
-    public void setUsername(String username) { this.username = username; }
-
-    public String getPassword() { return password; }
-
-    public void setPassword(String password) { this.password = password; }
-
-    public String getFullName() { return fullName; }
-
-    public void setFullName(String fullName) { this.fullName = fullName; }
-
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { this.email = email; }
-
-    public String getRole() { return role; }
-
-    public void setRole(String role) { this.role = role; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
-
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
