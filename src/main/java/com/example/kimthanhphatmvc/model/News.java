@@ -30,7 +30,7 @@ public class News {
     private String thumbnail;   // URL ảnh Cloudinary
 
     @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @Column(columnDefinition = "TEXT")
