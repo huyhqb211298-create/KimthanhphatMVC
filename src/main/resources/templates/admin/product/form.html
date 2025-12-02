@@ -3,16 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${isEdit} ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm mới'">Form sản phẩm</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/lib/fontawesome/css/all.min.css}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS custom -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-
 
 <body>
 
 <div class="container mt-5">
-    <div class="card shadow-sm">
+    <a href="/admin/products" class="btn btn-outline-secondary mb-3">
+        <i class="fa fa-arrow-left"></i> Quay lại danh sách sản phẩm
+    </a>
+    <div class="card shadow-sm" >
         <div class="card-header bg-primary text-white">
             <h5 class="mb-0" th:text="${isEdit} ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm mới'"></h5>
         </div>
@@ -25,54 +35,61 @@
 
                 <input type="hidden" th:field="*{id}">
 
-                <!-- Tên sản phẩm -->
+                <!-- Name -->
                 <div class="mb-3">
                     <label class="form-label">Tên sản phẩm</label>
-                    <input type="text" class="form-control" th:field="*{name}" placeholder="Nhập tên sản phẩm" required>
+                    <input type="text" class="form-control" th:field="*{name}" required>
                 </div>
-                <!-- giá sản phẩm -->
+
+                <!-- Price -->
                 <div class="mb-3" id="priceInputGroup">
                     <label class="form-label">Giá sản phẩm</label>
-                    <input type="number" name="price" th:value="${product.price}"
-                           id="priceInput" class="form-control" min="0" step="1000" placeholder="Nhập giá (VNĐ)">
+                    <input type="number" th:field="*{price}" id="priceInput"
+                           class="form-control" min="0" step="1000"
+                           placeholder="Nhập giá (VNĐ)">
                 </div>
 
-                <!-- Mô tả -->
+                <!-- Description -->
                 <div class="mb-3">
-                    <label for="description" class="form-label">Mô tả sản phẩm</label>
-                    <textarea id="description" name="description" class="form-control"
-                              th:field="*{description}" rows="10"></textarea>
+                    <label class="form-label">Mô tả sản phẩm</label>
+                    <textarea id="description" th:field="*{description}" rows="12"></textarea>
                 </div>
-                <!-- Hình ảnh -->
+
+                <!-- Image -->
                 <div class="mb-3">
                     <label class="form-label">Hình ảnh sản phẩm</label>
-                    <input type="file" class="form-control" th:field="*{image}" accept="image/*">
+                    <input type="file" id="imageFile" class="form-control"
+                           th:field="*{image}" accept="image/*">
 
-                    <div th:if="${product.imageUrl}">
-                        <img th:src="@{${product.imageUrl}}" alt="preview" style="max-height:120px;margin-top:10px;">
-                    </div>
+                    <img id="preview"
+                         th:if="${product.imageUrl}"
+                         th:src="@{${product.imageUrl}}"
+                         style="max-height:120px;margin-top:10px;display:block;">
+                    <img id="preview"
+                         th:if="${product.imageUrl == null}"
+                         style="max-height:120px;margin-top:10px;display:none;">
                 </div>
 
-
-                <!-- Xuất xứ -->
+                <!-- Origin -->
                 <div class="mb-3">
                     <label class="form-label">Xuất xứ</label>
-                    <input type="text" class="form-control" th:field="*{origin}" placeholder="VD: Việt Nam, Nhật Bản...">
+                    <input type="text" class="form-control" th:field="*{origin}">
                 </div>
 
-                <!-- Bảo hành -->
+                <!-- Warranty -->
                 <div class="mb-3">
                     <label class="form-label">Bảo hành (tháng)</label>
                     <select class="form-select" th:field="*{warrantyMonths}">
-                        <option value="" disabled selected>-- Chọn thời gian bảo hành --</option>
+                        <option value="" disabled>-- Chọn thời gian bảo hành --</option>
                         <option value="12">12 tháng</option>
                         <option value="24">24 tháng</option>
                     </select>
                 </div>
 
+                <!-- Price Display -->
                 <div class="mb-3">
                     <label class="form-label">Hiển thị giá</label>
-                    <select id="priceDisplay" name="priceDisplay" class="form-select" required>
+                    <select id="priceDisplay" class="form-select" name="priceDisplay">
                         <option th:each="pd : ${T(com.example.kimthanhphatmvc.model.enums.PriceDisplay).values()}"
                                 th:value="${pd.name()}"
                                 th:text="${pd.label}"
@@ -81,228 +98,274 @@
                     </select>
                 </div>
 
-                <select class="form-select" th:field="*{stockStatus}">
-                    <option value="" disabled selected>-- Chọn trạng thái --</option>
-                    <option th:each="ss : ${T(com.example.kimthanhphatmvc.model.enums.StockStatus).values()}"
-                            th:value="${ss}" th:text="${ss.label}"></option>
-                </select>
+                <!-- Stock Status -->
+                <div class="mb-3">
+                    <label class="form-label">Tình trạng</label>
+                    <select class="form-select" th:field="*{stockStatus}">
+                        <option value="" disabled>-- Chọn trạng thái --</option>
+                        <option th:each="ss : ${T(com.example.kimthanhphatmvc.model.enums.StockStatus).values()}"
+                                th:value="${ss}" th:text="${ss.label}">
+                        </option>
+                    </select>
+                </div>
 
-
-                <!-- Chọn Category -->
+                <!-- Category -->
                 <div class="mb-3">
                     <label class="form-label">Danh mục</label>
                     <div class="input-group">
-                        <select class="form-select" th:field="*{categoryId}">
+                        <select class="form-select" id="categorySelect" th:field="*{categoryId}">
                             <option value="" disabled selected>-- Chọn danh mục --</option>
-                            <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+                            <option th:each="c : ${categories}"
+                                    th:value="${c.id}" th:text="${c.name}"></option>
                         </select>
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                        <button type="button" class="btn btn-outline-primary"
+                                data-bs-toggle="modal" data-bs-target="#categoryModal">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <!-- Chọn ProductType -->
+
+                <!-- Product Type -->
                 <div class="mb-3">
                     <label class="form-label">Loại sản phẩm</label>
                     <div class="input-group">
-                        <select class="form-select" th:field="*{productTypeId}">
-                            <option value="" disabled selected>-- Chọn loại sản phẩm --</option>
+                        <select class="form-select" id="productTypeSelect" th:field="*{productTypeId}">
+                            <option value="" disabled selected>-- Chọn loại SP --</option>
                             <option th:each="pt : ${productTypes}"
-                                    th:value="${pt.id}"
-                                    th:text="${pt.name}"></option>
+                                    th:value="${pt.id}" th:text="${pt.name}"></option>
                         </select>
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addProductTypeModal">
+                        <button type="button" class="btn btn-outline-primary"
+                                data-bs-toggle="modal" data-bs-target="#productTypeModal">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Chọn Brand -->
+                <!-- Brand -->
                 <div class="mb-3">
                     <label class="form-label">Thương hiệu</label>
                     <div class="input-group">
-                        <select class="form-select" th:field="*{brandId}">
+                        <select class="form-select" id="brandSelect" th:field="*{brandId}">
                             <option value="" disabled selected>-- Chọn thương hiệu --</option>
-                            <option th:each="b : ${brands}" th:value="${b.id}" th:text="${b.name}"></option>
+                            <option th:each="b : ${brands}"
+                                    th:value="${b.id}" th:text="${b.name}"></option>
                         </select>
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addBrandModal">
+                        <button type="button" class="btn btn-outline-primary"
+                                data-bs-toggle="modal" data-bs-target="#brandModal">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Nút hành động -->
                 <div class="text-end">
                     <a th:href="@{/admin/products}" class="btn btn-secondary">Quay lại</a>
                     <button type="submit" class="btn btn-success">Lưu sản phẩm</button>
                 </div>
+
             </form>
         </div>
     </div>
 </div>
 
-<!-- Modal thêm Category -->
-<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+
+<!-- ================= MODALS (ADD NEW) ================= -->
+
+<!-- CATEGORY -->
+<div class="modal fade" id="categoryModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addCategoryLabel">Thêm danh mục mới</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                <h5>Thêm danh mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <input type="text" id="newCategoryName" class="form-control" placeholder="Nhập tên danh mục">
+                <input id="newCategoryInput" class="form-control" placeholder="Tên danh mục">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-primary" onclick="addCategory()">Thêm</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button class="btn btn-success" onclick="addCategory()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PRODUCT TYPE -->
+<div class="modal fade" id="productTypeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Thêm loại sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input id="newProductTypeInput" class="form-control" placeholder="Tên loại sản phẩm">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button class="btn btn-dark" onclick="addProductType()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BRAND -->
+<div class="modal fade" id="brandModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Thêm thương hiệu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input id="newBrandInput" class="form-control" placeholder="Tên thương hiệu">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button class="btn btn-info text-white" onclick="addBrand()">Lưu</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<!-- Modal thêm Brand -->
-<div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addBrandLabel">Thêm thương hiệu mới</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-            </div>
-            <div class="modal-body">
-                <input type="text" id="newBrandName" class="form-control" placeholder="Nhập tên thương hiệu">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-primary" onclick="addBrand()">Thêm</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal thêm ProductType -->
-<div class="modal fade" id="addProductTypeModal" tabindex="-1" aria-labelledby="addProductTypeLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addProductTypeLabel">Thêm loại sản phẩm mới</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-            </div>
-            <div class="modal-body">
-                <input type="text" id="newProductTypeName" class="form-control" placeholder="Nhập tên loại sản phẩm">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-primary" onclick="addProductType()">Thêm</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- ================== SCRIPTS ================== -->
 
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Preview ảnh -->
+
+<!-- ★★★ PREVIEW IMAGE -->
 <script>
-    const imageFile = document.getElementById("imageFile");
+    const file = document.getElementById("imageFile");
     const preview = document.getElementById("preview");
 
-    imageFile.addEventListener("change", function () {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = e => {
-                preview.src = e.target.result;
-                preview.style.display = "block";
-            };
-            reader.readAsDataURL(file);
+    if (file && preview) {
+        file.addEventListener("change", () => {
+            const f = file.files[0];
+            if (f) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(f);
+            }
+        });
+    }
+</script>
+
+<!-- ★★★ PRICE DISPLAY LOGIC -->
+<script>
+    function togglePrice() {
+        const display = document.getElementById('priceDisplay').value;
+        const input = document.getElementById('priceInput');
+        const group = document.getElementById('priceInputGroup');
+
+        if (display === 'CONTACT') {
+            input.disabled = true;
+            input.value = '';
+            group.style.opacity = '0.6';
+        } else {
+            input.disabled = false;
+            group.style.opacity = '1';
         }
+    }
+    document.addEventListener('DOMContentLoaded', togglePrice);
+    document.getElementById('priceDisplay').addEventListener('change', togglePrice);
+</script>
+
+<!-- ★★★ CKEDITOR 4 -->
+<script src="https://cdn.ckeditor.com/4.22.1/full-all/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description', {
+        language: 'vi',
+        height: 350,
+        allowedContent: true,
+        extraPlugins: 'colorbutton,colordialog,font,justify,image2,uploadimage,autogrow',
+        removePlugins: 'exportpdf,image',
+        toolbar: [
+            {name: 'document', items: ['Source', '-', 'Preview', 'Print']},
+            {name: 'clipboard', items: ['Undo', 'Redo']},
+            {name: 'styles', items: ['Format', 'Font', 'FontSize']},
+            {name: 'colors', items: ['TextColor', 'BGColor']},
+            '/',
+            {name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike']},
+            {name: 'paragraph', items: ['NumberedList', 'BulletedList', '-',
+                    'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+            {name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']},
+            {name: 'links', items: ['Link', 'Unlink']},
+            {name: 'tools', items: ['Maximize']}
+        ]
     });
 </script>
 
-<!-- Gọi API thêm nhanh Brand & Category -->
+
+<!-- ========== ★★★ AJAX ADD CATEGORY / BRAND / TYPE (No Reload) ========== -->
+
 <script>
     async function addCategory() {
-        const name = document.getElementById("newCategoryName").value.trim();
+        const name = document.getElementById("newCategoryInput").value.trim();
         if (!name) return alert("Vui lòng nhập tên danh mục!");
 
-        const res = await fetch("/admin/categories", {
+        const formData = new FormData();
+        formData.append("name", name);
+
+        const res = await fetch("/admin/categories/save-ajax", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({name})
+            body: formData
         });
-        if (res.ok) location.reload();
-        else alert("Lỗi khi thêm danh mục!");
+
+        const saved = await res.json();
+
+        const select = document.getElementById("categorySelect");
+        const opt = new Option(saved.name, saved.id, true, true);
+        select.add(opt);
+
+        bootstrap.Modal.getInstance(document.getElementById("categoryModal")).hide();
     }
     async function addProductType() {
-        const name = document.getElementById("newProductTypeName").value.trim();
-        if (!name) return alert("Vui lòng nhập tên loại sản phẩm!");
+        const name = document.getElementById("newProductTypeInput").value.trim();
+        if (!name) return alert("Vui lòng nhập loại sản phẩm!");
 
-        const res = await fetch("/admin/product-types", {
+        const formData = new FormData();
+        formData.append("name", name);
+
+        const res = await fetch("/admin/product-types/save-ajax", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({name})
+            body: formData
         });
-        if (res.ok) location.reload();
-        else alert("Lỗi khi thêm loại sản phẩm!");
+
+        const saved = await res.json();
+
+        const select = document.getElementById("productTypeSelect");
+        const opt = new Option(saved.name, saved.id, true, true);
+        select.add(opt);
+
+        bootstrap.Modal.getInstance(document.getElementById("productTypeModal")).hide();
     }
+
+
     async function addBrand() {
-        const name = document.getElementById("newBrandName").value.trim();
-        if (!name) return alert("Vui lòng nhập tên thương hiệu!");
+        const name = document.getElementById("newBrandInput").value.trim();
+        if (!name) return alert("Vui lòng nhập thương hiệu!");
 
-        const res = await fetch("/admin/brands", {
+        const formData = new FormData();
+        formData.append("name", name);
+
+        const res = await fetch("/admin/brands/save-ajax", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({name})
+            body: formData
         });
-        if (res.ok) location.reload();
-        else alert("Lỗi khi thêm thương hiệu!");
-    }
-</script>
-<script>
-    // Khi trang load hoặc khi chọn thay đổi
-    function togglePriceInput() {
-        const priceDisplay = document.getElementById('priceDisplay').value;
-        const priceInputGroup = document.getElementById('priceInputGroup');
-        const priceInput = document.getElementById('priceInput');
 
-        if (priceDisplay === 'CONTACT') {
-            priceInput.disabled = true;
-            priceInput.value = '';
-            priceInput.placeholder = 'Không cần nhập giá';
-            priceInputGroup.style.opacity = '0.6';
-        } else {
-            priceInput.disabled = false;
-            priceInput.placeholder = 'Nhập giá (VNĐ)';
-            priceInputGroup.style.opacity = '1';
-        }
+        const saved = await res.json();
+
+        const select = document.getElementById("brandSelect");
+        const opt = new Option(saved.name, saved.id, true, true);
+        select.add(opt);
+
+        bootstrap.Modal.getInstance(document.getElementById("brandModal")).hide();
     }
 
-    document.addEventListener('DOMContentLoaded', togglePriceInput);
-    document.getElementById('priceDisplay').addEventListener('change', togglePriceInput);
-</script>
-<script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#description'), {
-            language: 'vi',
-            toolbar: [
-                'undo', 'redo', '|',
-                'bold', 'italic', 'underline', '|',
-                'link', 'bulletedList', 'numberedList', '|',
-                'blockQuote', 'insertTable', '|',
-                'alignment', 'outdent', 'indent'
-            ],
-            table: {
-                contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-            }
-        })
-        .then(editor => {
-            console.log('CKEditor5 initialized', editor);
-        })
-        .catch(error => {
-            console.error(error);
-        });
 </script>
 
 </body>
-
 </html>

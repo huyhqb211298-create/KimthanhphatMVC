@@ -3,10 +3,7 @@ package com.example.kimthanhphatmvc.controller.admin;
 import com.example.kimthanhphatmvc.model.Brand;
 import com.example.kimthanhphatmvc.service.BrandService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/brands")
@@ -18,9 +15,21 @@ public class BrandAdminController {
         this.brandService = brandService;
     }
 
+    // =============== AJAX ===============
+    @PostMapping("/save-ajax")
+    @ResponseBody
+    public Brand saveBrandAjax(@RequestParam("name") String name) {
+
+        Brand brand = new Brand();
+        brand.setName(name);
+
+        return brandService.save(brand);
+    }
+
+    // =============== FORM SUBMIT ===============
     @PostMapping("/save")
     public String saveBrand(@RequestParam("name") String name,
-                            RedirectAttributes redirectAttributes) {
+                            org.springframework.web.servlet.mvc.support.RedirectAttributes redirectAttributes) {
         try {
             if (brandService.existsByName(name)) {
                 redirectAttributes.addFlashAttribute("message", "⚠️ Thương hiệu \"" + name + "\" đã tồn tại!");
@@ -32,6 +41,7 @@ public class BrandAdminController {
             brandService.save(brand);
 
             redirectAttributes.addFlashAttribute("message", "✅ Thêm thương hiệu thành công!");
+
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", "❌ Lỗi khi thêm thương hiệu!");
         }
