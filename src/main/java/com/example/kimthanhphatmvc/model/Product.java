@@ -30,8 +30,9 @@ public class Product {
     private Double price;
 
     @Lob
-    @Column(columnDefinition = "MEDIUMTEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
+
 
     private String image;
 
