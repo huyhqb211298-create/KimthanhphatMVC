@@ -48,7 +48,4 @@ public class News {
     private LocalDateTime updatedAt;
     @Column(nullable = false)
     private Boolean published = true;
-    public String getPlainContent() {
-        return content == null ? "" : content.replaceAll("<[^>]*>", "");
-    }
 }
