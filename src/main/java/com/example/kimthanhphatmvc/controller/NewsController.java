@@ -1,4 +1,5 @@
 package com.example.kimthanhphatmvc.controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.kimthanhphatmvc.model.News;
 import com.example.kimthanhphatmvc.service.NewsService;
@@ -98,6 +99,7 @@ public class NewsController {
         return plain.substring(0, 150) + "...";
     }
 
+    @Transactional(readOnly = true)
     @GetMapping("/{slug}")
     public String detail(@PathVariable String slug, Model model) {
 

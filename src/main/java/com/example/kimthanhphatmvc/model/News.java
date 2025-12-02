@@ -30,8 +30,10 @@ public class News {
     private String thumbnail;   // URL ảnh Cloudinary
 
     @Lob
+    @Basic(fetch = FetchType.EAGER)
     @Column(columnDefinition = "TEXT")
     private String content;
+
 
     @Column(columnDefinition = "TEXT")
     private String summary;
