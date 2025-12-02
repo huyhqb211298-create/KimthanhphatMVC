@@ -30,8 +30,8 @@ public class News {
     private String thumbnail;   // URL ảnh Cloudinary
 
     @Lob
-    @Column(columnDefinition = "TEXT")
-    private String description;
+    @Column(columnDefinition = "LONGTEXT")
+    private String content;
 
     @Column(columnDefinition = "TEXT")
     private String summary;
@@ -48,4 +48,7 @@ public class News {
     private LocalDateTime updatedAt;
     @Column(nullable = false)
     private Boolean published = true;
+    public String getPlainContent() {
+        return content == null ? "" : content.replaceAll("<[^>]*>", "");
+    }
 }
