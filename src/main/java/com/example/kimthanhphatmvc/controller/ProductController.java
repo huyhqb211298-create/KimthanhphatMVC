@@ -8,6 +8,7 @@ import com.example.kimthanhphatmvc.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -81,6 +82,7 @@ public class ProductController {
     }
 
     /** 🟡 Chi tiết sản phẩm bằng slug */
+    @Transactional(readOnly = true)
     @GetMapping("/{slug}")
     public String viewProductDetail(@PathVariable String slug, Model model) {
         Product product = productService.findBySlug(slug).orElse(null);
