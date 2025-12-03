@@ -52,7 +52,7 @@
 
 <main class="flex-grow-1">
 
-    <!-- ⭐ HERO NEW – đã đặt đúng chỗ và cách xa header -->
+    <!-- HERO -->
     <div class="mt-4 mb-4">
         <div th:replace="~{fragments/hero :: hero(
             'Danh sách sản phẩm',
@@ -93,7 +93,7 @@
                 <div class="row g-4 mt-2">
                     <div class="col-md-4" th:each="p : ${products}">
                         <div class="product-card"
-                             th:onclick="'window.location.href=\'' + @{/{slug}(slug=${p.slug})} + '\';'">
+                             th:onclick="'window.location.href=\'' + @{/products/{slug}(slug=${p.slug})} + '\';'">
 
                             <img th:src="${#strings.isEmpty(p.image) ? '/img/no-image.jpg' : p.image}"
                                  th:alt="${p.name}">
@@ -113,7 +113,7 @@
                                 <div th:if="${p.priceDisplay?.name() == 'CONTACT'}"
                                      class="text-muted fst-italic">Liên hệ</div>
 
-                                <a th:href="@{/{slug}(slug=${p.slug})}"
+                                <a th:href="@{/products/{slug}(slug=${p.slug})}"
                                    class="btn btn-outline-danger btn-sm mt-3">Xem chi tiết</a>
                             </div>
 
