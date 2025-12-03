@@ -7,6 +7,7 @@ import com.example.kimthanhphatmvc.service.SlugService;
 import com.example.kimthanhphatmvc.util.TextUtils;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +29,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Product findById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
-
     @Override
     public void save(Product product) {
 
@@ -79,6 +80,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Product> findBySlug(String slug) {
         return productRepository.findBySlug(slug);

@@ -85,17 +85,20 @@ public class ProductController {
     @Transactional(readOnly = true)
     @GetMapping("/{slug}")
     public String viewProductDetail(@PathVariable String slug, Model model) {
+
         Product product = productService.findBySlug(slug).orElse(null);
         if (product == null) {
             return "redirect:/products";
         }
 
-        List<Product> relatedProducts = productService.findRelated(product.getCategory().getId(), product.getId());
+        List<Product> relatedProducts = productService.findRelatedProducts(product);
 
         model.addAttribute("product", product);
         model.addAttribute("relatedProducts", relatedProducts);
+
         return "public/product_detail";
     }
+
 
     /** ✅ Hiển thị sản phẩm theo danh mục (khi click dropdown) */
     @GetMapping("/category/{id}")

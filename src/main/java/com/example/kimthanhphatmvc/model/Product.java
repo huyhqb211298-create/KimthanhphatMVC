@@ -30,7 +30,6 @@ public class Product {
     private Double price;
 
     @Lob
-    @Basic(fetch = FetchType.EAGER)
     @Column(columnDefinition = "TEXT")
     private String description;
 
