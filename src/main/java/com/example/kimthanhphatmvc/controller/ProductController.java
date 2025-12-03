@@ -36,7 +36,7 @@ public class ProductController {
 
     /** 🟢 Danh sách sản phẩm (lọc bằng slug category.html/brand.html/product_type.html nếu có) */
     /** 🟢 Danh sách sản phẩm (lọc category, brand, type + tìm kiếm keyword) */
-    @GetMapping
+    @GetMapping({"", "/", " "})
     public String listProducts(
             @RequestParam(value = "category", required = false) String categorySlug,
             @RequestParam(value = "brand", required = false) String brandSlug,
@@ -80,6 +80,7 @@ public class ProductController {
 
         return "public/product_list";
     }
+
 
     /** 🟡 Chi tiết sản phẩm bằng slug */
     @Transactional(readOnly = true)
