@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/allproducts")
 public class ProductController {
 
     private final ProductService productService;
@@ -34,8 +34,7 @@ public class ProductController {
         this.productTypeService = productTypeService;
     }
 
-    /** 🟢 Danh sách sản phẩm (lọc bằng slug category.html/brand.html/product_type.html nếu có) */
-    /** 🟢 Danh sách sản phẩm (lọc category, brand, type + tìm kiếm keyword) */
+    /** 🟢 Danh sách sản phẩm (lọc + tìm kiếm) */
     @GetMapping({"", "/", " "})
     public String listProducts(
             @RequestParam(value = "category", required = false) String categorySlug,
@@ -81,7 +80,6 @@ public class ProductController {
         return "public/product_list";
     }
 
-
     /** 🟡 Chi tiết sản phẩm bằng slug */
     @Transactional(readOnly = true)
     @GetMapping("/{slug}")
@@ -89,7 +87,7 @@ public class ProductController {
 
         Product product = productService.findBySlug(slug).orElse(null);
         if (product == null) {
-            return "redirect:/products";
+            return "redirect:/allproducts";
         }
 
         List<Product> relatedProducts = productService.findRelatedProducts(product);
@@ -100,8 +98,7 @@ public class ProductController {
         return "public/product_detail";
     }
 
-
-    /** ✅ Hiển thị sản phẩm theo danh mục (khi click dropdown) */
+    /** ✅ Hiển thị sản phẩm theo danh mục */
     @GetMapping("/category/{id}")
     public String viewByCategory(
             @PathVariable("id") Long categoryId,
@@ -110,7 +107,7 @@ public class ProductController {
 
         int size = 8;
 
-        Page<Product> productPage = productService.findFiltered(categoryId, null, null,null, page, size);
+        Page<Product> productPage = productService.findFiltered(categoryId, null, null, null, page, size);
         var category = categoryService.findById(categoryId);
 
         model.addAttribute("products", productPage.getContent());
