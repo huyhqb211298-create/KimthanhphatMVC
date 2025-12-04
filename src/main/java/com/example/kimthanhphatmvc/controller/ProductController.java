@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/allproducts")
+@RequestMapping("/products")
 public class ProductController {
 
     private final ProductService productService;
@@ -87,7 +87,7 @@ public class ProductController {
 
         Product product = productService.findBySlug(slug).orElse(null);
         if (product == null) {
-            return "redirect:/allproducts";
+            return "redirect:/products";
         }
 
         List<Product> relatedProducts = productService.findRelatedProducts(product);
