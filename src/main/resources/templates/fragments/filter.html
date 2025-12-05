@@ -5,41 +5,53 @@
 <div th:fragment="filter(categories, brands, productTypes, selectedCategory, selectedBrand, selectedType, keyword)"
      class="row g-3 mb-4 filter-bar">
 
+    <!-- CATEGORY -->
     <div class="col-md-3">
-        <select class="form-select" name="categoryId">
-            <option value="">Tất cả danh mục</option>
+        <select class="form-select" name="category">
+            <option value="" th:selected="${selectedCategory == null}">Tất cả danh mục</option>
+
             <option th:each="c : ${categories}"
-                    th:value="${c.id}"
-                    th:selected="${c.id == selectedCategory}"
-                    th:text="${c.name}"></option>
+                    th:value="${c.slug}"
+                    th:selected="${c.slug == selectedCategory}"
+                    th:text="${c.name}">
+            </option>
         </select>
     </div>
 
+    <!-- BRAND -->
     <div class="col-md-3">
-        <select class="form-select" name="brandId">
-            <option value="">Tất cả thương hiệu</option>
+        <select class="form-select" name="brand">
+            <option value="" th:selected="${selectedBrand == null}">Tất cả thương hiệu</option>
+
             <option th:each="b : ${brands}"
-                    th:value="${b.id}"
-                    th:selected="${b.id == selectedBrand}"
-                    th:text="${b.name}"></option>
+                    th:value="${b.slug}"
+                    th:selected="${b.slug == selectedBrand}"
+                    th:text="${b.name}">
+            </option>
         </select>
     </div>
 
+    <!-- PRODUCT TYPE -->
     <div class="col-md-3">
-        <select class="form-select" name="productTypeId">
-            <option value="">Tất cả loại</option>
+        <select class="form-select" name="productType">
+            <option value="" th:selected="${selectedType == null}">Tất cả loại</option>
+
             <option th:each="t : ${productTypes}"
-                    th:value="${t.id}"
-                    th:selected="${t.id == selectedType}"
-                    th:text="${t.name}"></option>
+                    th:value="${t.slug}"
+                    th:selected="${t.slug == selectedType}"
+                    th:text="${t.name}">
+            </option>
         </select>
     </div>
 
+    <!-- KEYWORD -->
     <div class="col-md-2">
         <input type="text" class="form-control" name="keyword"
-               placeholder="Tìm theo tên..." th:value="${keyword}">
+               placeholder="Tìm theo tên..."
+               th:value="${keyword}">
     </div>
 
+    <!-- BUTTON -->
     <div class="col-md-1">
         <button class="btn btn-danger w-100" type="submit">
             <i class="fa fa-search"></i>
@@ -47,6 +59,7 @@
     </div>
 
 </div>
+
 
 </body>
 </html>

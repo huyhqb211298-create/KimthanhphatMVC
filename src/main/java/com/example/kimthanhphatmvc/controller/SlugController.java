@@ -2,10 +2,12 @@ package com.example.kimthanhphatmvc.controller;
 
 import com.example.kimthanhphatmvc.model.*;
 import com.example.kimthanhphatmvc.service.*;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -28,53 +30,89 @@ public class SlugController {
         this.productTypeService = productTypeService;
     }
 
+    /**
+     * MAIN SLUG HANDLER
+     */
     @GetMapping("/{slug:[a-z0-9\\-]+}")
-    public String handleSlug(@PathVariable String slug, Model model) {
+    public String handleSlug(
+            @PathVariable String slug,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            Model model
+    ) {
 
-        // 🟢 Ưu tiên kiểm tra PRODUCT trước (vì slug hay trùng)
+        int size = 9;
+
+        // PRODUCT
         Optional<Product> product = productService.findBySlug(slug);
         if (product.isPresent()) {
+
             Product p = product.get();
 
             model.addAttribute("product", p);
             model.addAttribute("relatedProducts", productService.findRelatedProducts(p));
+
             addSidebar(model);
+            addFilterDefaults(model);
 
             return "public/product_detail";
         }
 
-        // 🟢 PRODUCT TYPE
+        // PRODUCT TYPE
         Optional<ProductType> type = productTypeService.findBySlug(slug);
         if (type.isPresent()) {
 
             ProductType pt = type.get();
+
+            Page<Product> productPage =
+                    productService.findByProductTypePaged(pt.getId(), page, size);
+
             model.addAttribute("productType", pt);
-            model.addAttribute("products", pt.getProducts());
+            model.addAttribute("products", productPage.getContent());
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", productPage.getTotalPages());
+
             addSidebar(model);
+            addFilterDefaults(model);
 
             return "public/product_type";
         }
 
-        // 🟢 BRAND
+        // BRAND
         Optional<Brand> brand = brandService.findBySlug(slug);
         if (brand.isPresent()) {
 
             Brand b = brand.get();
+
+            Page<Product> productPage =
+                    productService.findByBrandPaged(b.getId(), page, size);
+
             model.addAttribute("brandItem", b);
-            model.addAttribute("products", b.getProducts());
+            model.addAttribute("products", productPage.getContent());
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", productPage.getTotalPages());
+
             addSidebar(model);
+            addFilterDefaults(model);
 
             return "public/brand";
         }
 
-        // 🟢 CATEGORY
+        // CATEGORY
         Optional<Category> category = categoryService.findBySlug(slug);
         if (category.isPresent()) {
 
             Category c = category.get();
+
+            Page<Product> productPage =
+                    productService.findByCategoryPaged(c.getId(), page, size);
+
             model.addAttribute("category", c);
-            model.addAttribute("products", c.getProducts());
+            model.addAttribute("products", productPage.getContent());
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", productPage.getTotalPages());
+
             addSidebar(model);
+            addFilterDefaults(model);
 
             return "public/category";
         }
@@ -82,12 +120,18 @@ public class SlugController {
         return "error/404";
     }
 
-    /**
-     * 🟢 GỬI DỮ LIỆU SIDEBAR DÙNG CHUNG CHO TẤT CẢ TRANG
-     */
+    /** Add full sidebar */
     private void addSidebar(Model model) {
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("brandList", brandService.findAll());
         model.addAttribute("productTypeList", productTypeService.findAll());
+    }
+
+    /** FIX filter for all slug pages */
+    private void addFilterDefaults(Model model) {
+        model.addAttribute("selectedCategory", null);
+        model.addAttribute("selectedBrand", null);
+        model.addAttribute("selectedType", null);
+        model.addAttribute("keyword", null);
     }
 }

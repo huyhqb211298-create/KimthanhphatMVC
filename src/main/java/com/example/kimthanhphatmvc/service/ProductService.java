@@ -15,8 +15,8 @@ public interface ProductService {
     Optional<Product> findBySlug(String slug);
     List<Product> findRelatedProducts(Product product);
 
-    List<Product> findRelated(Long categoryId, Long excludeProductId);
-    List<Product> findByCategory(Long categoryId);
-    List<Product> findByBrand(Long brandId);
-    List<Product> findByCategoryAndBrand(Long categoryId, Long brandId);
+    Page<Product> findByCategoryPaged(Long categoryId, int page, int size);
+    Page<Product> findByBrandPaged(Long brandId, int page, int size);
+    Page<Product> findByProductTypePaged(Long typeId, int page, int size);
+
 }

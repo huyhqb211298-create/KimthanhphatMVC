@@ -53,7 +53,7 @@ public class ProductController {
         Long productTypeId = productTypeSlug == null ? null :
                 productTypeService.findBySlug(productTypeSlug).map(t -> t.getId()).orElse(null);
 
-        int size = 8;
+        int size = 9;
 
         Page<Product> productPage = productService.findFiltered(
                 categoryId,
@@ -105,7 +105,7 @@ public class ProductController {
             @RequestParam(value = "page", defaultValue = "1") int page,
             Model model) {
 
-        int size = 8;
+        int size = 9;
 
         Page<Product> productPage = productService.findFiltered(categoryId, null, null, null, page, size);
         var category = categoryService.findById(categoryId);

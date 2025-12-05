@@ -34,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
     public Product findById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
+
     @Override
     public void save(Product product) {
 
@@ -51,7 +52,10 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(id);
     }
 
-    // ================= FILTER + PAGINATION ==================
+
+    // ======================================================
+    //  FILTER + PAGINATION (used by /products page)
+    // ======================================================
 
     @Override
     public Page<Product> findFiltered(Long categoryId,
@@ -79,6 +83,32 @@ public class ProductServiceImpl implements ProductService {
         );
     }
 
+    // ======================================================
+    //  SLUG-BASED PAGINATION (CATEGORY / BRAND / PRODUCT TYPE)
+    // ======================================================
+
+    @Override
+    public Page<Product> findByCategoryPaged(Long categoryId, int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("id").descending());
+        return productRepository.findByCategoryId(categoryId, pageable);
+    }
+
+    @Override
+    public Page<Product> findByBrandPaged(Long brandId, int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("id").descending());
+        return productRepository.findByBrandId(brandId, pageable);
+    }
+
+    @Override
+    public Page<Product> findByProductTypePaged(Long typeId, int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("id").descending());
+        return productRepository.findByProductTypeId(typeId, pageable);
+    }
+
+
+    // ======================================================
+    //  RELATED PRODUCTS
+    // ======================================================
 
     @Transactional(readOnly = true)
     @Override
@@ -86,28 +116,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findBySlug(slug);
     }
 
-    @Override
-    public List<Product> findRelated(Long categoryId, Long excludeProductId) {
-        return productRepository.findByCategoryId(categoryId, Pageable.ofSize(4))
-                .stream()
-                .filter(p -> !p.getId().equals(excludeProductId))
-                .toList();
-    }
-
-    @Override
-    public List<Product> findByCategory(Long categoryId) {
-        return productRepository.findByCategoryId(categoryId, Pageable.unpaged()).getContent();
-    }
-
-    @Override
-    public List<Product> findByBrand(Long brandId) {
-        return productRepository.findByBrandId(brandId, Pageable.unpaged()).getContent();
-    }
-
-    @Override
-    public List<Product> findByCategoryAndBrand(Long categoryId, Long brandId) {
-        return productRepository.findByCategoryIdAndBrandId(categoryId, brandId, Pageable.unpaged()).getContent();
-    }
     @Override
     public List<Product> findRelatedProducts(Product product) {
 
@@ -125,7 +133,7 @@ public class ProductServiceImpl implements ProductService {
             );
         }
 
-        // 2️⃣ Nếu chưa đủ 4 → bổ sung theo PRODUCT TYPE
+        // 2️⃣ Nếu chưa đủ 4 → TYPE
         if (related.size() < 4 && product.getProductType() != null) {
             related.addAll(
                     productRepository.findTop4ByProductTypeIdAndIdNotOrderByIdDesc(
@@ -135,7 +143,7 @@ public class ProductServiceImpl implements ProductService {
             );
         }
 
-        // 3️⃣ Nếu vẫn chưa đủ 4 → bổ sung theo CATEGORY
+        // 3️⃣ Nếu chưa đủ 4 → CATEGORY
         if (related.size() < 4 && product.getCategory() != null) {
             related.addAll(
                     productRepository.findTop4ByCategoryIdAndIdNotOrderByIdDesc(
@@ -145,11 +153,9 @@ public class ProductServiceImpl implements ProductService {
             );
         }
 
-        // 4️⃣ Trả về tối đa 4 sản phẩm, bỏ duplicate nếu trùng
         return related.stream()
                 .distinct()
                 .limit(4)
                 .toList();
     }
-
 }
