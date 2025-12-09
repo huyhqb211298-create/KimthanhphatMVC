@@ -67,8 +67,8 @@ public class ProductServiceImpl implements ProductService {
 
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "id"));
 
-        // 🔥 CHUẨN HÓA KEYWORD: xoá dấu + lowercase
-        String normalizedKeyword = null;
+        // 🔥 Không bao giờ để keyword = null (để tránh PostgreSQL cast thành bytea)
+        String normalizedKeyword = "";
 
         if (keyword != null && !keyword.isBlank()) {
             normalizedKeyword = TextUtils.removeAccent(keyword).toLowerCase();

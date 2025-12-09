@@ -38,12 +38,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // 🔥 SEARCH KHÔNG DẤU + FILTER category/brand/type
     // =====================================================================
     @Query("""
-        SELECT p FROM Product p
-        WHERE (:categoryId IS NULL OR p.category.id = :categoryId)
-          AND (:brandId IS NULL OR p.brand.id = :brandId)
-          AND (:productTypeId IS NULL OR p.productType.id = :productTypeId)
-          AND (:keyword IS NULL OR LOWER(p.nameNoAccent) LIKE LOWER(CONCAT('%', :keyword, '%')))
-    """)
+    SELECT p FROM Product p
+    WHERE (:categoryId IS NULL OR p.category.id = :categoryId)
+      AND (:brandId IS NULL OR p.brand.id = :brandId)
+      AND (:productTypeId IS NULL OR p.productType.id = :productTypeId)
+      AND (:keyword = '' OR LOWER(p.nameNoAccent) LIKE LOWER(CONCAT('%', :keyword, '%')))
+""")
     Page<Product> filter(@Param("categoryId") Long categoryId,
                          @Param("brandId") Long brandId,
                          @Param("productTypeId") Long productTypeId,
