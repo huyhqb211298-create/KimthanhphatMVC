@@ -158,4 +158,23 @@
     }
 }
 
+.hidden {
+    display: none;
+}
+
+.see-more-btn {
+    display: block;
+    margin-top: 6px;
+    background: none;
+    border: none;
+    color: #444;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    padding-left: 4px;
+}
+
+.see-more-btn:hover {
+    color: #e63600;
+}
 

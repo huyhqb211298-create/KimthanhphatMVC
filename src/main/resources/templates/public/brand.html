@@ -75,7 +75,11 @@
 
                     <div class="col-md-4" th:each="p : ${products}">
                         <div class="product-card"
+                             th:classappend="${p.stockStatus?.name() == 'OUT_OF_STOCK'} ? ' out-of-stock' : ''"
                              th:onclick="'window.location.href=\'' + @{/{slug}(slug=${p.slug})} + '\';'">
+
+                            <div th:if="${p.stockStatus?.name() == 'OUT_OF_STOCK'}"
+                                 class="product-ribbon">Hết hàng</div>
 
                             <img th:src="${#strings.isEmpty(p.image)?'/img/no-image.jpg':p.image}" />
 

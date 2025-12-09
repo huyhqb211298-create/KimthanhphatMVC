@@ -38,9 +38,11 @@
 
                 <!-- MEGA MENU -->
                 <li class="mega-dropdown">
-                    <a class="dropdown-toggle">SẢN PHẨM</a>
+                    <a class="dropdown-toggle" th:href="@{/products}">SẢN PHẨM</a>
 
                     <div class="mega-menu">
+
+                        <!-- DANH MỤC -->
                         <div class="mega-col">
                             <h6>DANH MỤC</h6>
                             <a th:each="c : ${categories}"
@@ -48,19 +50,51 @@
                                th:href="@{'/' + ${c.slug}}"></a>
                         </div>
 
+                        <!-- THƯƠNG HIỆU -->
                         <div class="mega-col">
                             <h6>THƯƠNG HIỆU</h6>
-                            <a th:each="b : ${brandList}"
+
+                            <!-- 5 mục đầu -->
+                            <a th:each="b, iStat : ${brandList}"
+                               th:if="${iStat.index < 5}"
                                th:text="${b.name}"
                                th:href="@{'/' + ${b.slug}}"></a>
+
+                            <!-- Các mục còn lại (ẩn) -->
+                            <a class="brand-extra d-none"
+                               th:each="b, iStat : ${brandList}"
+                               th:if="${iStat.index >= 5}"
+                               th:text="${b.name}"
+                               th:href="@{'/' + ${b.slug}}"></a>
+
+                            <!-- nút xem thêm -->
+                            <button type="button" class="see-more-btn" id="btnBrand">
+                                Xem thêm ▼
+                            </button>
                         </div>
 
+                        <!-- LOẠI SẢN PHẨM -->
                         <div class="mega-col">
                             <h6>LOẠI SẢN PHẨM</h6>
-                            <a th:each="t : ${productTypeList}"
+
+                            <!-- 5 mục đầu -->
+                            <a th:each="t, iStat : ${productTypeList}"
+                               th:if="${iStat.index < 5}"
                                th:text="${t.name}"
                                th:href="@{'/' + ${t.slug}}"></a>
+
+                            <!-- các mục còn lại -->
+                            <a class="type-extra d-none"
+                               th:each="t, iStat : ${productTypeList}"
+                               th:if="${iStat.index >= 5}"
+                               th:text="${t.name}"
+                               th:href="@{'/' + ${t.slug}}"></a>
+
+                            <button type="button" class="see-more-btn" id="btnType">
+                                Xem thêm ▼
+                            </button>
                         </div>
+
                     </div>
                 </li>
             </ul>
@@ -111,5 +145,33 @@
         </div>
 
     </nav>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // TOGGLE BRAND
+            const btnBrand = document.getElementById("btnBrand");
+            const brandExtra = document.querySelectorAll(".brand-extra");
+
+            btnBrand.addEventListener("click", function () {
+                brandExtra.forEach(item => item.classList.toggle("d-none"));
+                btnBrand.textContent = brandExtra[0].classList.contains("d-none")
+                    ? "Xem thêm ▼"
+                    : "Thu gọn ▲";
+            });
+
+            // TOGGLE PRODUCT TYPE
+            const btnType = document.getElementById("btnType");
+            const typeExtra = document.querySelectorAll(".type-extra");
+
+            btnType.addEventListener("click", function () {
+                typeExtra.forEach(item => item.classList.toggle("d-none"));
+                btnType.textContent = typeExtra[0].classList.contains("d-none")
+                    ? "Xem thêm ▼"
+                    : "Thu gọn ▲";
+            });
+
+        });
+    </script>
 
 </header>

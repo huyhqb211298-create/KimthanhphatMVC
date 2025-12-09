@@ -125,9 +125,18 @@
 
         <!-- Image -->
         <div class="col-md-5">
-            <div class="product-main-image shadow-sm bg-white border">
+            <div class="product-main-image shadow-sm bg-white border" style="position: relative;">
+
+                <!-- Badge Hết hàng -->
+                <div class="out-of-stock-badge"
+                     th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">
+                    HẾT HÀNG
+                </div>
+
+                <!-- Ảnh sản phẩm -->
                 <img th:src="${#strings.isEmpty(product.image) ? '/img/no-image.jpg' : product.image}"
-                     th:alt="${product.name}">
+                     th:alt="${product.name}"
+                     th:classappend="${product.stockStatus?.name() == 'OUT_OF_STOCK'} ? ' out-of-stock'">
             </div>
         </div>
 
@@ -136,10 +145,13 @@
             <h2 class="fw-bold mb-3 text-danger" th:text="${product.name}"></h2>
 
             <div class="mb-3">
-                <span class="badge bg-danger" th:if="${product.stockStatus?.name() == 'IN_STOCK'}">Còn hàng</span>
-                <span class="badge bg-secondary" th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">Hết hàng</span>
+                <span class="badge bg-success" th:if="${product.stockStatus?.name() == 'IN_STOCK'}">✔ Còn hàng</span>
+
+                <span class="badge bg-danger" th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">✖ Hết hàng</span>
+
                 <span class="badge bg-warning text-dark" th:text="${product.category?.name}"></span>
             </div>
+
 
             <p class="lead fw-bold text-danger"
                th:if="${product.priceDisplay?.name() == 'SHOW'}"
@@ -153,7 +165,7 @@
             <p><strong>Bảo hành:</strong> <span th:text="${product.warrantyMonths + ' tháng'}"></span></p>
 
             <div class="d-flex gap-3 mb-4">
-                <a href="#" class="btn btn-danger px-4">Liên hệ mua hàng</a>
+                <a href="https://zalo.me/0934752114" class="btn btn-danger px-4">Liên hệ mua hàng</a>
                 <a th:href="@{/products}" class="btn btn-outline-secondary px-4">← Quay lại danh sách</a>
             </div>
         </div>
@@ -172,16 +184,25 @@
         <h4 class="border-bottom border-danger pb-2 mb-4 text-uppercase">Sản phẩm cùng loại</h4>
 
         <div class="col-md-3 mb-4" th:each="rel : ${relatedProducts}">
-            <div class="card h-100 border-0 shadow-sm product-card">
+            <div class="card h-100 border-0 shadow-sm product-card position-relative">
 
+                <!-- Badge hết hàng -->
+                <div class="related-out-badge"
+                     th:if="${rel.stockStatus?.name() == 'OUT_OF_STOCK'}">
+                    HẾT HÀNG
+                </div>
+
+                <!-- Ảnh sản phẩm -->
                 <img th:src="${#strings.isEmpty(rel.image) ? '/img/no-image.jpg' : rel.image}"
                      th:alt="${rel.name}"
+                     th:classappend="${rel.stockStatus?.name() == 'OUT_OF_STOCK'} ? ' related-img-out'"
                      class="card-img-top"
                      style="height: 200px; object-fit: cover;">
 
                 <div class="card-body text-center">
                     <h6 class="fw-semibold text-truncate" th:text="${rel.name}"></h6>
 
+                    <!-- Giá -->
                     <p class="text-danger fw-bold small"
                        th:if="${rel.priceDisplay?.name() == 'SHOW'}"
                        th:text="${#numbers.formatDecimal(rel.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></p>
@@ -189,11 +210,15 @@
                     <p class="text-muted small fst-italic"
                        th:if="${rel.priceDisplay?.name() == 'CONTACT'}">Liên hệ</p>
 
-                    <a th:href="@{/{slug}(slug=${rel.slug})}" class="btn btn-outline-danger btn-sm">Xem chi tiết</a>
+                    <a th:href="@{/{slug}(slug=${rel.slug})}"
+                       class="btn btn-outline-danger btn-sm mt-1">
+                        Xem chi tiết
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 
 <!-- Footer -->
