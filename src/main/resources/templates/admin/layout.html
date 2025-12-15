@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} ?: 'Admin'">Admin</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        :root{
+            --sidebar-w: 270px;
+            --primary: #2563eb;
+            --primary-soft: #eef2ff;
+            --bg-main: #f5f7fb;
+            --bg-white: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --shadow: 0 10px 30px rgba(15,23,42,.08);
+        }
+
+        body{
+            background: var(--bg-main);
+            color: var(--text);
+        }
+
+        .app{
+            min-height:100vh;
+        }
+
+        /* ================= SIDEBAR ================= */
+        .sidebar{
+            width:var(--sidebar-w);
+            min-height:100vh;
+            background:var(--bg-white);
+            border-right:1px solid var(--border);
+            box-shadow: var(--shadow);
+            position:relative;
+            z-index:10;
+        }
+
+        .sidebar-brand{
+            padding:18px;
+            border-bottom:1px solid var(--border);
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+
+        .sidebar-brand .logo{
+            width:40px;
+            height:40px;
+            border-radius:12px;
+            background:linear-gradient(135deg,#2563eb,#1d4ed8);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#fff;
+            box-shadow:0 6px 16px rgba(37,99,235,.35);
+        }
+
+        .sidebar-brand .title{
+            font-weight:800;
+            letter-spacing:.3px;
+        }
+
+        .sidebar-brand small{
+            color:var(--muted);
+            font-size:12px;
+        }
+
+        .nav-section{
+            padding:14px 10px;
+        }
+
+        .nav-section .label{
+            font-size:11px;
+            text-transform:uppercase;
+            letter-spacing:.7px;
+            color:var(--muted);
+            margin:12px 12px 6px;
+        }
+
+        .side-link{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            padding:11px 14px;
+            margin:6px 6px;
+            border-radius:12px;
+            color:var(--text);
+            text-decoration:none;
+            font-weight:500;
+            transition:all .15s ease;
+        }
+
+        .side-link i{
+            font-size:18px;
+            color:var(--muted);
+            width:22px;
+            text-align:center;
+        }
+
+        .side-link:hover{
+            background:var(--primary-soft);
+            color:var(--primary);
+            transform:translateX(2px);
+        }
+
+        .side-link:hover i{
+            color:var(--primary);
+        }
+
+        .side-link.active{
+            background:var(--primary-soft);
+            color:var(--primary);
+            font-weight:600;
+            box-shadow:inset 3px 0 0 var(--primary);
+        }
+
+        .side-link.active i{
+            color:var(--primary);
+        }
+
+        .side-sub{
+            padding-left:42px;
+            font-size:14px;
+        }
+
+        .sidebar-footer{
+            padding:14px;
+            border-top:1px solid var(--border);
+        }
+
+        /* ================= MAIN ================= */
+        .main{
+            flex:1;
+            min-width:0;
+        }
+
+        .topbar{
+            background:var(--bg-white);
+            border-bottom:1px solid var(--border);
+            padding:14px 20px;
+            box-shadow:0 4px 12px rgba(15,23,42,.04);
+        }
+
+        .page-wrap{
+            padding:20px;
+        }
+
+        .card-soft{
+            border:0;
+            border-radius:16px;
+            background:var(--bg-white);
+            box-shadow:var(--shadow);
+        }
+    </style>
+</head>
+
+<body>
+<div class="app d-flex">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar d-flex flex-column">
+
+        <div class="sidebar-brand">
+            <div class="logo">
+                <i class="bi bi-boxes"></i>
+            </div>
+            <div>
+                <div class="title">ADMIN</div>
+                <small>Quản trị hệ thống</small>
+            </div>
+        </div>
+
+        <div class="nav-section flex-grow-1">
+
+            <div class="label">Tổng quan</div>
+            <a class="side-link" href="/admin">
+                <i class="bi bi-house-door"></i>
+                Trang chủ
+            </a>
+
+            <div class="label">Quản lý</div>
+            <a class="side-link" href="/admin/products">
+                <i class="bi bi-box-seam"></i>
+                Sản phẩm
+            </a>
+            <a class="side-link" href="/admin/news">
+                <i class="bi bi-newspaper"></i>
+                Bài viết
+            </a>
+
+            <div class="label">Kho hàng</div>
+            <a class="side-link" href="/admin/inventory">
+                <i class="bi bi-speedometer2"></i>
+                Dashboard kho
+            </a>
+            <a class="side-link side-sub" href="/admin/inventory/stocks">
+                <i class="bi bi-archive"></i>
+                Tồn kho
+            </a>
+            <a class="side-link side-sub" href="/admin/inventory/import">
+                <i class="bi bi-plus-circle"></i>
+                Nhập kho
+            </a>
+            <a class="side-link side-sub" href="/admin/inventory/export">
+                <i class="bi bi-dash-circle"></i>
+                Xuất kho
+            </a>
+            <a class="side-link side-sub" href="/admin/inventory/movements">
+                <i class="bi bi-clock-history"></i>
+                Lịch sử kho
+            </a>
+            <a class="side-link side-sub" href="/admin/inventory/report">
+                <i class="bi bi-bar-chart"></i>
+                Báo cáo
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <form th:action="@{/logout}" method="post">
+                <button class="btn btn-outline-primary w-100">
+                    <i class="bi bi-box-arrow-right me-1"></i> Đăng xuất
+                </button>
+            </form>
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+        <div class="topbar d-flex align-items-center justify-content-between">
+            <div class="fw-bold" th:text="${pageTitle} ?: 'Admin'">Admin</div>
+            <div class="text-muted small">
+                <i class="bi bi-person-circle me-1"></i> Khu vực quản trị
+            </div>
+        </div>
+
+        <div class="page-wrap">
+            <div th:if="${content != null}" th:replace="~{${content}}"></div>
+
+            <div th:if="${content == null}" class="card-soft p-4">
+                <div class="text-muted">
+                    Chưa có nội dung để hiển thị
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

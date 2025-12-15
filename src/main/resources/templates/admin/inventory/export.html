@@ -1,0 +1,333 @@
+<div>
+    <style>
+        .card-soft{
+            border:0;
+            border-radius:14px;
+            box-shadow:0 1px 3px rgba(0,0,0,.06);
+            background:#fff;
+        }
+
+        .export-table th,
+        .export-table td{
+            vertical-align:middle;
+        }
+
+        .export-table th{
+            text-align:center;
+        }
+
+        .export-table td.center{
+            text-align:center;
+        }
+
+        .export-table td.product{
+            text-align:left;
+            font-weight:500;
+        }
+
+        .btn-icon{
+            width:36px;
+            height:36px;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            padding:0;
+        }
+
+        .qty-input{
+            max-width:120px;
+            margin:0 auto;
+            text-align:center;
+        }
+
+        .search-input{
+            max-width:320px;
+        }
+
+        .stock-table td, .stock-table th{
+            vertical-align:middle;
+        }
+
+        .stock-table th:nth-child(2),
+        .stock-table td:nth-child(2),
+        .stock-table th:nth-child(3),
+        .stock-table td:nth-child(3){
+            text-align:center;
+            width:140px;
+        }
+    </style>
+
+    <!-- HEADER -->
+    <div class="mb-4">
+        <h3 class="fw-bold mb-1">📤 Xuất kho</h3>
+        <div class="text-muted">Lập phiếu xuất kho</div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div th:if="${param.success}" class="alert alert-success">
+        ✅ Xuất kho thành công!
+    </div>
+
+    <form th:action="@{/admin/inventory/export}"
+          th:object="${inventoryExport}"
+          method="post">
+
+        <!-- INFO -->
+        <div class="card-soft p-3 mb-4">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Người xuất</label>
+                    <input th:field="*{createdBy}" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Lý do xuất</label>
+                    <select th:field="*{reason}" class="form-select" required>
+                        <option value="">-- Chọn lý do --</option>
+                        <option th:each="r : ${reasons}"
+                                th:value="${r}"
+                                th:text="${r.label}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Ghi chú</label>
+                    <input th:field="*{note}" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TỒN KHO ===== -->
+        <div class="card-soft p-3 mb-4">
+            <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+                <div class="fw-semibold">📦 Sản phẩm đang còn trong kho</div>
+
+                <input id="stockSearch"
+                       type="text"
+                       class="form-control form-control-sm search-input"
+                       placeholder="🔎 Tìm sản phẩm..."
+                       oninput="filterStocks()">
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-sm table-hover mb-0 stock-table">
+                    <thead class="table-light">
+                    <tr>
+                        <th class="text-start">Sản phẩm</th>
+                        <th>Tồn kho</th>
+                        <th>Thao tác</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="stockBody">
+                    <tr th:each="s : ${stocks}"
+                        th:if="${s != null and s.quantity != null and s.quantity > 0}"
+                        class="stock-row"
+                        th:attr="data-name=${s.product != null ? s.product.name : ''}">
+                        <td class="text-start"
+                            th:text="${s.product != null ? s.product.name : 'N/A'}"></td>
+
+                        <td class="fw-bold"
+                            th:text="${s.quantity}"></td>
+
+                        <td>
+                            <button type="button"
+                                    class="btn btn-sm btn-outline-primary"
+                                    th:attr="data-id=${s.product.id},data-name=${s.product.name},data-qty=${s.quantity}"
+                                    onclick="addFromStock(this)">
+                                <i class="bi bi-plus-lg me-1"></i> Thêm
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr th:if="${stocks == null or #lists.isEmpty(stocks)}">
+                        <td colspan="3" class="text-muted text-center py-3">
+                            Kho đang trống
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== DANH SÁCH XUẤT ===== -->
+        <div class="card-soft p-3 mb-4" id="exportListCard">
+            <div class="fw-semibold mb-2">🧾 Danh sách sản phẩm xuất</div>
+
+            <div class="table-responsive">
+                <table class="table table-sm table-hover export-table mb-0">
+                    <thead class="table-light">
+                    <tr>
+                        <th class="text-start">Sản phẩm</th>
+                        <th style="width:160px">Số lượng</th>
+                        <th style="width:90px">Xóa</th>
+                    </tr>
+                    </thead>
+                    <tbody id="itemsBody">
+                    <!-- JS render -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="emptyHint" class="text-muted small mt-2">
+                Chưa có sản phẩm nào được thêm.
+            </div>
+        </div>
+
+        <!-- ACTION -->
+        <div class="d-flex gap-2">
+            <button class="btn btn-danger">
+                <i class="bi bi-save me-1"></i> Lưu phiếu xuất
+            </button>
+            <a href="/admin/inventory" class="btn btn-outline-secondary">
+                Quay lại
+            </a>
+        </div>
+    </form>
+
+    <script>
+        // Map productId -> { rowEl, maxQty }
+        const rowMap = new Map();
+
+        function filterStocks(){
+            const q = (document.getElementById("stockSearch").value || "").toLowerCase().trim();
+            document.querySelectorAll("#stockBody .stock-row").forEach(tr => {
+                const name = (tr.getAttribute("data-name") || "").toLowerCase();
+                tr.style.display = name.includes(q) ? "" : "none";
+            });
+        }
+
+        function addFromStock(btn){
+            const productId = String(btn.dataset.id || "");
+            const productName = btn.dataset.name || "";
+            const maxQty = parseInt(btn.dataset.qty || "0", 10);
+
+            if(!productId || !productName){
+                console.error("Missing data-id / data-name on button", btn);
+                return;
+            }
+
+            // đã có => cộng dồn đúng sản phẩm đó
+            if(rowMap.has(productId)){
+                const info = rowMap.get(productId);
+                const qtyInput = info.rowEl.querySelector('input[data-role="qty"]');
+                let current = parseInt(qtyInput.value || "0", 10);
+                let next = current + 1;
+
+                if(maxQty > 0 && next > maxQty){
+                    next = maxQty;
+                }
+
+                qtyInput.value = next;
+                qtyInput.focus({preventScroll:true});
+                qtyInput.dispatchEvent(new Event("change"));
+
+                info.rowEl.scrollIntoView({behavior:"smooth", block:"center"});
+                return;
+            }
+
+            // chưa có => tạo dòng mới
+            const tbody = document.getElementById("itemsBody");
+            const tr = document.createElement("tr");
+            tr.setAttribute("data-product-id", productId);
+
+            tr.innerHTML = `
+                <td class="product">
+                    ${escapeHtml(productName)}
+                    <input type="hidden" data-role="pid" value="${escapeAttr(productId)}">
+                </td>
+
+                <td class="center">
+                    <input type="number"
+                           class="form-control form-control-sm qty-input"
+                           min="1"
+                           value="1"
+                           data-role="qty"
+                           ${maxQty > 0 ? `max="${maxQty}"` : "" }
+                           oninput="clampQty(this)">
+                    <div class="text-muted small mt-1">
+                        Tối đa: <b>${maxQty}</b>
+                    </div>
+                </td>
+
+                <td class="center">
+                    <button type="button"
+                            class="btn btn-sm btn-outline-danger btn-icon"
+                            title="Xóa"
+                            onclick="removeRow(this)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            `;
+
+            tbody.appendChild(tr);
+            rowMap.set(productId, { rowEl: tr, maxQty });
+
+            reindexRows();
+            toggleEmptyHint();
+
+            tr.scrollIntoView({behavior:"smooth", block:"center"});
+            tr.querySelector('input[data-role="qty"]').focus();
+        }
+
+        function clampQty(input){
+            const max = parseInt(input.getAttribute("max") || "0", 10);
+            let v = parseInt(input.value || "1", 10);
+
+            if(isNaN(v) || v < 1) v = 1;
+            if(max > 0 && v > max) v = max;
+
+            input.value = v;
+        }
+
+        function removeRow(btn){
+            const tr = btn.closest("tr");
+            if(!tr) return;
+
+            const productId = tr.getAttribute("data-product-id");
+            tr.remove();
+
+            if(productId) rowMap.delete(String(productId));
+
+            reindexRows();
+            toggleEmptyHint();
+        }
+
+        // Quan trọng: Spring cần items[0].product.id / items[0].quantity...
+        function reindexRows(){
+            const rows = document.querySelectorAll("#itemsBody tr");
+            rows.forEach((tr, idx) => {
+                const pid = tr.querySelector('input[data-role="pid"]').value;
+                const qtyInput = tr.querySelector('input[data-role="qty"]');
+
+                // tạo/đặt name đúng chuẩn
+                const hidden = tr.querySelector('input[type="hidden"][data-role="pid"]');
+                hidden.setAttribute("name", `items[${idx}].product.id`);
+
+                qtyInput.setAttribute("name", `items[${idx}].quantity`);
+            });
+        }
+
+        function toggleEmptyHint(){
+            const hasRow = document.querySelectorAll("#itemsBody tr").length > 0;
+            document.getElementById("emptyHint").style.display = hasRow ? "none" : "block";
+        }
+
+        function escapeHtml(str){
+            return String(str)
+                .replaceAll("&","&amp;")
+                .replaceAll("<","&lt;")
+                .replaceAll(">","&gt;")
+                .replaceAll('"',"&quot;")
+                .replaceAll("'","&#39;");
+        }
+
+        function escapeAttr(str){
+            return escapeHtml(str).replaceAll("`","&#96;");
+        }
+
+        // init
+        toggleEmptyHint();
+    </script>
+</div>

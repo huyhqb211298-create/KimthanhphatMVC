@@ -1,0 +1,124 @@
+<div>
+
+    <style>
+        .card-soft {
+            border-radius: 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.06);
+        }
+
+        .detail-table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .detail-table th,
+        .detail-table td {
+            vertical-align: middle;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .detail-table th.product {
+            text-align: center;
+        }
+
+        .detail-table td.product {
+            text-align: left;
+            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+    <!-- HEADER -->
+    <div class="mb-4">
+        <h3 class="fw-bold mb-1">
+            📤 Chi tiết phiếu xuất #<span th:text="${export.id}"></span>
+        </h3>
+        <div class="text-muted">Thông tin chi tiết phiếu xuất kho</div>
+    </div>
+
+    <!-- INFO -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card-soft bg-white p-3">
+                <div class="text-muted small">Người xuất</div>
+                <div class="fw-bold" th:text="${export.createdBy}"></div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-soft bg-white p-3">
+                <div class="text-muted small">Thời gian xuất</div>
+                <div class="fw-bold"
+                     th:text="${#temporals.format(export.exportDate,'dd/MM/yyyy HH:mm')}">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-soft bg-white p-3">
+                <div class="text-muted small">Lý do</div>
+                <div class="fw-bold" th:text="${export.reason}"></div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-soft bg-white p-3">
+                <div class="text-muted small">Ghi chú</div>
+                <div th:text="${export.note != null ? export.note : '—'}"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card-soft bg-white p-3 mb-4">
+        <h6 class="fw-bold mb-3">📦 Danh sách sản phẩm xuất</h6>
+
+        <table class="table table-sm table-hover detail-table mb-0">
+            <colgroup>
+                <col style="width:8%">
+                <col style="width:52%">
+                <col style="width:20%">
+                <col style="width:20%">
+            </colgroup>
+
+            <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th class="product">Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Ghi chú</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="i, stat : ${export.items}">
+                <td th:text="${stat.count}"></td>
+                <td class="product" th:text="${i.product.name}"></td>
+
+                <td>
+                    <span class="badge bg-danger-subtle text-danger px-3">
+                        -[[${i.quantity}]]
+                    </span>
+                </td>
+
+                <td class="text-muted">—</td>
+            </tr>
+
+            <tr th:if="${export.items == null || export.items.isEmpty()}">
+                <td colspan="4" class="text-center text-muted py-3">
+                    Không có sản phẩm
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ACTION -->
+    <a href="/admin/inventory/movements"
+       class="btn btn-sm btn-outline-secondary">
+        ← Quay lại lịch sử kho
+    </a>
+
+</div>

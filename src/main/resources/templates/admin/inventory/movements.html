@@ -1,0 +1,212 @@
+<div>
+
+    <style>
+        .card-soft {
+            border-radius: 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.06);
+            background: #fff;
+        }
+
+        .movement-table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .movement-table th,
+        .movement-table td {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .movement-table td.product {
+            text-align: left;
+            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .badge-change {
+            font-size: 13px;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+    </style>
+
+    <!-- HEADER -->
+    <div class="mb-4">
+        <h3 class="fw-bold mb-1">📜 Lịch sử kho</h3>
+        <div class="text-muted">Theo dõi toàn bộ nhập – xuất kho</div>
+    </div>
+
+    <!-- FILTER -->
+    <form class="card-soft p-3 mb-4">
+        <div class="row g-3 align-items-end">
+
+            <div class="col-md-4">
+                <label class="form-label">Sản phẩm</label>
+                <select name="productId" class="form-select form-select-sm">
+                    <option value="">-- Tất cả --</option>
+                    <option th:each="p : ${products}"
+                            th:value="${p.id}"
+                            th:selected="${p.id == productId}"
+                            th:text="${p.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Từ ngày</label>
+                <input type="date" name="from"
+                       class="form-control form-control-sm"
+                       th:value="${from}">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Đến ngày</label>
+                <input type="date" name="to"
+                       class="form-control form-control-sm"
+                       th:value="${to}">
+            </div>
+
+            <div class="col-md-2 d-grid gap-2">
+                <button class="btn btn-sm btn-primary">
+                    <i class="bi bi-funnel"></i> Lọc
+                </button>
+                <a href="/admin/inventory/movements"
+                   class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-arrow-counterclockwise"></i> Reset
+                </a>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- ================= NHẬP KHO ================= -->
+    <div class="card-soft p-3 mb-4">
+        <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-box-arrow-in-down text-success me-2"></i>
+            <h6 class="fw-bold text-success mb-0">Lịch sử nhập kho</h6>
+        </div>
+
+        <table class="table table-sm table-hover movement-table mb-0">
+            <colgroup>
+                <col style="width:5%">
+                <col style="width:18%">
+                <col style="width:27%">
+                <col style="width:10%">
+                <col style="width:10%">
+                <col style="width:10%">
+                <col style="width:20%">
+            </colgroup>
+
+            <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Thời gian</th>
+                <th>Sản phẩm</th>
+                <th>Thay đổi</th>
+                <th>Tồn trước</th>
+                <th>Tồn sau</th>
+                <th>Chi tiết</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m, i : ${movements}"
+                th:if="${m.actionType.name() == 'IMPORT'}">
+
+                <td th:text="${i.count}"></td>
+                <td th:text="${#temporals.format(m.actionDate,'dd/MM/yyyy HH:mm')}"></td>
+                <td class="product" th:text="${m.product.name}"></td>
+
+                <td>
+                    <span class="badge-change bg-success-subtle text-success">
+                        +[[${m.quantityChange}]]
+                    </span>
+                </td>
+
+                <td th:text="${m.stockBefore}"></td>
+                <td class="fw-bold" th:text="${m.stockAfter}"></td>
+
+                <td>
+                    <a th:href="@{/admin/inventory/import/{id}(id=${m.referenceId})}"
+                       class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                        <i class="bi bi-eye"></i> Xem chi tiết
+                    </a>
+                </td>
+            </tr>
+
+            <tr th:if="${movements.isEmpty()}">
+                <td colspan="7" class="text-center text-muted py-3">
+                    Không có dữ liệu nhập kho
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ================= XUẤT KHO ================= -->
+    <div class="card-soft p-3">
+        <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-box-arrow-up text-danger me-2"></i>
+            <h6 class="fw-bold text-danger mb-0">Lịch sử xuất kho</h6>
+        </div>
+
+        <table class="table table-sm table-hover movement-table mb-0">
+            <colgroup>
+                <col style="width:5%">
+                <col style="width:18%">
+                <col style="width:27%">
+                <col style="width:10%">
+                <col style="width:10%">
+                <col style="width:10%">
+                <col style="width:20%">
+            </colgroup>
+
+            <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Thời gian</th>
+                <th>Sản phẩm</th>
+                <th>Thay đổi</th>
+                <th>Tồn trước</th>
+                <th>Tồn sau</th>
+                <th>Chi tiết</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m, i : ${movements}"
+                th:if="${m.actionType.name() == 'EXPORT'}">
+
+                <td th:text="${i.count}"></td>
+                <td th:text="${#temporals.format(m.actionDate,'dd/MM/yyyy HH:mm')}"></td>
+                <td class="product" th:text="${m.product.name}"></td>
+
+                <td>
+                    <span class="badge-change bg-danger-subtle text-danger">
+                        [[${m.quantityChange}]]
+                    </span>
+                </td>
+
+                <td th:text="${m.stockBefore}"></td>
+                <td class="fw-bold" th:text="${m.stockAfter}"></td>
+
+                <td>
+                    <a th:href="@{/admin/inventory/export/{id}(id=${m.referenceId})}"
+                       class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                        <i class="bi bi-eye"></i> Xem chi tiết
+                    </a>
+                </td>
+            </tr>
+
+            <tr th:if="${movements.isEmpty()}">
+                <td colspan="7" class="text-center text-muted py-3">
+                    Không có dữ liệu xuất kho
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
