@@ -202,12 +202,22 @@ public class InventoryAdminController {
                 ? LocalDate.parse(to).atTime(23, 59, 59)
                 : null;
 
-        List<InventoryMovement> movements =
-                inventoryMovementRepository.filterMovements(
-                        productId,
-                        fromDate,
-                        toDate
-                );
+        List<InventoryMovement> movements;
+
+        if (productId != null && fromDate != null && toDate != null) {
+            movements = inventoryMovementRepository
+                    .findByProductIdAndActionDateBetweenOrderByActionDateDesc(
+                            productId, fromDate, toDate
+                    );
+        } else if (productId != null) {
+            movements = inventoryMovementRepository
+                    .findByProductIdOrderByActionDateDesc(productId);
+        } else if (fromDate != null && toDate != null) {
+            movements = inventoryMovementRepository
+                    .findByActionDateBetweenOrderByActionDateDesc(fromDate, toDate);
+        } else {
+            movements = inventoryMovementRepository.findAll();
+        }
 
         model.addAttribute("movements", movements);
         model.addAttribute("products", productRepository.findAll());
@@ -220,6 +230,7 @@ public class InventoryAdminController {
 
         return "admin/layout";
     }
+
 
     /* ================= BÁO CÁO ================= */
 
