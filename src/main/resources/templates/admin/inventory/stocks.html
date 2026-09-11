@@ -91,6 +91,22 @@
         </div>
     </div>
 
+    <!-- ================= SUMMARY ================= -->
+    <div class="row g-3 mb-4">
+        <div class="col-sm-6 col-lg-3">
+            <div class="bg-white rounded-4 p-3 h-100" style="box-shadow:0 4px 12px rgba(0,0,0,.06)">
+                <div class="text-muted small">Sản phẩm đang theo dõi</div>
+                <div class="fs-3 fw-bold" th:text="${stocks.size()}">0</div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="bg-white rounded-4 p-3 h-100" style="box-shadow:0 4px 12px rgba(0,0,0,.06)">
+                <div class="text-muted small">Tổng số lượng tồn</div>
+                <div class="fs-3 fw-bold text-primary" th:text="${totalQuantity}">0</div>
+            </div>
+        </div>
+    </div>
+
     <!-- ================= SEARCH ================= -->
     <div class="bg-white rounded-4 p-3 mb-4"
          style="box-shadow:0 4px 12px rgba(0,0,0,.06)">
@@ -126,13 +142,18 @@
                         <div class="product-name"
                              th:text="${s.product.name}"></div>
                         <div class="product-meta">
-                            Mã kho: [[${s.id}]]
+                            [[${s.product.brand != null ? s.product.brand.name : 'Chưa có thương hiệu'}]]
                         </div>
                     </div>
 
-                    <span th:if="${s.quantity <= 2}"
+                    <span th:if="${s.quantity <= 0}"
                           class="status-pill bg-danger-subtle text-danger">
-                        Ít
+                        Hết hàng
+                    </span>
+
+                    <span th:if="${s.quantity > 0 && s.quantity <= 2}"
+                          class="status-pill bg-danger-subtle text-danger">
+                        Sắp hết
                     </span>
 
                     <span th:if="${s.quantity > 2 && s.quantity <= 5}"
@@ -152,18 +173,18 @@
                         [[${s.quantity}]]
                     </div>
                     <div class="quantity-label">
-                        SẢN PHẨM TRONG KHO
+                        SỐ LƯỢNG TỒN
                     </div>
                 </div>
 
                 <!-- ACTION -->
                 <div class="d-grid gap-2">
-                    <a href="/admin/inventory/import"
+                    <a th:href="@{/admin/inventory/import(productId=${s.product.id})}"
                        class="btn btn-success action-btn">
                         ➕ Nhập kho
                     </a>
 
-                    <a href="/admin/inventory/export"
+                    <a th:href="@{/admin/inventory/export(productId=${s.product.id})}"
                        class="btn btn-outline-danger action-btn">
                         ➖ Xuất kho
                     </a>

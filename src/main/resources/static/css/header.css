@@ -16,34 +16,74 @@
 
 /* NAVBAR */
 .site-navbar {
-    background: linear-gradient(90deg,var(--pccc-red),var(--pccc-orange));
-    padding:8px 0;
-    box-shadow:0 4px 18px rgba(0,0,0,0.1);
+    background: linear-gradient(105deg,#c92700 0%,var(--pccc-red) 46%,#ff762f 100%);
+    padding:10px 0;
+    box-shadow:0 8px 24px rgba(89,23,3,.22);
+}
+
+.site-navbar .nav-content {
+    min-height: 100px;
+    gap: 18px;
 }
 
 /* LOGO */
 .logo-box {
     background:#fff;
-    padding:6px 10px;
-    border-radius:10px;
-    box-shadow:0 4px 16px rgba(0,0,0,0.12);
+    padding:7px 11px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.72);
+    box-shadow:0 9px 20px rgba(69,15,0,.22);
 }
 .logo-box img {
-    max-height:80px;
+    max-height:76px;
 }
 
 /* MENU */
-.main-menu li { list-style:none; }
+.navbar-brand { flex:0 0 auto; margin:0; }
+.main-menu { flex:1 1 auto; justify-content:center; gap:2px !important; padding:6px !important; min-width:0; background:rgba(100,20,0,.18); border:1px solid rgba(255,255,255,.24); border-radius:16px; box-shadow:inset 0 1px rgba(255,255,255,.12); }
+.main-menu li { list-style:none; flex:0 0 auto; }
 .main-menu a {
+    display:inline-flex;
+    align-items:center;
+    white-space:nowrap;
     color:#fff;
-    font-weight:600;
-    padding:10px 14px;
+    font-weight:700;
+    font-size:15px;
+    line-height:1.2;
+    letter-spacing:.01em;
+    padding:11px 12px;
     text-decoration:none;
     text-transform:uppercase;
-    border-radius:6px;
+    border-radius:10px;
+    transition:background .2s ease,transform .2s ease,color .2s ease;
 }
 .main-menu a:hover {
-    background:rgba(255,255,255,0.15);
+    background:rgba(255,255,255,.2);
+    color:#fff;
+    transform:translateY(-1px);
+}
+
+.main-menu .gas-nav-link {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+.actions { flex:0 0 auto; gap:10px !important; }
+
+.main-menu .gas-nav-link:hover {
+    background:rgba(255,255,255,.2);
+    border-color:transparent;
+    color:#fff;
+}
+
+.main-menu a.active,
+.main-menu .gas-nav-link.active {
+    background:#ffffff;
+    border-color:#ffffff;
+    color:#c92700;
+    box-shadow:0 6px 15px rgba(86,15,0,.18);
 }
 
 /* ========================
@@ -97,7 +137,7 @@
 /* SEARCH BOX */
 .search-inline {
     background:#fff;
-    padding:4px 12px;
+    padding:7px 13px;
     border-radius:25px;
     display:flex;
     align-items:center;
@@ -106,6 +146,8 @@
 .search-inline input {
     border:none;
     outline:none;
+    width:150px;
+    font-size:14px;
 }
 .search-inline button {
     border:none;
@@ -117,10 +159,12 @@
 .call-btn {
     background:var(--pccc-dark);
     color:#fff;
-    padding:8px 20px;
+    padding:11px 18px;
     border-radius:30px;
     text-decoration:none;
     font-weight:700;
+    font-size:14px;
+    box-shadow:0 7px 15px rgba(28,8,0,.2);
 }
 .call-btn i {
     margin-left:6px;
@@ -128,15 +172,22 @@
 }
 
 /* MOBILE */
-@media (max-width:992px){
+@media (max-width:1399.98px){
     .main-menu,
     .search-inline,
     .call-btn { display:none !important; }
 
+    .site-navbar .nav-content { min-height:88px; }
+
     .navbar-toggler {
-        background:none;
-        border:none;
-        font-size:24px;
+        width:48px;
+        height:44px;
+        display:grid;
+        place-items:center;
+        background:rgba(255,255,255,.15);
+        border:1px solid rgba(255,255,255,.42);
+        border-radius:12px;
+        font-size:22px;
         color:#fff;
     }
 
@@ -155,6 +206,26 @@
 
     .mobile-nav a:hover {
         background:rgba(255,255,255,0.15);
+    }
+
+    .mobile-nav a.active {
+        background:#ffffff;
+        color:#c92700;
+        font-weight:800;
+    }
+
+    .mobile-nav .gas-nav-link {
+        margin: 10px 12px 2px;
+        border: 1px solid rgba(255,255,255,.55);
+        border-radius: 8px;
+        background: rgba(9,20,34,.2);
+        font-weight: 700;
+    }
+
+    .mobile-nav .gas-nav-link.active {
+        border-color:#ffffff;
+        background:#ffffff;
+        color:#c92700;
     }
 }
 

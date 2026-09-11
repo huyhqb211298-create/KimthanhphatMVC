@@ -329,5 +329,13 @@
 
         // init
         toggleEmptyHint();
+
+        const selectedProductId = new URLSearchParams(window.location.search).get("productId");
+        if (selectedProductId) {
+            const productButton = document.querySelector(
+                `button[data-id="${CSS.escape(selectedProductId)}"]`
+            );
+            if (productButton) addFromStock(productButton);
+        }
     </script>
 </div>
