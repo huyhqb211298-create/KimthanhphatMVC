@@ -19,7 +19,7 @@
 
     <!-- NAVBAR -->
     <nav class="site-navbar shadow-sm">
-        <div class="container d-flex align-items-center justify-content-between">
+        <div class="container nav-content d-flex align-items-center justify-content-between">
 
             <!-- LOGO -->
             <a class="navbar-brand d-flex align-items-center" th:href="@{/}">
@@ -29,12 +29,18 @@
             </a>
 
             <!-- MENU DESKTOP -->
-            <ul class="main-menu d-none d-lg-flex align-items-center gap-3 mb-0">
+            <ul class="main-menu d-none d-xxl-flex align-items-center mb-0">
                 <li><a th:href="@{/}">TRANG CHỦ</a></li>
                 <li><a th:href="@{/about}">GIỚI THIỆU</a></li>
                 <li><a th:href="@{/consulting}">TƯ VẤN</a></li>
                 <li><a th:href="@{/news}">TIN TỨC</a></li>
                 <li><a th:href="@{/documents}">VĂN BẢN</a></li>
+
+                <li>
+                    <a class="gas-nav-link" th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}">
+                        <i class="fa-solid fa-shield-halved me-1"></i> S-TEC VINA
+                    </a>
+                </li>
 
                 <!-- MEGA MENU -->
                 <li class="mega-dropdown">
@@ -46,6 +52,11 @@
                         <div class="mega-col">
                             <h6>DANH MỤC</h6>
                             <a th:each="c : ${categories}"
+                               th:if="${c.name == 'Hệ chữa cháy khí'}"
+                               th:text="${c.name}"
+                               th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}"></a>
+                            <a th:each="c : ${categories}"
+                               th:unless="${c.name == 'Hệ chữa cháy khí'}"
                                th:text="${c.name}"
                                th:href="@{'/' + ${c.slug}}"></a>
                         </div>
@@ -81,14 +92,14 @@
                             <a th:each="t, iStat : ${productTypeList}"
                                th:if="${iStat.index < 5}"
                                th:text="${t.name}"
-                               th:href="@{'/' + ${t.slug}}"></a>
+                               th:href="${t.name == 'Hệ chữa cháy khí'} ? @{/he-thong-chua-chay-khi-fm-200-stec-vina} : @{'/' + ${t.slug}}"></a>
 
                             <!-- các mục còn lại -->
                             <a class="type-extra d-none"
                                th:each="t, iStat : ${productTypeList}"
                                th:if="${iStat.index >= 5}"
                                th:text="${t.name}"
-                               th:href="@{'/' + ${t.slug}}"></a>
+                               th:href="${t.name == 'Hệ chữa cháy khí'} ? @{/he-thong-chua-chay-khi-fm-200-stec-vina} : @{'/' + ${t.slug}}"></a>
 
                             <button type="button" class="see-more-btn" id="btnType">
                                 Xem thêm ▼
@@ -102,18 +113,18 @@
             <!-- SEARCH + CALL -->
             <div class="actions d-flex align-items-center gap-3">
 
-                <form class="search-inline d-none d-lg-flex" th:action="@{/products}" method="get">
+                <form class="search-inline d-none d-xxl-flex" th:action="@{/products}" method="get">
                     <input type="text" name="keyword" placeholder="Tìm kiếm...">
                     <button><i class="fa fa-search"></i></button>
                 </form>
 
-                <a href="https://zalo.me/0934752114" class="call-btn d-none d-lg-flex">
+                <a href="https://zalo.me/0934752114" class="call-btn d-none d-xxl-flex">
                     GỌI NGAY <i class="fa fa-phone"></i>
                 </a>
 
 
                 <!-- MOBILE TOGGLER -->
-                <button class="navbar-toggler d-lg-none" type="button"
+                <button class="navbar-toggler d-xxl-none" type="button"
                         data-bs-toggle="collapse" data-bs-target="#mobileMenu">
                     <i class="fa fa-bars"></i>
                 </button>
@@ -130,16 +141,26 @@
                 <li><a th:href="@{/templates/admin/news}">Tin tức</a></li>
                 <li><a th:href="@{/documents}">Văn bản</a></li>
 
+                <li>
+                    <a class="gas-nav-link" th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}">
+                        <i class="fa-solid fa-shield-halved me-1"></i> S-TEC VINA
+                    </a>
+                </li>
+
                 <li class="mt-3 fw-bold text-white ps-3">SẢN PHẨM</li>
 
-                <li th:each="c : ${categories}">
+                <li th:each="c : ${categories}" th:if="${c.name == 'Hệ chữa cháy khí'}">
+                    <a th:text="${c.name}" th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}"></a>
+                </li>
+                <li th:each="c : ${categories}" th:unless="${c.name == 'Hệ chữa cháy khí'}">
                     <a th:text="${c.name}" th:href="@{'/' + ${c.slug}}"></a>
                 </li>
                 <li th:each="b : ${brandList}">
                     <a th:text="${b.name}" th:href="@{'/' + ${b.slug}}"></a>
                 </li>
                 <li th:each="t : ${productTypeList}">
-                    <a th:text="${t.name}" th:href="@{'/' + ${t.slug}}"></a>
+                    <a th:text="${t.name}"
+                       th:href="${t.name == 'Hệ chữa cháy khí'} ? @{/he-thong-chua-chay-khi-fm-200-stec-vina} : @{'/' + ${t.slug}}"></a>
                 </li>
             </ul>
         </div>
@@ -148,6 +169,15 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+
+            const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+            document.querySelectorAll(".main-menu > li > a, .mobile-nav > li > a").forEach(function (link) {
+                const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/+$/, "") || "/";
+                if (linkPath === currentPath) {
+                    link.classList.add("active");
+                    link.setAttribute("aria-current", "page");
+                }
+            });
 
             // TOGGLE BRAND
             const btnBrand = document.getElementById("btnBrand");

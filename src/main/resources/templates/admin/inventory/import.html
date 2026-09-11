@@ -127,6 +127,7 @@
     <!-- SCRIPT -->
     <script th:inline="javascript">
         const products = /*[[${products}]]*/ [];
+        const selectedProductId = new URLSearchParams(window.location.search).get("productId");
         let rowIndex = 0;
 
         function productOptionsHtml() {
@@ -175,6 +176,9 @@
                 </td>
             `;
             tbody.appendChild(tr);
+            if (rowIndex === 0 && selectedProductId) {
+                tr.querySelector("select").value = selectedProductId;
+            }
             rowIndex++;
         }
 

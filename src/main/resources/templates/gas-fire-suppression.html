@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ chữa cháy khí FM-200 STEC-Vina | Kim Thành Phát</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <style>
+        .gas-page { color:#182333; }
+        .gas-hero { min-height:620px; display:flex; align-items:center; overflow:hidden; position:relative; background:linear-gradient(135deg,#fff8f5 0%,#f8fafc 55%,#eef3f8 100%); }
+        .gas-hero::before { content:""; position:absolute; width:560px; height:560px; border:1px solid rgba(230,54,0,.13); border-radius:50%; right:-150px; top:-260px; box-shadow:0 0 0 70px rgba(230,54,0,.045),0 0 0 140px rgba(230,54,0,.025); }
+        .gas-hero .container { position:relative; z-index:1; }
+        .gas-hero-image { position:relative; padding:12px; border-radius:30px; background:#fff; box-shadow:0 30px 70px rgba(28,41,58,.2); transform:rotate(2deg); }
+        .gas-hero-image img { width:100%; height:435px; object-fit:cover; object-position:center; border-radius:22px; display:block; }
+        .gas-image-tag { position:absolute; left:-18px; bottom:32px; border-radius:14px; background:#fff; color:#152337; padding:13px 16px; box-shadow:0 16px 30px rgba(0,0,0,.2); font-size:.85rem; font-weight:700; }
+        .gas-eyebrow { display:inline-flex; align-items:center; gap:8px; color:#d63300; font-size:.82rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+        .gas-hero h1 { max-width:760px; color:#142033; font-size:clamp(2.45rem,5vw,4.6rem); line-height:1.08; letter-spacing:-.04em; }
+        .gas-hero p { max-width:620px; color:#58677a; font-size:1.12rem; line-height:1.8; }
+        .gas-btn-primary { background:#e63600; border-color:#e63600; border-radius:999px; padding:.88rem 1.45rem; font-weight:700; text-transform:none; }
+        .gas-btn-primary:hover { background:#bd2d00; border-color:#bd2d00; }
+        .gas-btn-outline { border:1px solid #aeb8c4; color:#243246; border-radius:999px; padding:.88rem 1.45rem; font-weight:700; text-transform:none; }
+        .gas-btn-outline:hover { background:#142033; border-color:#142033; color:#fff; }
+        .gas-float-card { margin-top:-66px; position:relative; z-index:2; border-radius:22px; box-shadow:0 18px 45px rgba(11,24,42,.13); }
+        .gas-stat { border-right:1px solid #e9edf2; }
+        .gas-stat:last-child { border-right:0; }
+        .gas-stat i { color:#e63600; font-size:1.35rem; }
+        .gas-label { color:#687385; font-size:.86rem; }
+        .gas-section-label { color:#e63600; font-weight:800; letter-spacing:.1em; font-size:.78rem; text-transform:uppercase; }
+        .gas-feature { border:1px solid #edf0f4; border-radius:18px; padding:1.5rem; height:100%; background:#fff; transition:.2s ease; }
+        .gas-feature:hover { transform:translateY(-5px); box-shadow:0 16px 32px rgba(21,36,55,.1); border-color:transparent; }
+        .gas-feature-icon { width:50px; height:50px; display:grid; place-items:center; border-radius:14px; background:#fff0ec; color:#e63600; font-size:1.25rem; }
+        .gas-system-card { overflow:hidden; border-radius:24px; background:#102238; color:#fff; }
+        .gas-system-card img { width:100%; min-height:390px; object-fit:cover; }
+        .gas-check { display:flex; gap:12px; align-items:flex-start; margin-bottom:1rem; color:#dbe5f0; }
+        .gas-check i { color:#ffd166; margin-top:4px; }
+        .gas-step { position:relative; padding:1.5rem 1.25rem; border-radius:16px; background:#f6f8fb; height:100%; }
+        .gas-step-no { color:#e63600; font-size:.78rem; font-weight:800; letter-spacing:.1em; }
+        .gas-cta { border-radius:25px; background:linear-gradient(135deg,#e63600,#ff7a38); color:#fff; overflow:hidden; }
+        .gas-cta .orb { position:absolute; border-radius:50%; background:rgba(255,255,255,.11); }
+        .gas-gallery { display:grid; grid-template-columns:1.35fr .8fr .8fr; grid-auto-rows:200px; gap:16px; }
+        .gas-gallery-item { border-radius:20px; overflow:hidden; position:relative; background:#172436; }
+        .gas-gallery-item:first-child { grid-row:span 2; }
+        .gas-gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform .45s ease; }
+        .gas-gallery-item:hover img { transform:scale(1.06); }
+        .gas-gallery-caption { position:absolute; left:0; right:0; bottom:0; padding:36px 18px 16px; color:#fff; background:linear-gradient(transparent,rgba(5,14,28,.88)); font-weight:700; }
+        .gas-reference-section { background:#f4f6f8; }
+        .gas-heading { border-left:5px solid #e63600; padding-left:14px; font-weight:800; font-size:clamp(1.25rem,2vw,1.7rem); text-transform:uppercase; }
+        .gas-difference { background:#fff; min-height:238px; display:grid; grid-template-columns:42% 58%; align-items:center; overflow:hidden; box-shadow:0 12px 25px rgba(16,34,56,.14); transition:transform .25s ease,box-shadow .25s ease; }
+        .gas-difference:hover { transform:translateY(-6px); box-shadow:0 22px 36px rgba(16,34,56,.18); }
+        .gas-difference-media { height:100%; min-height:238px; background:#eef1f4; overflow:hidden; }
+        .gas-difference-media img { width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
+        .gas-difference:hover .gas-difference-media img { transform:scale(1.07); }
+        .gas-difference-copy { padding:1.55rem 1.6rem; }
+        .gas-difference-copy h3 { font-size:1.02rem; font-weight:800; line-height:1.45; text-transform:uppercase; }
+        .gas-difference-copy p { color:#647386; line-height:1.58; font-size:.94rem; margin:0; }
+        .gas-principle-video { overflow:hidden; border-radius:20px; background:#07131f; box-shadow:0 15px 30px rgba(15,31,50,.18); }
+        .gas-principle-video iframe { display:block; width:100%; aspect-ratio:16 / 9; border:0; }
+        .gas-principle-step { display:grid; grid-template-columns:65px 1fr; gap:18px; align-items:start; padding:1rem 0; border-bottom:1px solid #e7ebef; }
+        .gas-principle-step:last-child { border-bottom:0; }
+        .gas-principle-icon { width:60px; height:60px; display:grid; place-items:center; border:2px solid #ef4c30; border-radius:18px; color:#e63600; font-size:1.55rem; }
+        .gas-principle-step h3 { font-size:1.05rem; font-weight:800; margin:0 0 .42rem; }
+        .gas-principle-step p { font-size:.93rem; color:#5e6d80; line-height:1.6; margin:0; }
+        .gas-product-card { height:100%; overflow:hidden; background:#fff; border:1px solid #edf0f4; border-radius:20px; box-shadow:0 12px 26px rgba(16,34,56,.08); transition:transform .25s ease,box-shadow .25s ease; }
+        .gas-product-card:hover { transform:translateY(-7px); box-shadow:0 22px 38px rgba(16,34,56,.16); }
+        .gas-product-media { height:250px; overflow:hidden; position:relative; background:#f4f6f9; }
+        .gas-product-media::after { content:""; position:absolute; left:0; right:0; bottom:-26px; height:60px; background:#fff; transform:skewY(5deg); }
+        .gas-product-media img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+        .gas-product-card:hover .gas-product-media img { transform:scale(1.06); }
+        .gas-product-body { padding:1.5rem 1.6rem 1.7rem; text-align:center; position:relative; }
+        .gas-product-kicker { color:#e63600; letter-spacing:.11em; font-size:.72rem; font-weight:800; text-transform:uppercase; }
+        .gas-product-body h3 { min-height:58px; margin:.55rem 0 1.15rem; font-size:1.13rem; font-weight:800; line-height:1.4; }
+        .gas-product-link { display:inline-flex; align-items:center; gap:10px; border-radius:10px; padding:.74rem 1.2rem; background:#e63600; color:#fff; font-weight:700; text-decoration:none; box-shadow:0 10px 18px rgba(230,54,0,.22); }
+        .gas-product-link:hover { background:#ba2c00; color:#fff; }
+        .gas-values { background:linear-gradient(135deg,#f1f4f7,#fafbfc); overflow:hidden; }
+        .gas-values-grid { display:grid; grid-template-columns:1fr minmax(310px,430px) 1fr; gap:2.4rem; align-items:center; }
+        .gas-values-list { display:grid; gap:1.65rem; }
+        .gas-value { display:grid; grid-template-columns:55px 1fr; gap:14px; align-items:start; }
+        .gas-value.right { grid-template-columns:1fr 55px; text-align:right; }
+        .gas-value.right .gas-value-icon { grid-column:2; }
+        .gas-value.right .gas-value-copy { grid-column:1; grid-row:1; }
+        .gas-value-icon { width:54px; height:54px; display:grid; place-items:center; border-radius:50%; background:#fff; box-shadow:0 10px 20px rgba(16,34,56,.1); color:#e63600; font-size:1.2rem; }
+        .gas-value-copy h3 { margin:0 0 .35rem; font-size:.96rem; font-weight:800; }
+        .gas-value-copy p { margin:0; color:#627185; font-size:.86rem; line-height:1.58; }
+        .gas-values-center { position:relative; min-height:460px; display:grid; place-items:center; padding:20px; }
+        .gas-values-center::before { content:""; position:absolute; width:330px; height:330px; border-radius:50%; background:radial-gradient(circle,rgba(230,54,0,.17),rgba(230,54,0,0) 68%); }
+        .gas-values-center::after { content:""; position:absolute; width:270px; height:270px; border:1px solid rgba(230,54,0,.17); border-radius:50%; }
+        .gas-values-center img { position:relative; z-index:1; width:min(100%,405px); height:auto; object-fit:contain; filter:drop-shadow(0 24px 23px rgba(18,35,54,.24)); transform:scale(1.14); }
+        @media (max-width:991.98px) { .gas-hero { min-height:auto; padding:70px 0; } .gas-hero-image { margin-top:20px; transform:none; } .gas-values-grid { grid-template-columns:1fr 1fr; } .gas-values-center { display:none; } }
+        @media (max-width:767.98px) { .gas-hero-image img { height:310px; } .gas-float-card { margin-top:-30px; } .gas-stat { border-right:0; border-bottom:1px solid #e9edf2; } .gas-stat:last-child { border-bottom:0; } .gas-gallery { grid-template-columns:1fr 1fr; grid-auto-rows:160px; } .gas-gallery-item:first-child { grid-column:span 2; grid-row:span 2; } .gas-difference { grid-template-columns:1fr; } .gas-difference-media { min-height:185px; max-height:220px; } .gas-values-grid { grid-template-columns:1fr; gap:1.65rem; } .gas-value.right { grid-template-columns:55px 1fr; text-align:left; } .gas-value.right .gas-value-icon { grid-column:1; } .gas-value.right .gas-value-copy { grid-column:2; grid-row:auto; } }
+    </style>
+</head>
+<body class="gas-page">
+<div th:replace="~{fragments/header :: siteHeader}"></div>
+
+<main>
+    <section class="gas-hero text-white">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <div class="gas-eyebrow mb-3"><i class="fa-solid fa-shield-halved"></i> Giải pháp an toàn chuyên biệt</div>
+                    <h1 class="fw-bold mb-4">Hệ chữa cháy khí sạch <span style="color:#e63600">STEC-Vina</span><br></h1>
+                    <p class="mb-4">Bảo vệ khu vực có thiết bị giá trị cao bằng giải pháp dập cháy nhanh, không để lại cặn và giảm thiểu gián đoạn hoạt động.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a th:href="@{/contact}" class="btn gas-btn-primary"><i class="fa-solid fa-phone me-2"></i>Nhận tư vấn giải pháp</a>
+                        <a href="#he-thong" class="btn gas-btn-outline">Khám phá hệ thống <i class="fa-solid fa-arrow-down ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="gas-hero-image">
+                        <img th:src="@{/img/stec-vina-fm200-system-room.jpg}" alt="Hệ thống chữa cháy khí FM-200 STEC-Vina">
+                        <div class="gas-image-tag"><i class="fa-solid fa-circle-check text-danger me-2"></i>Giải pháp khí sạch FM-200</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="gas-float-card bg-white p-2 p-md-3">
+            <div class="row g-0 text-center">
+                <div class="col-md-4 gas-stat py-3 px-3"><i class="fa-solid fa-bolt mb-2"></i><div class="fw-bold">Dập cháy nhanh</div><div class="gas-label">Phản ứng kịp thời khi có sự cố</div></div>
+                <div class="col-md-4 gas-stat py-3 px-3"><i class="fa-solid fa-laptop mb-2"></i><div class="fw-bold">Sạch & không dẫn điện</div><div class="gas-label">Phù hợp cho khu vực thiết bị</div></div>
+                <div class="col-md-4 gas-stat py-3 px-3"><i class="fa-solid fa-arrows-rotate mb-2"></i><div class="fw-bold">Giảm thời gian khắc phục</div><div class="gas-label">Không để lại cặn sau phun</div></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="container py-5 my-lg-4" id="he-thong">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="gas-section-label mb-2">STEC-Vina FM-200</div>
+                <h2 class="display-6 fw-bold mb-4">Bảo vệ tài sản quan trọng mà vẫn giữ không gian vận hành sạch</h2>
+                <p class="text-secondary lh-lg">Hệ thống sử dụng khí sạch FM-200 để kiểm soát đám cháy tại các khu vực kín, nơi cần hạn chế tác động lên máy móc, dữ liệu và hồ sơ. Giải pháp được tư vấn theo thể tích phòng, công năng sử dụng và hiện trạng công trình.</p>
+                <div class="row g-3 mt-2">
+                    <div class="col-sm-6"><div class="gas-feature"><div class="gas-feature-icon mb-3"><i class="fa-solid fa-server"></i></div><h5 class="fw-bold">Phòng máy chủ</h5><p class="text-secondary mb-0 small">Bảo vệ hệ thống CNTT và dữ liệu quan trọng.</p></div></div>
+                    <div class="col-sm-6"><div class="gas-feature"><div class="gas-feature-icon mb-3"><i class="fa-solid fa-bolt"></i></div><h5 class="fw-bold">Phòng điện</h5><p class="text-secondary mb-0 small">Phù hợp cho khu vực tủ điện, điều khiển.</p></div></div>
+                    <div class="col-sm-6"><div class="gas-feature"><div class="gas-feature-icon mb-3"><i class="fa-solid fa-landmark"></i></div><h5 class="fw-bold">Kho lưu trữ</h5><p class="text-secondary mb-0 small">Hỗ trợ bảo vệ hồ sơ, tài liệu giá trị.</p></div></div>
+                    <div class="col-sm-6"><div class="gas-feature"><div class="gas-feature-icon mb-3"><i class="fa-solid fa-microchip"></i></div><h5 class="fw-bold">Khu kỹ thuật</h5><p class="text-secondary mb-0 small">Tích hợp vào các khu vực vận hành chuyên biệt.</p></div></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="gas-system-card">
+                    <img th:src="@{/img/stec-vina-fm200-cylinder-bank.png}" alt="Cụm bình chữa cháy khí FM-200 STEC-Vina">
+                    <div class="p-4 p-lg-5">
+                        <div class="gas-section-label" style="color:#ffd166">Cấu phần đồng bộ</div>
+                        <h3 class="fw-bold my-3">Một hệ thống, nhiều lớp bảo vệ</h3>
+                        <div class="gas-check"><i class="fa-solid fa-circle-check"></i><span>Tủ điều khiển và thiết bị kích hoạt theo thiết kế.</span></div>
+                        <div class="gas-check"><i class="fa-solid fa-circle-check"></i><span>Bình chứa khí, van và mạng đường ống phân phối.</span></div>
+                        <div class="gas-check mb-0"><i class="fa-solid fa-circle-check"></i><span>Đầu phun bố trí theo đặc điểm không gian cần bảo vệ.</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container pb-5">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+            <div><div class="gas-section-label mb-2">Hình ảnh giải pháp</div><h2 class="fw-bold mb-0">Thiết bị và quy trình an toàn</h2></div>
+            <a th:href="@{/contact}" class="text-danger fw-bold text-decoration-none">Yêu cầu khảo sát <i class="fa-solid fa-arrow-right ms-1"></i></a>
+        </div>
+        <div class="gas-gallery">
+            <div class="gas-gallery-item"><img th:src="@{/img/stec-vina-fm200-system-room.jpg}" alt="Hệ thống bình chữa cháy khí FM-200"><div class="gas-gallery-caption">Hệ thống chữa cháy khí FM-200</div></div>
+            <div class="gas-gallery-item"><img th:src="@{/img/stec-vina-fm200-technicians.png}" alt="Kỹ thuật viên STEC-Vina kiểm tra thiết bị"><div class="gas-gallery-caption">Kiểm tra & lắp đặt kỹ thuật</div></div>
+            <div class="gas-gallery-item"><img th:src="@{/img/stec-vina-fm200-warehouse.jpg}" alt="Kho thiết bị chữa cháy khí STEC-Vina"><div class="gas-gallery-caption">Thiết bị sẵn sàng triển khai</div></div>
+            <div class="gas-gallery-item"><img th:src="@{/img/stec-vina-factory-team.png}" alt="Đội ngũ STEC-Vina tại nhà máy"><div class="gas-gallery-caption">Đội ngũ & năng lực sản xuất</div></div>
+            <div class="gas-gallery-item"><img th:src="@{/img/stec-vina-fm200-cylinder-bank.png}" alt="Cụm bình khí sạch FM-200"><div class="gas-gallery-caption">Cụm bình khí sạch đồng bộ</div></div>
+        </div>
+    </section>
+
+    <section class="gas-reference-section py-5">
+        <div class="container py-lg-3">
+            <h2 class="gas-heading mb-5">Điểm khác biệt của giải pháp STEC-Vina</h2>
+            <div class="row g-4">
+                <div class="col-lg-6"><article class="gas-difference"><div class="gas-difference-media"><img th:src="@{/img/stec-vina-fm200-cylinder-bank.png}" alt="Hệ thống bình chữa cháy khí"></div><div class="gas-difference-copy"><h3>Giải pháp theo công trình — tối ưu từng không gian</h3><p>Khảo sát thể tích, tính chất khu vực và mức độ bảo vệ để đề xuất cấu hình FM‑200 phù hợp, hiệu quả và dễ vận hành.</p></div></article></div>
+                <div class="col-lg-6"><article class="gas-difference"><div class="gas-difference-media"><img th:src="@{/img/stec-vina-fm200-system-room.jpg}" alt="Phòng hệ thống chữa cháy khí"></div><div class="gas-difference-copy"><h3>Sạch cho thiết bị — giảm thời gian gián đoạn</h3><p>Khí sạch không để lại cặn, phù hợp với phòng máy chủ, tủ điện, trung tâm điều khiển và không gian có tài sản giá trị cao.</p></div></article></div>
+                <div class="col-lg-6"><article class="gas-difference"><div class="gas-difference-media"><img th:src="@{/img/stec-vina-fm200-warehouse.jpg}" alt="Thiết bị phòng cháy chữa cháy STEC-Vina"></div><div class="gas-difference-copy"><h3>Thiết bị đồng bộ — kiểm soát chất lượng rõ ràng</h3><p>Từ bình chứa, van, đường ống đến tủ điều khiển đều được tư vấn thành một hệ thống thống nhất cho việc kiểm tra và bảo trì.</p></div></article></div>
+                <div class="col-lg-6"><article class="gas-difference"><div class="gas-difference-media"><img th:src="@{/img/stec-vina-fm200-technicians.png}" alt="Kỹ thuật viên phòng cháy chữa cháy"></div><div class="gas-difference-copy"><h3>Đồng hành kỹ thuật — hỗ trợ xuyên suốt</h3><p>Kim Thành Phát hỗ trợ từ khảo sát, thiết kế, thi công đến hướng dẫn vận hành và bảo trì sau bàn giao.</p></div></article></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5 my-lg-3">
+        <h2 class="gas-heading mb-5">Nguyên lý hoạt động</h2>
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-7">
+                <div class="gas-principle-video">
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/cq-L0f_NBAk"
+                        title="Mô phỏng nguyên lý hoạt động hệ thống chữa cháy khí FM-200 STEC-Vina"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="gas-principle-step"><div class="gas-principle-icon"><i class="fa-solid fa-fire-flame-curved"></i></div><div><h3>Tín hiệu báo cháy</h3><p>Đầu báo phát hiện dấu hiệu cháy và gửi tín hiệu về tủ điều khiển trung tâm.</p></div></div>
+                <div class="gas-principle-step"><div class="gas-principle-icon"><i class="fa-solid fa-toggle-on"></i></div><div><h3>Kích hoạt an toàn</h3><p>Tủ điều khiển phát cảnh báo, xử lý liên động theo thiết kế và đếm ngược trước khi xả khí.</p></div></div>
+                <div class="gas-principle-step"><div class="gas-principle-icon"><i class="fa-solid fa-shield-halved"></i></div><div><h3>Chữa cháy</h3><p>Khí sạch được xả vào khu vực bảo vệ để nhanh chóng kiểm soát đám cháy mà không để lại cặn.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5" id="san-pham-noi-bat">
+        <h2 class="gas-heading mb-5">Top 3 sản phẩm</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <article class="gas-product-card">
+                    <div class="gas-product-media"><img th:src="@{/img/stec-vina-fm200-cylinder-bank.png}" alt="Hệ thống chữa cháy khí HFC-227ea FM-200"></div>
+                    <div class="gas-product-body"><div class="gas-product-kicker">Khí sạch</div><h3>Hệ thống chữa cháy khí HFC‑227ea (FM‑200)</h3><a href="#he-thong" class="gas-product-link">Xem giải pháp <i class="fa-solid fa-arrow-right"></i></a></div>
+                </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <article class="gas-product-card">
+                    <div class="gas-product-media"><img th:src="@{/img/stec-vina-sms-227-auto-extinguisher.jpg}" alt="Bình chữa cháy tự động SMS"></div>
+                    <div class="gas-product-body"><div class="gas-product-kicker">Tự động</div><h3>Hệ thống bình chữa cháy tự động SMS</h3><a th:href="@{/contact}" class="gas-product-link">Nhận tư vấn <i class="fa-solid fa-arrow-right"></i></a></div>
+                </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <article class="gas-product-card">
+                    <div class="gas-product-media"><img th:src="@{/img/stec-vina-fm200-warehouse.jpg}" alt="Hệ thống chữa cháy bằng khí IG-100"></div>
+                    <div class="gas-product-body"><div class="gas-product-kicker">Khí trơ</div><h3>Hệ thống chữa cháy bằng khí IG‑100 (N₂)</h3><a th:href="@{/contact}" class="gas-product-link">Nhận tư vấn <i class="fa-solid fa-arrow-right"></i></a></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="gas-values py-5">
+        <div class="container py-lg-3">
+            <div class="text-center mb-5"><div class="gas-section-label mb-2">Cam kết của Kim Thành Phát</div><h2 class="fw-bold mb-0">Những giá trị bạn nhận được</h2></div>
+            <div class="gas-values-grid">
+                <div class="gas-values-list">
+                    <div class="gas-value"><div class="gas-value-icon"><i class="fa-solid fa-lightbulb"></i></div><div class="gas-value-copy"><h3>Giải pháp phù hợp</h3><p>Tư vấn cấu hình dựa trên công năng và điều kiện thực tế của từng công trình.</p></div></div>
+                    <div class="gas-value"><div class="gas-value-icon"><i class="fa-solid fa-clock"></i></div><div class="gas-value-copy"><h3>Chủ động tiến độ</h3><p>Phối hợp rõ ràng từ khảo sát đến lắp đặt để kiểm soát tiến độ dự án.</p></div></div>
+                    <div class="gas-value"><div class="gas-value-icon"><i class="fa-solid fa-award"></i></div><div class="gas-value-copy"><h3>Chất lượng rõ ràng</h3><p>Thiết bị đồng bộ giúp kiểm tra, vận hành và bảo trì thuận tiện hơn.</p></div></div>
+                </div>
+                <div class="gas-values-center"><img th:src="@{/img/stec-vina-gas-systems.png}" alt="Các bình chữa cháy khí trong hệ thống STEC-Vina"></div>
+                <div class="gas-values-list">
+                    <div class="gas-value right"><div class="gas-value-icon"><i class="fa-solid fa-laptop"></i></div><div class="gas-value-copy"><h3>An toàn cho thiết bị</h3><p>Khí sạch không để lại cặn, phù hợp khu vực có thiết bị điện tử và dữ liệu.</p></div></div>
+                    <div class="gas-value right"><div class="gas-value-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div><div class="gas-value-copy"><h3>Dịch vụ hậu mãi</h3><p>Hỗ trợ kỹ thuật, hướng dẫn vận hành và bảo trì sau khi bàn giao.</p></div></div>
+                    <div class="gas-value right"><div class="gas-value-icon"><i class="fa-solid fa-handshake"></i></div><div class="gas-value-copy"><h3>Đối tác tin cậy</h3><p>Đồng hành lâu dài để bảo vệ an toàn con người và tài sản của doanh nghiệp.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width:650px"><div class="gas-section-label mb-2">Quy trình triển khai</div><h2 class="fw-bold">Từ khảo sát đến bàn giao vận hành</h2></div>
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3"><div class="gas-step"><div class="gas-step-no">01 / KHẢO SÁT</div><h5 class="fw-bold mt-2">Đánh giá hiện trạng</h5><p class="text-secondary small mb-0">Xác định không gian, thiết bị và yêu cầu bảo vệ.</p></div></div>
+                <div class="col-md-6 col-lg-3"><div class="gas-step"><div class="gas-step-no">02 / TƯ VẤN</div><h5 class="fw-bold mt-2">Đề xuất giải pháp</h5><p class="text-secondary small mb-0">Lựa chọn cấu hình phù hợp với công trình.</p></div></div>
+                <div class="col-md-6 col-lg-3"><div class="gas-step"><div class="gas-step-no">03 / THI CÔNG</div><h5 class="fw-bold mt-2">Lắp đặt đồng bộ</h5><p class="text-secondary small mb-0">Triển khai thiết bị và kiểm tra các kết nối.</p></div></div>
+                <div class="col-md-6 col-lg-3"><div class="gas-step"><div class="gas-step-no">04 / BÀN GIAO</div><h5 class="fw-bold mt-2">Hướng dẫn vận hành</h5><p class="text-secondary small mb-0">Nghiệm thu, hướng dẫn và hỗ trợ sau lắp đặt.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="gas-cta position-relative p-4 p-md-5">
+            <span class="orb" style="width:240px;height:240px;right:-70px;top:-100px"></span><span class="orb" style="width:150px;height:150px;left:32%;bottom:-95px"></span>
+            <div class="position-relative row align-items-center g-4"><div class="col-lg-8"><div class="gas-section-label" style="color:#ffe2cf">Tư vấn theo công trình</div><h2 class="fw-bold mb-2">Bạn cần thiết kế hệ chữa cháy khí cho dự án?</h2><p class="mb-0" style="color:rgba(255,255,255,.87)">Gửi thông tin khu vực cần bảo vệ để đội ngũ Kim Thành Phát tư vấn cấu hình phù hợp.</p></div><div class="col-lg-4 text-lg-end"><a th:href="@{/contact}" class="btn btn-light rounded-pill px-4 py-3 fw-bold text-danger" style="text-transform:none">Liên hệ ngay <i class="fa-solid fa-arrow-right ms-2"></i></a></div></div>
+        </div>
+    </section>
+</main>
+
+<div th:replace="~{fragments/footer :: siteFooter}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

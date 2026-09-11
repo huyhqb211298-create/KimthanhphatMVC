@@ -54,5 +54,10 @@ public class HomeController {
         return "consulting"; // Template: consulting.html
     }
 
+    @GetMapping("/he-thong-chua-chay-khi-fm-200-stec-vina")
+    public String gasFireSuppressionSystem() {
+        return "gas-fire-suppression";
+    }
+
 
 }
