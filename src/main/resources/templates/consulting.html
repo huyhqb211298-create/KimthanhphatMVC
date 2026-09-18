@@ -61,7 +61,7 @@
         <p class="lead">Hỗ trợ thiết kế – thẩm duyệt – nghiệm thu – lựa chọn thiết bị PCCC</p>
         <div class="mt-3">
             <a href="tel:0934752114" class="btn btn-danger px-4 py-2 me-2"><i class="fa fa-phone me-1"></i> GỌI NGAY</a>
-            <a href="https://zalo.me/0934752114" target="_blank" class="btn btn-light px-4 py-2">
+            <a href="https://zalo.me/0777542354" target="_blank" rel="noopener" class="btn btn-light px-4 py-2">
                 <img src="/img/zalo-blue.png" width="20" class="me-1"> Chat Zalo
             </a>
         </div>
@@ -158,7 +158,7 @@
         <p class="text-muted">Điền thông tin – Kỹ sư PCCC sẽ liên hệ ngay cho bạn</p>
     </div>
 
-    <form class="consult-form mx-auto" style="max-width: 700px;" method="post" th:action="@{/contact/submit}">
+    <form id="zalo-consult-form" class="consult-form mx-auto" style="max-width: 700px;">
         <div class="row g-3">
             <div class="col-md-6">
                 <input name="name" type="text" placeholder="Họ và tên" required class="form-control">
@@ -179,7 +179,12 @@
                 <textarea name="message" placeholder="Nội dung cần hỗ trợ..." rows="5" required class="form-control"></textarea>
             </div>
             <div class="col-12 text-center">
-                <button class="btn btn-danger px-4 py-2"><i class="fa fa-paper-plane me-2"></i> Gửi yêu cầu</button>
+                <button class="btn btn-danger px-4 py-2" type="submit"><i class="fa fa-paper-plane me-2"></i> Gửi yêu cầu qua Zalo</button>
+            </div>
+            <div class="col-12">
+                <div id="zalo-consult-status" class="alert alert-success mb-0 d-none" role="status" aria-live="polite">
+                    Nội dung tư vấn đã được sao chép. Hãy dán nội dung vào cửa sổ Zalo vừa mở và nhấn gửi.
+                </div>
             </div>
         </div>
     </form>
@@ -187,6 +192,65 @@
 
 <!-- Footer -->
 <div th:replace="~{fragments/footer :: siteFooter}"></div>
+
+<script>
+    (() => {
+        const form = document.getElementById('zalo-consult-form');
+        const status = document.getElementById('zalo-consult-status');
+        const zaloUrl = 'https://zalo.me/0777542354';
+
+        function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            if (!document.execCommand('copy')) {
+                textarea.remove();
+                return Promise.reject(new Error('Clipboard copy failed'));
+            }
+            textarea.remove();
+            return Promise.resolve();
+        }
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const data = new FormData(form);
+            const consultation = [
+                'YÊU CẦU TƯ VẤN PCCC',
+                `Họ và tên: ${data.get('name')}`,
+                `Số điện thoại: ${data.get('phone')}`,
+                `Nhu cầu: ${data.get('type')}`,
+                `Nội dung: ${data.get('message')}`
+            ].join('\n');
+
+            const zaloWindow = window.open(zaloUrl, '_blank');
+            if (zaloWindow) {
+                zaloWindow.opener = null;
+            }
+
+            copyText(consultation).then(() => {
+                status.classList.remove('d-none', 'alert-danger');
+                status.classList.add('alert-success');
+                status.textContent = 'Nội dung tư vấn đã được sao chép. Hãy dán nội dung vào cửa sổ Zalo vừa mở và nhấn gửi.';
+            }).catch(() => {
+                status.classList.remove('d-none', 'alert-success');
+                status.classList.add('alert-danger');
+                status.textContent = 'Không thể tự sao chép nội dung. Vui lòng mở Zalo và gửi thông tin tới số 0777 54 2354.';
+            });
+
+            if (!zaloWindow) {
+                window.location.href = zaloUrl;
+            }
+        });
+    })();
+</script>
 
 </body>
 </html>
