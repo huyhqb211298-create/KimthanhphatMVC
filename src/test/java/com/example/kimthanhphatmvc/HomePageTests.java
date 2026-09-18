@@ -45,6 +45,8 @@ class HomePageTests {
         mvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
+                .andExpect(content().string(containsString("Xem toàn bộ sản phẩm")))
+                .andExpect(content().string(containsString("Sản phẩm cho")))
                 .andExpect(content().string(containsString("Bình chữa cháy DeFire")))
                 .andExpect(content().string(containsString("Hệ thống báo cháy GST")))
                 .andExpect(content().string(containsString("Khí sạch FM-200")))
