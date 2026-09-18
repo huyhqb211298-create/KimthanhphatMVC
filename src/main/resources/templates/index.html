@@ -1,414 +1,167 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>
-        Kim Thành Phát | Thiết Bị PCCC Đà Nẵng - Bình Chữa Cháy, Báo Cháy, FM-200, Thiết Kế & Thi Công
-    </title>
-
-    <!-- ⭐ SEO DESCRIPTION -->
-    <meta name="description" content="Kim Thành Phát cung cấp thiết bị báo cháy, bình chữa cháy, hệ thống FM-200, tư vấn PCCC, thi công – lắp đặt hệ thống báo cháy & chữa cháy tại Đà Nẵng.">
-
-    <!-- FAVICON -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim Thành Phát | Thiết bị &amp; giải pháp PCCC tại Đà Nẵng</title>
+    <meta name="description" content="Kim Thành Phát cung cấp bình chữa cháy DeFire, hệ báo cháy GST, hệ chữa cháy khí FM-200 và tư vấn giải pháp PCCC cho công trình tại Đà Nẵng.">
+    <link rel="canonical" href="https://kimthanhphatpccc.vn/">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
-    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
-    <link th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet">
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
-
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
-<style>
-    .service-item {
-        transition: all 0.3s ease;
-        border: 1px solid #eee;
-        background-color: #fff;
-    }
+<body class="home-page">
+<div th:replace="~{fragments/header :: siteHeader}"></div>
 
-    .service-item:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 8px 20px rgba(255, 77, 0, 0.2);
-        border-color: #ff4d00;
-    }
-
-    @media (max-width: 768px) {
-        .service-item {
-            padding: 2rem 1rem;
-        }
-
-        .service-icon {
-            width: 70px !important;
-            height: 70px !important;
-        }
-
-        .service-item h5 {
-            font-size: 1rem;
-        }
-    }
-
-</style>
-<body>
-<div class="container-fluid bg-white p-0">
-  <!-- Spinner Start -->
-  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-border" style="width: 3rem; height: 3rem; color: #d9534f;" role="status">
-      <span class="sr-only">Đang tải...</span>
-    </div>
-  </div>
-  <!-- Spinner End -->
-
-    <!-- Gọi header -->
-    <div th:replace="~{fragments/header :: siteHeader}"></div>
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
-        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <img class="w-100" src="img/pccc-carousel-1.jpg" alt="Thiết bị & sản phẩm">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 700px;">
-                            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">
-                                Cung Cấp Thiết Bị Chính Hãng
-                            </h6>
-                            <h1 class="display-3 text-white mb-4 animated slideInDown">
-                                Thiết bị PCCC – Đạt Chuẩn Quốc Gia
-                            </h1>
-                            <a th:href="@{/products}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Sản Phẩm</a>
-                            <a th:href="@{/contact}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Liên Hệ Ngay</a>
-                        </div>
+<main>
+    <section class="home-hero">
+        <div class="home-orb home-orb-one"></div>
+        <div class="home-orb home-orb-two"></div>
+        <div class="container position-relative">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <p class="home-eyebrow"><span></span>PCCC KIM THÀNH PHÁT · ĐÀ NẴNG</p>
+                    <h1>An toàn bắt đầu từ một giải pháp <em>đúng.</em></h1>
+                    <p class="home-hero-copy">Thiết bị rõ nguồn gốc, cấu hình theo nhu cầu thực tế và đội ngũ đồng hành từ khâu lựa chọn đến vận hành.</p>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a class="home-btn home-btn-primary" th:href="@{/products}">Khám phá sản phẩm <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="home-btn home-btn-light" th:href="@{/contact}">Nhận tư vấn</a>
+                    </div>
+                    <div class="home-proof-grid">
+                        <div><strong>Thiết bị</strong><span>phù hợp từng công trình</span></div>
+                        <div><strong>Giải pháp</strong><span>báo cháy &amp; chữa cháy</span></div>
+                        <div><strong>Hỗ trợ</strong><span>kỹ thuật xuyên suốt</span></div>
                     </div>
                 </div>
-
-                <!-- 🔥 Slide 2 -->
-                <div class="carousel-item">
-                    <img class="w-100" src="img/pccc-carousel-2.jpg" alt="Bảo trì và kiểm định thiết bị PCCC">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 700px;">
-                            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">
-                                Bảo Trì & Kiểm Định Định Kỳ
-                            </h6>
-                            <h1 class="display-3 text-white mb-4 animated slideInDown">
-                                Dịch Vụ Sau Bán Hàng Chuẩn Mực & Uy Tín
-                            </h1>
-                            <a th:href="@{/about}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
-                                Xem Dịch Vụ
-                            </a>
-                            <a th:href="@{/contact}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">
-                                Đặt Lịch Ngay
-                            </a>
+                <div class="col-lg-6">
+                    <div class="home-hero-visual">
+                        <div class="home-visual-label"><span>01</span> Thiết bị nổi bật</div>
+                        <div class="home-product-stage">
+                            <img class="home-defire-hero" th:src="@{/img/defire-df-abc4-studio.png}" alt="Minh họa bình chữa cháy bột DeFire DF-ABC4" width="1024" height="1536">
+                            <div class="home-stage-copy"><small>BÌNH CHỮA CHÁY BỘT ABC</small><strong>DeFire<br>DF-ABC4</strong><a th:href="@{/products(keyword='DeFire')}">Xem sản phẩm ↗</a></div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <img class="w-100" src="img/pccc-carousel-3.jpg" alt="Giới thiệu doanh nghiệp">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 700px;">
-                            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">
-                                An Toàn Là Trách Nhiệm – PCCC Là Nghĩa Vụ
-                            </h6>
-                            <h1 class="display-3 text-white mb-4 animated slideInDown">
-                                “Kim Thành Phát – Giải Pháp PCCC Toàn Diện Cho Mọi Công Trình”
-                            </h1>
-                            <a th:href="@{/about}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Tìm Hiểu Ngay</a>
-                            <a th:href="@{/contact}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Liên Hệ</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slide 4 -->
-                <div class="carousel-item">
-                    <img class="w-100" src="img/pccc-carousel-4.jpg" alt="Khí FM-200 STEC-Vina">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 700px;">
-                            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">
-                                Giải pháp Khí FM-200
-                            </h6>
-                            <h1 class="display-3 text-white mb-4 animated slideInDown">
-                                Hệ Thống Chữa Cháy Khí Sạch – STEC-Vina
-                            </h1>
-                            <a th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
-                                Tìm Hiểu Ngay
-                            </a>
-                            <a th:href="@{/contact}" class="btn  btn-light py-md-3 px-md-5 animated slideInRight">
-                                Liên Hệ Báo Giá
-                            </a>
-                        </div>
+                        <a class="home-gst-float" th:href="@{/he-thong-bao-chay-gst}">
+                            <img th:src="@{/img/gst/gst-di-9204e-nut-nhan-dia-chi-studio.png}" alt="Nút nhấn báo cháy GST DI-9204E" width="1254" height="1254">
+                            <span><small>HỆ BÁO CHÁY</small><strong>GST địa chỉ</strong></span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-
-
-
-            <!-- Nút điều hướng -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-
         </div>
-    </div>
-    <!-- Carousel End -->
+    </section>
 
-      <!-- About Start -->
-  <div class="container-xxl py-5">
-    <div class="container-fluid p-0">
-      <div class="row g-5 align-items-center">
-        <div class="col-lg-6">
-          <h6 class="section-title text-start text-primary text-uppercase">Giới thiệu</h6>
-          <h1 class="mb-4">Kim Thành Phát - <span class="text-primary text-uppercase">Thiết Bị PCCC Đà Nẵng</span></h1>
-          <p class="mb-4">Với hơn nhiều năm kinh nghiệm trong lĩnh vực phòng cháy chữa cháy, Kim Thành Phát cung cấp giải pháp toàn diện: cung cấp thiết bị chính hãng, thiết kế & tư vấn hệ thống báo cháy, hệ thống chữa cháy tự động, cung cấp thiết bị kiểm định cho nhà ở, chung cư, văn phòng và nhà xưởng.</p>
-          <ul>
-            <li>Phân phối: bình chữa cháy, đầu báo, tủ báo cháy, sprinkler, van, họng nước, ống mềm.</li>
-            <li>Dịch vụ: kiểm định, tư vấn thiết kế hệ thông PCCC.</li>
-          </ul>
-          <a class="btn btn-primary py-3 px-5 mt-2" th:href="@{/contact}">Yêu cầu tư vấn</a>
-        </div>
-        <div class="col-lg-6">
-          <div class="row g-3">
-
-            <!-- Sản phẩm 1 -->
-            <div class="col-6 text-end">
-              <img class="img-fluid rounded w-75 wow zoomIn product-img" data-wow-delay="0.1s"
-                   src="img/about-pccc-1.jpg" style="margin-top: 25%;" alt="Thiết bị PCCC"
-                   data-bs-toggle="modal" data-bs-target="#product1Modal">
-            </div>
-
-            <!-- Sản phẩm 2 -->
-            <div class="col-6 text-start">
-              <img class="img-fluid rounded w-100 wow zoomIn product-img" data-wow-delay="0.3s"
-                   src="img/about-pccc-2.jpg" alt="Lăng phun chữa cháy Victory"
-                   data-bs-toggle="modal" data-bs-target="#product2Modal">
-            </div>
-
-            <!-- Sản phẩm 3 -->
-            <div class="col-6 text-end">
-              <img class="img-fluid rounded w-50 wow zoomIn product-img" data-wow-delay="0.5s"
-                   src="img/about-pccc-3.jpg" alt="Vòi chữa cháy Victory"
-                   data-bs-toggle="modal" data-bs-target="#product3Modal">
-            </div>
-
-            <!-- Sản phẩm 4 -->
-            <div class="col-6 text-start">
-              <img class="img-fluid rounded w-75 wow zoomIn product-img" data-wow-delay="0.7s"
-                   src="img/about-pccc-4.jpg" alt="Kiểm định"
-                   data-bs-toggle="modal" data-bs-target="#product4Modal">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- About End -->
-
-
-    <!-- Services Start -->
-    <div class="container-xxl py-5">
+    <section class="home-trust-bar">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title text-center text-primary text-uppercase">Dịch vụ</h6>
-                <h1 class="mb-5">
-                    Dịch vụ & <span class="text-primary text-uppercase">Sản phẩm</span>
-                </h1>
-            </div>
-
-            <div class="row g-4 justify-content-center">
-                <!-- Bình chữa cháy -->
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a class="service-item rounded text-center shadow-sm p-4 h-100" th:href="@{/products}">
-                        <div class="service-icon mx-auto bg-transparent border rounded-circle p-3 mb-3"
-                             style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;">
-                            <i class="fa fa-fire-extinguisher fa-2x text-danger"></i>
-                        </div>
-                        <h5 class="mb-3 text-uppercase text-dark fw-bold">Bình chữa cháy & Phụ kiện</h5>
-                        <p class="text-body small mb-0">
-                            Cung cấp bình chữa cháy CO₂, bột ABC, khí FM200, nạp lại, van, họng chữa cháy.
-                        </p>
-                    </a>
-                </div>
-
-                <!-- Tư vấn PCCC -->
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <a class="service-item rounded text-center shadow-sm p-4 h-100" href="service.html#consulting">
-                        <div class="service-icon mx-auto bg-transparent border rounded-circle p-3 mb-3"
-                             style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;">
-                            <i class="fa fa-user-shield fa-2x text-danger"></i>
-                        </div>
-                        <h5 class="mb-3 text-uppercase text-dark fw-bold">Tư vấn PCCC</h5>
-                        <p class="text-body small mb-0">
-                            Tư vấn thiết kế, giải pháp giảm thiểu rủi ro cho công trình.
-                        </p>
-                    </a>
-                </div>
-
-                <!-- Hỗ trợ khách hàng -->
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <a class="service-item rounded text-center shadow-sm p-4 h-100" th:href="@{/contact}">
-                        <div class="service-icon mx-auto bg-transparent border rounded-circle p-3 mb-3"
-                             style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;">
-                            <i class="fa fa-headset fa-2x text-danger"></i>
-                        </div>
-                        <h5 class="mb-3 text-uppercase text-dark fw-bold">Hỗ trợ khách hàng</h5>
-                        <p class="text-body small mb-0">
-                            Hỗ trợ kỹ thuật 24/7, xử lý sự cố PCCC nhanh chóng, chuyên nghiệp.
-                        </p>
-                    </a>
-                </div>
+            <div class="home-trust-items">
+                <span>Giải pháp tiêu biểu</span>
+                <a th:href="@{/he-thong-bao-chay-gst}">GST <small>Báo cháy</small></a>
+                <a th:href="@{/products(keyword='DeFire')}">DeFire <small>Bình chữa cháy</small></a>
+                <a th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}">STEC-Vina <small>FM-200</small></a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Đối tác & Dự án -->
-    <div class="container-xxl py-5">
+    <section class="home-section home-solutions">
         <div class="container">
-            <div class="text-center mb-5">
-                <h6 class="section-title text-primary text-uppercase mb-3">Đối tác & Dự án</h6>
-                <h1 class="fw-bold text-uppercase">Khách hàng <span class="text-danger">Tiêu biểu</span></h1>
+            <div class="home-heading-row">
+                <div><p class="home-kicker">GIẢI PHÁP NỔI BẬT</p><h2>Ba lớp bảo vệ cho<br>nhiều nhu cầu công trình.</h2></div>
+                <p>Khởi đầu từ thiết bị cầm tay, phát hiện sớm đến hệ chữa cháy tự động cho khu vực có tài sản giá trị cao.</p>
             </div>
-
-            <div class="row g-4">
-                <div class="col-md-4 col-sm-6">
-                    <div class="card border-0 shadow-sm h-100 text-center p-3">
-                        <div class="card-body">
-                            <i class="fa fa-industry fa-3x text-danger mb-3"></i>
-                            <h5 class="fw-bold mb-2">Kim Long Motor Huế</h5>
-                            <p>Cung cấp hệ thống chữa cháy khí FM-200 đạt chuẩn quốc tế.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card border-0 shadow-sm h-100 text-center p-3">
-                        <div class="card-body">
-                            <i class="fa fa-warehouse fa-3x text-danger mb-3"></i>
-                            <h5 class="fw-bold mb-2">Nhà kho Sơn Trà</h5>
-                            <p>Cung cấp thiết bị, báo cháy & cung cấp thiết bị chữa cháy tự động.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card border-0 shadow-sm h-100 text-center p-3">
-                        <div class="card-body">
-                            <i class="fa fa-hand-holding fa-3x text-danger mb-3"></i>
-                            <h5 class="fw-bold mb-2">Đối tác</h5>
-                            <p>S-Tec Vina, Dahua, Utec, Notifier, Victory – các thương hiệu hàng đầu trong lĩnh vực PCCC.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="home-solution-grid">
+                <article class="home-solution-card home-solution-defire">
+                    <div class="home-card-index">01 / CHỮA CHÁY BAN ĐẦU</div>
+                    <div class="home-card-image"><img th:src="@{/img/defire-df-abc4-studio.png}" alt="Bình chữa cháy DeFire DF-ABC4" loading="lazy"></div>
+                    <div class="home-card-body"><h3>Bình chữa cháy DeFire</h3><p>Dòng bình chữa cháy sản xuất trong nước, phù hợp trang bị cho nhà ở, văn phòng và khu vực vận hành.</p><a th:href="@{/products(keyword='DeFire')}">Xem dòng sản phẩm <span>→</span></a></div>
+                </article>
+                <article class="home-solution-card home-solution-gst">
+                    <div class="home-card-index">02 / PHÁT HIỆN &amp; CẢNH BÁO</div>
+                    <div class="home-card-image"><img th:src="@{/img/gst/gst200n-tu-trung-tam-dia-chi-studio.png}" alt="Tủ trung tâm báo cháy địa chỉ GST200N" loading="lazy"></div>
+                    <div class="home-card-body"><h3>Hệ thống báo cháy GST</h3><p>Giải pháp hệ địa chỉ và hệ thường, từ trung tâm điều khiển đến đầu báo, nút nhấn và thiết bị cảnh báo.</p><a th:href="@{/he-thong-bao-chay-gst}">Khám phá hệ GST <span>→</span></a></div>
+                </article>
+                <article class="home-solution-card home-solution-fm200">
+                    <div class="home-card-index">03 / CHỮA CHÁY TỰ ĐỘNG</div>
+                    <div class="home-card-image"><img th:src="@{/img/stec-vina-fm200-cylinder-bank.png}" alt="Dàn bình chữa cháy khí FM-200 STEC-Vina" loading="lazy"></div>
+                    <div class="home-card-body"><h3>Khí sạch FM-200</h3><p>Bảo vệ phòng máy chủ, tủ điện và không gian có thiết bị quan trọng mà không để lại cặn sau phun.</p><a th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}">Tìm hiểu FM-200 <span>→</span></a></div>
+                </article>
             </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contact CTA -->
-  <div class="container-fluid py-5 mt-5"
-       style="background: linear-gradient(135deg, #ff4d00 0%, #e63900 100%);">
-    <div class="container">
-      <div class="p-4 p-md-5 bg-white shadow-lg rounded-4 position-relative" style="z-index: 2;">
-        <div class="row align-items-center g-4">
-          <div class="col-lg-9 text-center text-lg-start">
-            <h3 class="fw-bold mb-2 text-danger">Cần Tư Vấn Giải Pháp PCCC?</h3>
-            <p class="mb-0 text-muted">
-              Gọi ngay Hotline/Zalo
-              <strong class="text-dark">0934.752.114</strong>
-              hoặc để lại thông tin, chúng tôi sẽ liên hệ sớm nhất!
-            </p>
-          </div>
-          <div class="col-lg-3 text-center text-lg-end">
-            <a th:href="@{/contact}" class="btn btn-danger py-3 px-4 fw-semibold shadow-sm">
-              <i class="bi bi-chat-dots me-2"></i>Yêu cầu tư vấn
-            </a>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- Contact CTA End -->
+    </section>
 
-    <!-- Goi footer -->
-    <div th:replace="~{fragments/footer :: siteFooter}"></div>
+    <section class="home-gst-feature">
+        <div class="container">
+            <div class="row g-0 align-items-stretch">
+                <div class="col-lg-7">
+                    <div class="home-gst-gallery">
+                        <div class="home-gallery-main"><img th:src="@{/img/gst/gst-ifp4e-tu-trung-tam-dia-chi-studio.png}" alt="Tủ báo cháy địa chỉ GST-IFP4E" loading="lazy"><span>GST-IFP4E</span></div>
+                        <div class="home-gallery-side">
+                            <div><img th:src="@{/img/gst/gst-di-9102e-dau-bao-khoi-dia-chi-studio.png}" alt="Đầu báo khói địa chỉ GST DI-9102E" loading="lazy"><span>DI-9102E</span></div>
+                            <div><img th:src="@{/img/gst/gst-i-9401n-coi-den-dia-chi-studio.png}" alt="Còi đèn địa chỉ GST I-9401N" loading="lazy"><span>I-9401N</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="home-feature-copy">
+                        <p class="home-kicker">HỆ BÁO CHÁY GST</p>
+                        <h2>Nhìn thấy tín hiệu.<br>Phản ứng đúng điểm.</h2>
+                        <p>Hệ địa chỉ giúp nhận diện từng thiết bị trên đường loop. Hệ thường tổ chức thiết bị theo vùng, phù hợp các công trình có yêu cầu quản lý đơn giản hơn.</p>
+                        <ul><li>Tủ trung tâm theo quy mô hệ thống</li><li>Thiết bị cảnh báo và đầu báo đồng bộ</li><li>Tư vấn cấu hình theo mặt bằng thực tế</li></ul>
+                        <a class="home-text-link" th:href="@{/he-thong-bao-chay-gst}">Xem toàn bộ giải pháp GST <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="home-section home-defire-feature">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 order-lg-2"><div class="home-defire-frame"><span class="home-made-tag">THANH BÌNH · BCA</span><img th:src="@{/img/defire-df-abc4-studio.png}" alt="Minh họa bình chữa cháy DeFire DF-ABC4" loading="lazy"></div></div>
+                <div class="col-lg-7 order-lg-1">
+                    <p class="home-kicker">THIẾT BỊ CHỮA CHÁY CẦM TAY</p>
+                    <h2 class="home-large-heading">DeFire — sẵn sàng<br>cho tình huống ban đầu.</h2>
+                    <p class="home-lead">Kim Thành Phát tư vấn lựa chọn chủng loại và số lượng bình theo khu vực sử dụng. Hồ sơ, tem kiểm định và tình trạng sản phẩm cần được đối chiếu theo từng lô hàng khi bàn giao.</p>
+                    <div class="home-feature-points">
+                        <div><span>01</span><strong>Dễ bố trí</strong><p>Phù hợp nhiều không gian dân dụng và làm việc.</p></div>
+                        <div><span>02</span><strong>Dễ kiểm tra</strong><p>Quan sát áp suất và tình trạng niêm phong định kỳ.</p></div>
+                        <div><span>03</span><strong>Được tư vấn</strong><p>Chọn đúng loại bình theo nguy cơ cháy tại khu vực.</p></div>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3 mt-4"><a class="home-btn home-btn-dark" th:href="@{/products(keyword='DeFire')}">Xem bình DeFire</a><a class="home-btn home-btn-outline" th:href="@{/contact}">Hỏi về kiểm định</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="home-process">
+        <div class="container">
+            <div class="home-process-head"><p class="home-kicker">CÁCH CHÚNG TÔI ĐỒNG HÀNH</p><h2>Từ nhu cầu đến giải pháp<br>có thể vận hành.</h2></div>
+            <div class="home-process-grid">
+                <div><span>01</span><i class="fa-solid fa-comments"></i><h3>Tiếp nhận nhu cầu</h3><p>Trao đổi loại công trình, diện tích, khu vực và mục tiêu bảo vệ.</p></div>
+                <div><span>02</span><i class="fa-solid fa-compass-drafting"></i><h3>Đề xuất cấu hình</h3><p>Chọn thiết bị và giải pháp phù hợp với điều kiện sử dụng thực tế.</p></div>
+                <div><span>03</span><i class="fa-solid fa-screwdriver-wrench"></i><h3>Triển khai</h3><p>Hỗ trợ cung cấp, lắp đặt, hướng dẫn vận hành và bàn giao.</p></div>
+                <div><span>04</span><i class="fa-solid fa-arrows-rotate"></i><h3>Duy trì an toàn</h3><p>Kiểm tra, bảo trì và tư vấn thay thế khi thiết bị đến hạn.</p></div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Back to Top -->
-  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-</div>
+    <section class="home-final-cta">
+        <div class="container">
+            <div class="home-cta-inner">
+                <div><p class="home-kicker">BẮT ĐẦU TỪ CÔNG TRÌNH CỦA BẠN</p><h2>Bạn cần chọn thiết bị hay thiết kế một hệ thống?</h2><p>Gửi nhu cầu để đội ngũ Kim Thành Phát liên hệ và trao đổi phương án phù hợp.</p></div>
+                <div class="home-cta-actions"><a class="home-btn home-btn-white" th:href="@{/contact}">Nhận tư vấn ngay <i class="fa-solid fa-arrow-right"></i></a><a href="tel:0934752114">Hotline: 0934.752.114</a></div>
+            </div>
+        </div>
+    </section>
+</main>
 
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/wow/wow.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/counterup/counterup.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="lib/tempusdominus/js/moment.min.js"></script>
-<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-<!-- Template Javascript -->
-<script src="js/main.js"></script>
-<!-- Modal Sản phẩm 1 -->
-<div class="modal fade" id="product1Modal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content text-center p-4">
-      <h4 class="mb-3 text-danger">Bình Chữa Cháy Victory</h4>
-      <img src="img/about-pccc-1.jpg" class="img-fluid rounded mb-3" alt="">
-      <p>Bình chữa cháy bột ABC hoặc CO₂ thương hiệu Victory – đạt tiêu chuẩn Việt Nam. Hiệu quả, an toàn và dễ sử dụng cho gia đình, văn phòng, nhà xưởng.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Sản phẩm 2 -->
-<div class="modal fade" id="product2Modal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content text-center p-4">
-      <h4 class="mb-3 text-danger">Lăng Phun Chữa Cháy Victory</h4>
-      <img src="img/about-pccc-2.jpg" class="img-fluid rounded mb-3" alt="">
-      <p>Lăng phun chữa cháy Victory – chất liệu hợp kim nhôm hoặc đồng, tạo tia nước mạnh, tầm xa, dễ điều chỉnh, phù hợp cho hệ thống cấp nước chữa cháy.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Sản phẩm 3 -->
-<div class="modal fade" id="product3Modal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content text-center p-4">
-      <h4 class="mb-3 text-danger">Vòi Chữa Cháy Victory</h4>
-      <img src="img/about-pccc-3.jpg" class="img-fluid rounded mb-3" alt="">
-      <p>Vòi chữa cháy Victory – vải tráng cao su chất lượng cao, chịu áp lực lớn, dùng cho hệ thống cấp nước và cứu hỏa chuyên nghiệp.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Sản phẩm 4 -->
-<div class="modal fade" id="product4Modal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content text-center p-4">
-      <h4 class="mb-3 text-danger">Đèn Exit Sự Cố Victory</h4>
-      <img src="img/about-pccc-4.jpg" class="img-fluid rounded mb-3" alt="">
-      <p>Đèn chỉ dẫn thoát hiểm và sự cố Victory – tự động sáng khi mất điện, thiết kế gọn gàng, đạt chuẩn PCCC Việt Nam.</p>
-    </div>
-  </div>
-</div>
-
+<div th:replace="~{fragments/footer :: siteFooter}"></div>
+<a href="#" class="home-back-top" aria-label="Về đầu trang"><i class="fa-solid fa-arrow-up"></i></a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
