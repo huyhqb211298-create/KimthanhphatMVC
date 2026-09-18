@@ -91,32 +91,46 @@
             </div>
 
             <!-- CONTACT FORM -->
-            <div class="col-lg-7 col-md-6">
+            <div class="col-lg-7 col-md-6" id="contact-form">
                 <h6 class="section-title text-start text-warning text-uppercase">Gửi tin nhắn</h6>
                 <h2 class="mb-4">Liên hệ trực tuyến</h2>
+
+                <div th:if="${contactSuccess}" class="alert alert-success" role="alert"
+                     th:text="${contactSuccess}"></div>
+                <div th:if="${contactError}" class="alert alert-danger" role="alert"
+                     th:text="${contactError}"></div>
 
                 <form th:action="@{/contact/submit}" method="post" class="bg-light p-4 rounded shadow-sm">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <input type="text" name="name" class="form-control border-0 py-3"
-                                   placeholder="Họ và tên" required>
+                                   placeholder="Họ và tên" autocomplete="name" minlength="2" maxlength="120"
+                                   th:value="${contactName}" required>
                         </div>
                         <div class="col-md-6">
                             <input type="email" name="email" class="form-control border-0 py-3"
-                                   placeholder="Email" required>
+                                   placeholder="Email" autocomplete="email" maxlength="160"
+                                   th:value="${contactEmail}" required>
                         </div>
                         <div class="col-md-6">
                             <input type="text" name="phone" class="form-control border-0 py-3"
-                                   placeholder="Số điện thoại" required>
+                                   placeholder="Số điện thoại" autocomplete="tel" maxlength="30"
+                                   th:value="${contactPhone}" required>
                         </div>
                         <div class="col-md-6">
                             <input type="text" name="subject" class="form-control border-0 py-3"
-                                   placeholder="Chủ đề">
+                                   placeholder="Chủ đề" maxlength="200" th:value="${contactSubject}">
                         </div>
                         <div class="col-12">
                             <textarea name="message" rows="5"
                                       class="form-control border-0 py-3"
-                                      placeholder="Nội dung tin nhắn..." required></textarea>
+                                      placeholder="Nội dung tin nhắn..." minlength="10" maxlength="5000"
+                                      required th:text="${contactMessage}"></textarea>
+                        </div>
+                        <div class="position-absolute start-0 top-0 opacity-0" aria-hidden="true"
+                             style="width:1px;height:1px;overflow:hidden;pointer-events:none;">
+                            <label for="contact-website">Website</label>
+                            <input id="contact-website" type="text" name="website" tabindex="-1" autocomplete="off">
                         </div>
                         <div class="col-12 text-end">
                             <button class="btn btn-danger py-3 px-5" type="submit">
