@@ -24,6 +24,10 @@
 .site-navbar .nav-content {
     min-height: 100px;
     gap: 18px;
+    width: calc(100% - 32px);
+    max-width: 1560px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* LOGO */
@@ -40,7 +44,7 @@
 
 /* MENU */
 .navbar-brand { flex:0 0 auto; margin:0; }
-.main-menu { flex:1 1 auto; justify-content:center; gap:2px !important; padding:6px !important; min-width:0; background:rgba(100,20,0,.18); border:1px solid rgba(255,255,255,.24); border-radius:16px; box-shadow:inset 0 1px rgba(255,255,255,.12); }
+.main-menu { flex:1 1 auto; justify-content:center; gap:2px !important; padding:6px !important; min-width:0; overflow:visible; background:rgba(100,20,0,.18); border:1px solid rgba(255,255,255,.24); border-radius:16px; box-shadow:inset 0 1px rgba(255,255,255,.12); }
 .main-menu li { list-style:none; flex:0 0 auto; }
 .main-menu a {
     display:inline-flex;
@@ -110,6 +114,11 @@
     display:grid;
 }
 
+.mega-dropdown .mega-menu {
+    right:0;
+    left:auto;
+}
+
 .mega-col h6 {
     font-size:14px;
     font-weight:700;
@@ -169,6 +178,17 @@
 .call-btn i {
     margin-left:6px;
     color:var(--pccc-orange);
+}
+
+/* Giữ menu desktop gọn trong vùng navbar ở màn hình 1400–1599px. */
+@media (min-width:1400px) and (max-width:1599.98px) {
+    .site-navbar .nav-content { gap:10px; }
+    .logo-box { padding:6px 9px; }
+    .logo-box img { max-height:66px; }
+    .main-menu { padding:5px !important; }
+    .main-menu a { padding:10px 8px; font-size:14px; }
+    .search-inline { display:none !important; }
+    .call-btn { padding:10px 13px; font-size:13px; }
 }
 
 /* MOBILE */
