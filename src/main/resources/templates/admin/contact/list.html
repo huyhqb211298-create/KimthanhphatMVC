@@ -84,7 +84,7 @@
                         <div th:if="${contact.notificationError != null}"
                              class="small text-muted mt-1" th:text="${contact.notificationError}"></div>
                     </td>
-                    <td style="min-width:180px">
+                    <td style="min-width:220px">
                         <div class="mb-2">
                             <span th:if="${contact.status.name() == 'NEW'}" class="badge text-bg-danger">Mới</span>
                             <span th:if="${contact.status.name() == 'CONTACTED'}" class="badge text-bg-warning">Đã liên hệ</span>
@@ -99,6 +99,13 @@
                                         th:selected="${item == contact.status}"></option>
                             </select>
                             <button class="btn btn-outline-primary btn-sm" type="submit">Lưu</button>
+                        </form>
+                        <form method="post" th:action="@{/admin/contacts/{id}/delete(id=${contact.id})}"
+                              class="mt-2"
+                              onsubmit="return confirm('Xóa vĩnh viễn yêu cầu liên hệ này? Thao tác không thể hoàn tác.');">
+                            <button class="btn btn-outline-danger btn-sm" type="submit">
+                                <i class="fa-solid fa-trash-can me-1"></i>Xóa
+                            </button>
                         </form>
                     </td>
                 </tr>

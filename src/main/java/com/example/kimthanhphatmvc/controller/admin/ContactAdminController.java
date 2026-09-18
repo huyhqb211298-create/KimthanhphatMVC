@@ -38,4 +38,14 @@ public class ContactAdminController {
         }
         return "redirect:/admin/contacts";
     }
+
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        if (contactRequestService.delete(id)) {
+            redirectAttributes.addFlashAttribute("message", "Đã xóa vĩnh viễn yêu cầu #" + id + ".");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Không tìm thấy yêu cầu liên hệ.");
+        }
+        return "redirect:/admin/contacts";
+    }
 }

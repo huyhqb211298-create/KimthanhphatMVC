@@ -56,6 +56,15 @@ public class ContactRequestService {
         }).orElse(false);
     }
 
+    @Transactional
+    public boolean delete(Long id) {
+        if (!repository.existsById(id)) {
+            return false;
+        }
+        repository.deleteById(id);
+        return true;
+    }
+
     private String limit(String value, int maxLength) {
         if (value == null || value.length() <= maxLength) {
             return value;
