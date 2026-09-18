@@ -59,5 +59,10 @@ public class HomeController {
         return "gas-fire-suppression";
     }
 
+    @GetMapping("/he-thong-bao-chay-gst")
+    public String gstFireAlarmSystem() {
+        return "gst-fire-alarm";
+    }
+
 
 }

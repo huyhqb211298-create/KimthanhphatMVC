@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống báo cháy GST: Hệ địa chỉ &amp; Hệ thường | Kim Thành Phát</title>
+    <meta name="description" content="Tìm hiểu hai hệ thống báo cháy GST: hệ địa chỉ và hệ thường. So sánh cách quản lý thiết bị, tham khảo các nhóm thiết bị và liên hệ Kim Thành Phát để được tư vấn.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/gst-fire-alarm.css}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: siteHeader}"></div>
+<main class="gst-page">
+    <section class="gst-hero">
+        <div class="container">
+            <nav aria-label="Đường dẫn" class="gst-breadcrumb"><a th:href="@{/}">Trang chủ</a><span aria-hidden="true">/</span><span>Báo cháy GST</span></nav>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <p class="gst-eyebrow">GST · FIRE ALARM SYSTEMS</p>
+                    <h1>Hệ thống<br>báo cháy <span>GST</span></h1>
+                    <p class="gst-intro">Hai hệ thống. Hai cách quản lý tín hiệu báo cháy. Khám phá hệ địa chỉ và hệ thường để định hướng giải pháp cho công trình của bạn.</p>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a class="btn gst-button" href="#he-dia-chi">Khám phá hệ địa chỉ <span aria-hidden="true">↗</span></a>
+                        <a class="btn gst-button-outline" href="#he-thuong">Khám phá hệ thường <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="gst-showcase">
+                        <div class="gst-showcase-heading"><span>GST / THIẾT BỊ BÁO CHÁY</span><span aria-hidden="true">●</span></div>
+                        <a href="#he-dia-chi" class="gst-showcase-main">
+                            <img th:src="@{/img/gst/gst-di-9204e-nut-nhan-dia-chi-studio.png}" alt="Nút nhấn báo cháy địa chỉ GST DI-9204E" width="550" height="550" fetchpriority="high">
+                            <span class="gst-showcase-caption"><span>HỆ ĐỊA CHỈ<strong>DI-9204E</strong></span><span aria-hidden="true">↗</span></span>
+                        </a>
+                        <div class="gst-showcase-pair">
+                            <a href="#gst-dc-9102e"><img th:src="@{/img/gst/gst-dc-9102e-dau-bao-khoi-thuong-studio.png}" alt="Đầu báo khói GST DC-9102E" width="600" height="600"><span>Đầu báo khói<strong>DC-9102E ↗</strong></span></a>
+                            <a href="#gst-c-9401n"><img th:src="@{/img/gst/gst-c-9401n-coi-den-bao-chay-studio.png}" alt="Còi đèn GST C-9401N" width="554" height="554"><span>Còi đèn báo cháy<strong>C-9401N ↗</strong></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p class="container small text-secondary mt-3 mb-0"></p>
+    <nav class="gst-section-nav" aria-label="Nội dung trang GST"><div class="container d-flex flex-wrap gap-4"><a href="#he-dia-chi">01 / Hệ địa chỉ</a><a href="#he-thuong">02 / Hệ thường</a><a href="#tu-dia-chi">Tủ địa chỉ</a><a href="#tu-he-thuong">Tủ thường</a><a href="#module-dia-chi">Module địa chỉ</a><a href="#beam-he-thuong">Đầu báo beam</a><a href="#so-sanh">So sánh hai hệ</a><a href="#tu-van">Liên hệ tư vấn</a></div></nav>
+
+    <section id="he-dia-chi" class="container gst-section">
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-5"><p class="gst-eyebrow">01 / ADDRESSABLE</p><h2>Hệ báo cháy<br>địa chỉ GST</h2><p>Mỗi thiết bị địa chỉ được nhận diện riêng trên hệ thống, hỗ trợ xác định điểm phát tín hiệu và quản lý trạng thái thiết bị.</p><a th:href="@{/contact}" class="gst-text-link">Tư vấn hệ địa chỉ <span aria-hidden="true">→</span></a></div>
+            <div class="col-lg-7 gst-collection-note"><span>TỦ TRUNG TÂM · THIẾT BỊ · MODULE</span><p>Quản lý từng địa chỉ từ trung tâm.<br>Đầu báo, cảnh báo và module đồng bộ.</p></div>
+        </div>
+        <section id="tu-dia-chi" class="gst-panel-section" aria-labelledby="gst-addressable-panel-heading">
+            <div class="gst-subsection-heading"><div><p class="gst-eyebrow">TRUNG TÂM QUẢN LÝ HỆ THỐNG</p><h3 id="gst-addressable-panel-heading">Tủ trung tâm báo cháy địa chỉ</h3></div><span class="gst-count">03 dòng tủ</span></div>
+            <p class="gst-subsection-intro">Chọn trung tâm theo số loop, số thiết bị và nhu cầu mở rộng của công trình. Loop là đường mạch kết nối các thiết bị địa chỉ.</p>
+            <div class="gst-product-grid gst-panel-grid">
+                <article class="gst-product" id="gst200n">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst200n-tu-trung-tam-dia-chi-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST200N">
+                        <span class="gst-product-badge">Tủ hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst200n-tu-trung-tam-dia-chi-studio.png}" alt="Minh họa studio tủ trung tâm báo cháy GST200N" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST200N</p><h4>Tủ địa chỉ 1–2 loop</h4>
+                        <p>Quản lý từng địa chỉ đầu báo, nút nhấn và module. Chọn GST200N-1 cho 1 loop hoặc GST200N-2 cho 2 loop.</p>
+                        <div class="gst-product-tags"><span>GST200N-1 · 1 loop</span><span>GST200N-2 · 2 loop</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Tư vấn cấu hình tủ <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-ifp4e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-ifp4e-tu-trung-tam-dia-chi-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST-IFP4E">
+                        <span class="gst-product-badge">Tủ hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-ifp4e-tu-trung-tam-dia-chi-studio.png}" alt="Minh họa studio tủ trung tâm báo cháy GST-IFP4E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST-IFP4E</p><h4>Tủ địa chỉ màn hình cảm ứng</h4>
+                        <p>Màn hình cảm ứng 7 inch, cấu trúc mở rộng từ 1 đến 6 loop theo cấu hình card. Hỗ trợ quản lý và lập trình liên động.</p>
+                        <div class="gst-product-tags"><span>1–6 loop</span><span>Màn hình 7 inch</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Tư vấn cấu hình tủ <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-ifp8">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-ifp8-tu-trung-tam-dia-chi-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST-IFP8">
+                        <span class="gst-product-badge">Tủ hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-ifp8-tu-trung-tam-dia-chi-studio.png}" alt="Minh họa studio tủ trung tâm báo cháy GST-IFP8" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST-IFP8</p><h4>Tủ địa chỉ đa loop</h4>
+                        <p>Trung tâm dạng module, mở rộng tối đa 8 loop. Màn hình LCD và các cụm chỉ thị vùng hỗ trợ theo dõi trạng thái tập trung.</p>
+                        <div class="gst-product-tags"><span>Tối đa 8 loop</span><span>Mở rộng theo cấu hình</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Tư vấn cấu hình tủ <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+            </div>
+            <p class="gst-technical-note">Số loop tối đa phụ thuộc card và cấu hình đặt hàng. Với IFP4E chạy đủ tải 6 loop, tài liệu hãng yêu cầu hộp ắc quy bổ sung. Cần đối chiếu phiên bản tủ và danh sách thiết bị tương thích khi chọn cấu hình.</p>
+        </section>
+        <h3 class="gst-accessory-title">Thiết bị cho hệ địa chỉ</h3>
+        <div class="gst-product-grid gst-core-grid">
+                <article class="gst-product" id="gst-i-9401n">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-i-9401n-coi-den-dia-chi-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST I-9401N">
+                        <span class="gst-product-badge">Hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-i-9401n-coi-den-dia-chi-studio.png}" alt="Ảnh minh họa Còi đèn địa chỉ GST I-9401N" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · I-9401N</p><h3>Còi đèn địa chỉ</h3>
+                        <p>Cảnh báo bằng âm thanh và ánh sáng; có địa chỉ điện tử để quản lý trên hệ thống GST tương thích.</p>
+                        <div class="gst-product-tags"><span>Âm thanh &amp; ánh sáng</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-di-9204e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-di-9204e-nut-nhan-dia-chi-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DI-9204E">
+                        <span class="gst-product-badge">Hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-di-9204e-nut-nhan-dia-chi-studio.png}" alt="Ảnh minh họa Nút nhấn địa chỉ GST DI-9204E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DI-9204E</p><h3>Nút nhấn địa chỉ</h3>
+                        <p>Phát tín hiệu bằng thao tác nhấn. Trung tâm hiển thị địa chỉ của nút nhấn để nhận diện điểm báo cháy.</p>
+                        <div class="gst-product-tags"><span>Kích hoạt bằng tay</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-di-9102e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-di-9102e-dau-bao-khoi-dia-chi-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DI-9102E">
+                        <span class="gst-product-badge">Hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-di-9102e-dau-bao-khoi-dia-chi-studio.png}" alt="Ảnh minh họa Đầu báo khói địa chỉ GST DI-9102E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DI-9102E</p><h3>Đầu báo khói địa chỉ</h3>
+                        <p>Phát hiện khói bằng nguyên lý quang học và truyền tín hiệu theo địa chỉ thiết bị về trung tâm.</p>
+                        <div class="gst-product-tags"><span>Phát hiện khói</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-di-9103e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-di-9103e-dau-bao-nhiet-dia-chi-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DI-9103E">
+                        <span class="gst-product-badge">Hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-di-9103e-dau-bao-nhiet-dia-chi-studio.png}" alt="Ảnh minh họa Đầu báo nhiệt địa chỉ GST DI-9103E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DI-9103E</p><h3>Đầu báo nhiệt địa chỉ</h3>
+                        <p>Kết hợp phát hiện nhiệt độ cố định và nhiệt gia tăng, hỗ trợ nhận diện từng điểm báo theo địa chỉ.</p>
+                        <div class="gst-product-tags"><span>Phát hiện nhiệt</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+        </div>
+        <section id="module-dia-chi" class="gst-module-section" aria-labelledby="gst-module-heading">
+            <div class="gst-subsection-heading"><div><p class="gst-eyebrow">GIÁM SÁT · ĐIỀU KHIỂN · CÁCH LY</p><h3 id="gst-module-heading">Module cho hệ địa chỉ</h3></div><span class="gst-count">06 dòng module</span></div>
+            <p class="gst-subsection-intro">Lựa chọn module theo loại tín hiệu cần giám sát, tải cần điều khiển và cấu hình trung tâm GST.</p>
+            <div class="gst-product-grid gst-module-grid">
+                <article class="gst-product" id="gst-di-9300e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-di-9300e-module-giam-sat-dau-vao-studio-v2.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DI-9300E">
+                        <span class="gst-product-badge">Module hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-di-9300e-module-giam-sat-dau-vao-studio-v2.png}" alt="Ảnh minh họa Module giám sát đầu vào GST DI-9300E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DI-9300E</p><h3>Module giám sát đầu vào</h3>
+                        <p>Nhận tín hiệu tiếp điểm khô NO/NC từ thiết bị ngoại vi, như công tắc dòng chảy hoặc công tắc áp suất, và chuyển trạng thái về trung tâm.</p>
+                        <div class="gst-product-tags"><span>Giám sát tiếp điểm</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-di-9301e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-di-9301e-module-vao-ra-studio-v2.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DI-9301E">
+                        <span class="gst-product-badge">Module hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-di-9301e-module-vao-ra-studio-v2.png}" alt="Module một ngõ vào / ra GST DI-9301E — minh họa studio từ ảnh tham chiếu" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DI-9301E</p><h3>Module một ngõ vào / ra</h3>
+                        <p>Kết hợp giám sát tín hiệu đầu vào và điều khiển tiếp điểm relay đầu ra theo lệnh từ trung tâm báo cháy.</p>
+                        <div class="gst-product-tags"><span>Giám sát &amp; điều khiển</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-di-9302e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-di-9302e-module-relay-studio-v2.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DI-9302E">
+                        <span class="gst-product-badge">Module hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-di-9302e-module-relay-studio-v2.png}" alt="Ảnh minh họa Module relay điện áp cao GST DI-9302E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DI-9302E</p><h3>Module relay điện áp cao</h3>
+                        <p>Điều khiển đầu ra relay cho thiết bị điện áp cao theo lệnh của trung tâm, đồng thời hỗ trợ giám sát tín hiệu đầu vào.</p>
+                        <div class="gst-product-tags"><span>Relay điều khiển</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-di-9305e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-di-9305e-module-dau-ra-studio-v2.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DI-9305E">
+                        <span class="gst-product-badge">Module hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-di-9305e-module-dau-ra-studio-v2.png}" alt="Ảnh minh họa Module đầu ra có giám sát GST DI-9305E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DI-9305E</p><h3>Module đầu ra có giám sát</h3>
+                        <p>Điều khiển mạch thiết bị cảnh báo dùng nguồn 24 VDC hoặc tín hiệu âm thanh 70/100 V; hỗ trợ giám sát đường dây theo cấu hình.</p>
+                        <div class="gst-product-tags"><span>Điều khiển mạch cảnh báo</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-di-9319e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-di-9319e-module-giam-sat-vung-studio-v2.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DI-9319E">
+                        <span class="gst-product-badge">Module hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-di-9319e-module-giam-sat-vung-studio-v2.png}" alt="Ảnh minh họa Module giám sát vùng GST DI-9319E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DI-9319E</p><h3>Module giám sát vùng</h3>
+                        <p>Kết nối nhóm đầu báo thường vào hệ địa chỉ. Khi có báo cháy, trung tâm hiển thị địa chỉ của module, không phải từng đầu báo thường.</p>
+                        <div class="gst-product-tags"><span>Kết nối đầu báo thường</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-dc-9503e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-dc-9503e-module-cach-ly-studio-v2.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DC-9503E">
+                        <span class="gst-product-badge">Module hệ địa chỉ</span>
+                        <img th:src="@{/img/gst/gst-dc-9503e-module-cach-ly-studio-v2.png}" alt="Ảnh minh họa Module cách ly ngắn mạch GST DC-9503E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DC-9503E</p><h3>Module cách ly ngắn mạch</h3>
+                        <p>Cách ly đoạn loop bị ngắn mạch và tự phục hồi khi sự cố được khắc phục. Thiết bị dùng trên loop của hệ báo cháy địa chỉ.</p>
+                        <div class="gst-product-tags"><span>Bảo vệ đường loop</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+            </div>
+            <p class="gst-technical-note">DC-9503E là bộ cách ly cho đường loop địa chỉ dù mang tiền tố “DC”. Khả năng tương thích và tải điều khiển cần được đối chiếu theo tài liệu model, trung tâm và thiết kế công trình.</p>
+        </section>
+    </section>
+
+    <section id="he-thuong" class="gst-conventional"><div class="container gst-section">
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-5"><p class="gst-eyebrow">02 / CONVENTIONAL</p><h2>Hệ báo cháy<br>thường GST</h2><p>Các thiết bị được tổ chức thành từng vùng (zone). Trung tâm hiển thị vùng phát tín hiệu để người vận hành kiểm tra khu vực tương ứng.</p><a th:href="@{/contact}" class="gst-text-link">Tư vấn hệ thường <span aria-hidden="true">→</span></a></div>
+            <div class="col-lg-7 gst-collection-note"><span>TỦ TRUNG TÂM · THIẾT BỊ · BEAM</span><p>Lựa chọn tủ từ 2 đến 16 vùng.<br>Đầu báo và thiết bị cảnh báo theo zone.</p></div>
+        </div>
+        <section id="tu-he-thuong" class="gst-panel-section" aria-labelledby="gst-conventional-panel-heading">
+            <div class="gst-subsection-heading"><div><p class="gst-eyebrow">QUẢN LÝ BÁO CHÁY THEO VÙNG</p><h3 id="gst-conventional-panel-heading">Tủ trung tâm báo cháy thường</h3></div><span class="gst-count">04 lựa chọn số vùng</span></div>
+            <div class="gst-panel-family">
+                <figure class="gst-panel-family-visual">
+                    <a th:href="@{/img/gst/gst-102a-104a-108a-116a-tu-trung-tam-thuong-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn dòng tủ báo cháy thường GST">
+                        <img th:src="@{/img/gst/gst-102a-104a-108a-116a-tu-trung-tam-thuong-studio.png}" alt="Minh họa dòng tủ thường GST102A, GST104A, GST108A và GST116A" width="1254" height="1254" loading="lazy">
+                    </a>
+                    <figcaption>Ảnh minh họa chung dòng tủ thường GST. Mặt hiển thị và kích thước thay đổi theo model, phiên bản.</figcaption>
+                </figure>
+                <div class="gst-panel-family-info">
+                    <p class="gst-product-code">GST102A / GST104A / GST108A / GST116A</p>
+                    <h4>Một dòng tủ, bốn mức phân vùng</h4>
+                    <p>Tiếp nhận tín hiệu từ đầu báo và nút nhấn theo từng zone, hiển thị vùng báo cháy hoặc sự cố bằng đèn chỉ thị. Chọn số vùng theo cách phân chia khu vực của công trình.</p>
+                    <table class="gst-panel-models">
+                        <caption>Chọn model theo số vùng báo cháy</caption>
+                        <thead><tr><th scope="col">Model</th><th scope="col">Số vùng</th><th scope="col">Tư vấn</th></tr></thead>
+                        <tbody>
+                            <tr id="gst102a"><th scope="row">GST102A</th><td><strong>2</strong> zone</td><td><a th:href="@{/contact}" aria-label="Yêu cầu báo giá GST102A">Báo giá ↗</a></td></tr>
+                            <tr id="gst104a"><th scope="row">GST104A</th><td><strong>4</strong> zone</td><td><a th:href="@{/contact}" aria-label="Yêu cầu báo giá GST104A">Báo giá ↗</a></td></tr>
+                            <tr id="gst108a"><th scope="row">GST108A</th><td><strong>8</strong> zone</td><td><a th:href="@{/contact}" aria-label="Yêu cầu báo giá GST108A">Báo giá ↗</a></td></tr>
+                            <tr id="gst116a"><th scope="row">GST116A</th><td><strong>16</strong> zone</td><td><a th:href="@{/contact}" aria-label="Yêu cầu báo giá GST116A">Báo giá ↗</a></td></tr>
+                        </tbody>
+                    </table>
+                    <p class="gst-panel-help">Zone là vùng giám sát gồm một nhóm thiết bị; trung tâm nhận diện vùng phát tín hiệu.</p>
+                </div>
+            </div>
+        </section>
+        <h3 class="gst-accessory-title">Thiết bị cho hệ thường</h3>
+        <div class="gst-product-grid gst-core-grid">
+                <article class="gst-product" id="gst-c-9401n">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-c-9401n-coi-den-bao-chay-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST C-9401N">
+                        <span class="gst-product-badge">Hệ thường</span>
+                        <img th:src="@{/img/gst/gst-c-9401n-coi-den-bao-chay-studio.png}" alt="Ảnh minh họa Còi đèn báo cháy thường GST C-9401N" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · C-9401N</p><h3>Còi đèn báo cháy thường</h3>
+                        <p>Kết hợp cảnh báo bằng âm thanh và ánh sáng khi được cấp nguồn kích hoạt từ hệ thống tương thích.</p>
+                        <div class="gst-product-tags"><span>Âm thanh &amp; ánh sáng</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-dc-9204e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-dc-9204e-nut-nhan-thuong-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DC-9204E">
+                        <span class="gst-product-badge">Hệ thường</span>
+                        <img th:src="@{/img/gst/gst-dc-9204e-nut-nhan-thuong-studio.png}" alt="Ảnh minh họa Nút nhấn báo cháy thường GST DC-9204E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DC-9204E</p><h3>Nút nhấn báo cháy thường</h3>
+                        <p>Phát tín hiệu báo cháy bằng thao tác nhấn, sử dụng với trung tâm báo cháy thường tương thích.</p>
+                        <div class="gst-product-tags"><span>Kích hoạt bằng tay</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-dc-9102e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-dc-9102e-dau-bao-khoi-thuong-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DC-9102E">
+                        <span class="gst-product-badge">Hệ thường</span>
+                        <img th:src="@{/img/gst/gst-dc-9102e-dau-bao-khoi-thuong-studio.png}" alt="Ảnh minh họa Đầu báo khói quang GST DC-9102E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DC-9102E</p><h3>Đầu báo khói quang</h3>
+                        <p>Phát hiện khói bằng nguyên lý quang học, sử dụng trong hệ thống báo cháy thường.</p>
+                        <div class="gst-product-tags"><span>Phát hiện khói</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <article class="gst-product" id="gst-dc-9103e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-dc-9103e-dau-bao-nhiet-thuong-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DC-9103E">
+                        <span class="gst-product-badge">Hệ thường</span>
+                        <img th:src="@{/img/gst/gst-dc-9103e-dau-bao-nhiet-thuong-studio.png}" alt="Ảnh minh họa Đầu báo nhiệt GST DC-9103E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DC-9103E</p><h3>Đầu báo nhiệt</h3>
+                        <p>Kết hợp phát hiện nhiệt độ cố định và nhiệt gia tăng trong một đầu báo thường.</p>
+                        <div class="gst-product-tags"><span>Phát hiện nhiệt</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+        </div>
+        <section id="beam-he-thuong" class="gst-beam-section" aria-labelledby="gst-beam-heading">
+            <div class="gst-subsection-heading"><div><p class="gst-eyebrow">PHÁT HIỆN KHÓI BẰNG TIA CHIẾU</p><h3 id="gst-beam-heading">Đầu báo beam hệ thường</h3></div></div>
+            <div class="gst-beam-layout">
+                <article class="gst-product gst-product-featured" id="gst-dc-9105e">
+                    <a class="gst-product-image" th:href="@{/img/gst/gst-dc-9105e-dau-bao-beam-thuong-studio.png}" target="_blank" rel="noopener" aria-label="Xem ảnh lớn GST DC-9105E">
+                        <span class="gst-product-badge">Hệ thường</span>
+                        <img th:src="@{/img/gst/gst-dc-9105e-dau-bao-beam-thuong-studio.png}" alt="Ảnh minh họa Đầu báo beam phản xạ GST DC-9105E" width="1254" height="1254" loading="lazy">
+                        <span class="gst-image-hint">Xem ảnh lớn ↗</span>
+                    </a>
+                    <div class="gst-product-info">
+                        <p class="gst-product-code">GST · DC-9105E</p><h3>Đầu báo beam phản xạ</h3>
+                        <p>Phát hiện khói qua suy giảm chùm tia phản xạ. Thiết bị tích hợp bộ phát và thu, sử dụng cùng gương phản xạ.</p>
+                        <div class="gst-product-tags"><span>Beam · Nguồn 24 VDC</span></div>
+                        <a th:href="@{/contact}" class="gst-product-cta">Yêu cầu báo giá <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+                <aside class="gst-beam-detail"><h4>Giám sát không gian lớn</h4><p>Dùng cho không gian như kho, sảnh lớn hoặc nhà triển lãm khi đáp ứng điều kiện thiết kế và đường truyền quang.</p><ul><li>Tích hợp hỗ trợ căn chỉnh bằng laser và hiển thị cường độ tín hiệu.</li><li>Có tiếp điểm báo cháy và báo lỗi riêng.</li><li>Gương phản xạ, vị trí lắp đặt và nguồn cấp được lựa chọn theo cấu hình công trình.</li></ul></aside>
+            </div>
+        </section>
+    </div></section>
+
+    <section id="so-sanh" class="container gst-section">
+        <p class="gst-eyebrow">HIỂU RÕ TỪNG HỆ THỐNG</p><h2>Địa chỉ hay thường?</h2><p class="mb-4">Điểm khác biệt chính nằm ở cách nhận diện và quản lý tín hiệu.</p>
+        <div class="table-responsive gst-comparison"><table class="table mb-0"><caption class="visually-hidden">So sánh hệ báo cháy địa chỉ và hệ báo cháy thường GST</caption><thead><tr><th scope="col">Tiêu chí</th><th scope="col">Hệ địa chỉ</th><th scope="col">Hệ thường</th></tr></thead><tbody>
+            <tr><th scope="row">Nhận diện báo cháy</th><td>Theo địa chỉ thiết bị</td><td>Theo vùng (zone)</td></tr>
+            <tr><th scope="row">Tổ chức thiết bị</th><td>Thiết bị địa chỉ trên đường loop</td><td>Thiết bị thường trên mạch vùng</td></tr>
+            <tr><th scope="row">Quản lý vận hành</th><td>Theo dõi chi tiết từng điểm địa chỉ</td><td>Theo dõi và kiểm tra từng vùng</td></tr>
+            <tr><th scope="row">Lựa chọn cấu hình</th><td>Theo số điểm, số loop và yêu cầu kết nối</td><td>Theo số vùng và thiết bị trên mỗi vùng</td></tr>
+        </tbody></table></div>
+        <p class="small mt-3">Cấu hình và khả năng tương thích cần được đối chiếu theo tài liệu từng model và thiết kế công trình. <a href="https://www.gst.com.cn/en/certifications/" target="_blank" rel="noopener noreferrer">Tài liệu &amp; chứng nhận GST <span aria-hidden="true">↗</span></a></p>
+    </section>
+
+    <section id="tu-van" class="container pb-5"><div class="gst-cta"><div><p class="gst-eyebrow">KIM THÀNH PHÁT</p><h2>Bắt đầu từ nhu cầu<br>công trình của bạn.</h2><p>Chia sẻ mặt bằng và nhu cầu sử dụng để được tư vấn hệ báo cháy GST.</p></div><div class="d-flex flex-column gap-3"><a class="btn gst-button" th:href="@{/contact}">Liên hệ tư vấn <span aria-hidden="true">→</span></a><a class="gst-phone" href="tel:0934752114">Hotline: 0934.752.114</a></div></div></section>
+</main>
+<div th:replace="~{fragments/footer :: siteFooter}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

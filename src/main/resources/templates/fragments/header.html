@@ -43,6 +43,9 @@
                 </li>
 
                 <!-- MEGA MENU -->
+                <li><a th:href="@{/he-thong-bao-chay-gst}">GST</a></li>
+
+                <!-- MEGA MENU -->
                 <li class="mega-dropdown">
                     <a class="dropdown-toggle" th:href="@{/products}">SẢN PHẨM</a>
 
@@ -148,6 +151,7 @@
                 </li>
 
                 <li class="mt-3 fw-bold text-white ps-3">SẢN PHẨM</li>
+                <li><a th:href="@{/he-thong-bao-chay-gst}">Báo cháy GST</a></li>
 
                 <li th:each="c : ${categories}" th:if="${c.name == 'Hệ chữa cháy khí'}">
                     <a th:text="${c.name}" th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}"></a>
