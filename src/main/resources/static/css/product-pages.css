@@ -50,7 +50,6 @@ body.products-page {
 .catalog-main { padding: 54px 0 86px; }
 .catalog-layout { align-items: flex-start; }
 .catalog-sidebar { position: sticky; top: 18px; }
-.catalog-sidebar-label { margin: 0 0 15px; color: var(--catalog-navy); font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .catalog-sidebar .sidebar-modern { overflow: hidden; border: 1px solid var(--catalog-line); border-radius: 18px; background: #fff; box-shadow: 0 14px 35px rgba(16,34,56,.06); }
 .catalog-sidebar .sb-block { border-bottom: 1px solid var(--catalog-line); }
 .catalog-sidebar .sb-block:last-child { border-bottom: 0; }
