@@ -2,232 +2,129 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Chi tiết sản phẩm</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${product.name} + ' | Kim Thành Phát'">Chi tiết sản phẩm | Kim Thành Phát</title>
+    <meta name="description" th:content="${'Thông tin và báo giá ' + product.name + ' tại Kim Thành Phát. Tư vấn thiết bị PCCC phù hợp cho từng công trình.'}">
+    <link rel="canonical" th:href="${'https://kimthanhphatpccc.vn/products/' + product.slug}">
+    <meta property="og:type" content="product">
+    <meta property="og:title" th:content="${product.name + ' | Kim Thành Phát'}">
+    <meta property="og:description" th:content="${'Thông tin, tư vấn và báo giá ' + product.name + ' tại Kim Thành Phát.'}">
+    <meta property="og:url" th:content="${'https://kimthanhphatpccc.vn/products/' + product.slug}">
+    <meta property="og:image" th:if="${!#strings.isEmpty(product.image)}" th:content="${product.image}">
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
-    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
-    <link th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet">
-
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link th:href="@{/css/style.css}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link th:href="@{/css/header.css}" rel="stylesheet">
+    <link th:href="@{/css/product-pages.css}" rel="stylesheet">
 </head>
-
-<style>
-    .product-main-image {
-        width: 100%;
-        height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #f8f9fa;
-        overflow: hidden;
-        border-radius: 12px;
-    }
-
-    .product-main-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
-
-    .product-main-image:hover img {
-        transform: scale(1.05);
-    }
-
-    .product-card {
-        border-radius: 0.75rem;
-        background-color: #fff;
-        transition: all 0.3s ease;
-    }
-
-    .product-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .product-card img {
-        border-top-left-radius: 0.75rem;
-        border-top-right-radius: 0.75rem;
-        transition: transform 0.3s ease;
-    }
-
-    .product-card:hover img {
-        transform: scale(1.05);
-    }
-
-    section.container {
-        background-color: #fafafa;
-        border-radius: 10px;
-        padding: 40px;
-    }
-
-    /* BREADCRUMB NEW STYLE (same as news_detail) */
-    .breadcrumb-custom {
-        font-size: 15px;
-        margin-bottom: 20px;
-    }
-
-    .breadcrumb-custom a {
-        color: #d32f2f;
-        font-weight: 600;
-        text-decoration: none;
-    }
-
-    .breadcrumb-custom a:hover {
-        text-decoration: underline;
-    }
-
-    .breadcrumb-custom span {
-        color: #888;
-        margin: 0 6px;
-    }
-
-    .breadcrumb-custom span:last-child {
-        color: #000;
-        font-weight: 600;
-    }
-
-</style>
-
-<body>
-
-<!-- Header -->
+<body class="products-page">
 <div th:replace="~{fragments/header :: siteHeader}"></div>
 
-<!-- MAIN -->
-<section class="container py-5" style="min-height: 80vh;">
-    <div class="row g-5 align-items-start">
-
-        <!-- BREADCRUMB (NEW STYLE LIKE NEWS DETAIL) -->
-        <nav class="breadcrumb-custom">
-            <a th:href="@{/}">Trang chủ</a>
-            <span>/</span>
-
-            <a th:href="@{'/' + ${product.category.slug}}"
-               th:text="${product.category.name}"></a>
-
-            <span>/</span>
-
-            <span th:text="${product.name}"></span>
-        </nav>
-
-        <!-- Image -->
-        <div class="col-md-5">
-            <div class="product-main-image shadow-sm bg-white border" style="position: relative;">
-
-                <!-- Badge Hết hàng -->
-                <div class="out-of-stock-badge"
-                     th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">
-                    HẾT HÀNG
-                </div>
-
-                <!-- Ảnh sản phẩm -->
-                <img th:src="${#strings.isEmpty(product.image) ? '/img/no-image.jpg' : product.image}"
-                     th:alt="${product.name}"
-                     th:classappend="${product.stockStatus?.name() == 'OUT_OF_STOCK'} ? ' out-of-stock'">
-            </div>
-        </div>
-
-        <!-- Information -->
-        <div class="col-md-7">
-            <h2 class="fw-bold mb-3 text-danger" th:text="${product.name}"></h2>
-
-            <div class="mb-3">
-                <span class="badge bg-success" th:if="${product.stockStatus?.name() == 'IN_STOCK'}">✔ Còn hàng</span>
-
-                <span class="badge bg-danger" th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">✖ Hết hàng</span>
-
-                <span class="badge bg-warning text-dark" th:text="${product.category?.name}"></span>
-            </div>
-
-
-            <p class="lead fw-bold text-danger"
-               th:if="${product.priceDisplay?.name() == 'SHOW'}"
-               th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></p>
-
-            <p th:if="${product.priceDisplay?.name() == 'CONTACT'}"
-               class="lead text-muted fst-italic">Liên hệ để báo giá</p>
-
-            <p><strong>Thương hiệu:</strong> <span th:text="${product.brand?.name}"></span></p>
-            <p><strong>Xuất xứ:</strong> <span th:text="${product.origin}"></span></p>
-            <p><strong>Bảo hành:</strong> <span th:text="${product.warrantyMonths + ' tháng'}"></span></p>
-
-            <div class="d-flex gap-3 mb-4">
-                <a href="https://zalo.me/0934752114" class="btn btn-danger px-4">Liên hệ mua hàng</a>
-                <a th:href="@{/products}" class="btn btn-outline-secondary px-4">← Quay lại danh sách</a>
-            </div>
-        </div>
+<nav class="product-breadcrumb" aria-label="Đường dẫn trang">
+    <div class="container">
+        <ol>
+            <li><a th:href="@{/}">Trang chủ</a></li>
+            <li><i class="fa-solid fa-chevron-right"></i></li>
+            <li><a th:href="@{/products}">Sản phẩm</a></li>
+            <th:block th:if="${product.category != null}">
+                <li><i class="fa-solid fa-chevron-right"></i></li>
+                <li><a th:href="@{/{slug}(slug=${product.category.slug})}" th:text="${product.category.name}">Danh mục</a></li>
+            </th:block>
+            <li><i class="fa-solid fa-chevron-right"></i></li>
+            <li aria-current="page" th:text="${product.name}">Tên sản phẩm</li>
+        </ol>
     </div>
+</nav>
 
-    <!-- Description -->
-    <div class="row mt-5">
-        <div class="col-lg-12">
-            <h4 class="border-bottom border-danger pb-2 mb-3 text-uppercase">Mô tả sản phẩm</h4>
-            <p th:utext="${product.description}" class="text-secondary lh-lg"></p>
-        </div>
-    </div>
-
-    <!-- Related products -->
-    <div class="row mt-5">
-        <h4 class="border-bottom border-danger pb-2 mb-4 text-uppercase">Sản phẩm cùng loại</h4>
-
-        <div class="col-md-3 mb-4" th:each="rel : ${relatedProducts}">
-            <div class="card h-100 border-0 shadow-sm product-card position-relative">
-
-                <!-- Badge hết hàng -->
-                <div class="related-out-badge"
-                     th:if="${rel.stockStatus?.name() == 'OUT_OF_STOCK'}">
-                    HẾT HÀNG
+<main class="product-detail-main">
+    <div class="container">
+        <section class="product-showcase">
+            <div class="row g-0">
+                <div class="col-lg-6">
+                    <div class="product-visual">
+                        <span class="product-stock-badge" th:if="${product.stockStatus?.name() == 'IN_STOCK'}">Còn hàng</span>
+                        <span class="product-stock-badge is-out" th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">Hết hàng</span>
+                        <img th:src="${#strings.isEmpty(product.image) ? '/img/no-image.jpg' : product.image}" th:alt="${product.name}">
+                    </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="product-info">
+                        <div class="product-info-kicker" th:text="${product.productType?.name ?: 'Thiết bị phòng cháy chữa cháy'}">Thiết bị PCCC</div>
+                        <h1 th:text="${product.name}">Tên sản phẩm</h1>
 
-                <!-- Ảnh sản phẩm -->
-                <img th:src="${#strings.isEmpty(rel.image) ? '/img/no-image.jpg' : rel.image}"
-                     th:alt="${rel.name}"
-                     th:classappend="${rel.stockStatus?.name() == 'OUT_OF_STOCK'} ? ' related-img-out'"
-                     class="card-img-top"
-                     style="height: 200px; object-fit: cover;">
+                        <div class="product-price-large" th:if="${product.priceDisplay?.name() == 'SHOW' and product.price != null}" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'">0 ₫</div>
+                        <div class="product-price-large is-contact" th:if="${product.priceDisplay?.name() == 'CONTACT' or product.price == null}">Liên hệ để nhận báo giá theo nhu cầu</div>
 
-                <div class="card-body text-center">
-                    <h6 class="fw-semibold text-truncate" th:text="${rel.name}"></h6>
+                        <div class="product-facts">
+                            <div class="product-fact">
+                                <small>Thương hiệu</small>
+                                <strong th:text="${product.brand?.name ?: 'Đang cập nhật'}">Đang cập nhật</strong>
+                            </div>
+                            <div class="product-fact">
+                                <small>Xuất xứ</small>
+                                <strong th:text="${#strings.isEmpty(product.origin) ? 'Đang cập nhật' : product.origin}">Đang cập nhật</strong>
+                            </div>
+                            <div class="product-fact">
+                                <small>Danh mục</small>
+                                <strong th:text="${product.category?.name ?: 'Thiết bị PCCC'}">Thiết bị PCCC</strong>
+                            </div>
+                            <div class="product-fact">
+                                <small>Bảo hành</small>
+                                <strong th:text="${product.warrantyMonths != null ? product.warrantyMonths + ' tháng' : 'Theo chính sách sản phẩm'}">Theo chính sách sản phẩm</strong>
+                            </div>
+                        </div>
 
-                    <!-- Giá -->
-                    <p class="text-danger fw-bold small"
-                       th:if="${rel.priceDisplay?.name() == 'SHOW'}"
-                       th:text="${#numbers.formatDecimal(rel.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></p>
+                        <div class="product-actions">
+                            <a href="https://zalo.me/0934752114" target="_blank" rel="noopener" class="product-primary-action">
+                                <i class="fa-solid fa-comment-dots"></i> Nhận tư vấn qua Zalo
+                            </a>
+                            <a th:href="@{/contact}" class="product-secondary-action">
+                                <i class="fa-regular fa-envelope"></i> Yêu cầu báo giá
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <p class="text-muted small fst-italic"
-                       th:if="${rel.priceDisplay?.name() == 'CONTACT'}">Liên hệ</p>
+        <section class="product-description-panel">
+            <h2 class="product-section-heading">Thông tin sản phẩm</h2>
+            <div class="product-description-content" th:if="${!#strings.isEmpty(product.description)}" th:utext="${product.description}"></div>
+            <p class="product-description-content mb-0" th:if="${#strings.isEmpty(product.description)}">Thông tin chi tiết đang được cập nhật. Vui lòng liên hệ Kim Thành Phát để nhận thông số kỹ thuật và tư vấn phù hợp.</p>
+        </section>
 
-                    <a th:href="@{/{slug}(slug=${rel.slug})}"
-                       class="btn btn-outline-danger btn-sm mt-1">
-                        Xem chi tiết
+        <section class="related-section" th:if="${!#lists.isEmpty(relatedProducts)}">
+            <div class="related-section-head">
+                <h2>Sản phẩm liên quan</h2>
+                <a th:href="@{/products}">Xem toàn bộ sản phẩm <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" th:each="rel : ${relatedProducts}">
+                    <a class="catalog-card" th:href="@{/products/{slug}(slug=${rel.slug})}">
+                        <div class="catalog-card-media">
+                            <span class="catalog-card-status is-out" th:if="${rel.stockStatus?.name() == 'OUT_OF_STOCK'}">Hết hàng</span>
+                            <img th:src="${#strings.isEmpty(rel.image) ? '/img/no-image.jpg' : rel.image}" th:alt="${rel.name}" loading="lazy">
+                        </div>
+                        <div class="catalog-card-body">
+                            <div class="catalog-card-meta" th:text="${rel.brand?.name ?: 'Thiết bị PCCC'}">Thiết bị PCCC</div>
+                            <h3 th:text="${rel.name}">Tên sản phẩm</h3>
+                            <div class="catalog-card-price" th:if="${rel.priceDisplay?.name() == 'SHOW' and rel.price != null}" th:text="${#numbers.formatDecimal(rel.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'">0 ₫</div>
+                            <div class="catalog-card-price is-contact" th:if="${rel.priceDisplay?.name() == 'CONTACT' or rel.price == null}">Liên hệ báo giá</div>
+                            <div class="catalog-card-link">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
                     </a>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
+</main>
 
-</section>
-
-<!-- Footer -->
 <footer th:replace="~{fragments/footer :: siteFooter}"></footer>
-
-</body>
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script th:src="@{/lib/wow/wow.min.js}"></script>
-<script th:src="@{/lib/easing/easing.min.js}"></script>
-<script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
-<script th:src="@{/lib/counterup/counterup.min.js}"></script
+</body>
+</html>
