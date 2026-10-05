@@ -46,7 +46,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/admin/**").hasRole("ADMIN")   // Chỉ admin
                 .requestMatchers(
-                        "/", "/about", "/contact", "/faq", "/hsnl", "/consulting",
+                        "/", "/about", "/contact", "/faq", "/hsnl",
                         "/login", "/css/**", "/js/**", "/img/**", "/lib/**"
                 ).permitAll()
                 .anyRequest().permitAll()

@@ -46,4 +46,14 @@ class AboutPageTests {
                 .andExpect(content().string(containsString("href=\"/contact\"")))
                 .andExpect(content().string(containsString("/css/about.css")));
     }
+
+    @Test
+    void consultingPageIsNoLongerAvailable() throws Exception {
+        MockMvc mvc = MockMvcBuilders
+                .standaloneSetup(new HomeController(mock(CategoryService.class)))
+                .build();
+
+        mvc.perform(get("/consulting"))
+                .andExpect(status().isNotFound());
+    }
 }
