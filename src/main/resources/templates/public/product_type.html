@@ -2,164 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${productType.name} + ' - Loại sản phẩm'">Loại sản phẩm</title>
-
-    <!-- CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${productType.name} + ' | Kim Thành Phát'">Loại sản phẩm | Kim Thành Phát</title>
+    <meta name="description" th:content="${'Khám phá các sản phẩm thuộc nhóm ' + productType.name + ' tại Kim Thành Phát. Nhận tư vấn và báo giá thiết bị PCCC.'}">
+    <link rel="canonical" th:href="${'https://kimthanhphatpccc.vn/' + productType.slug}">
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <link th:href="@{/css/sidebar.css}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/header.css}">
-
-    <style>
-        .hero-soft {
-            width: 100%;
-            max-width: 1300px;
-            margin: 25px auto 40px auto;
-            padding: 55px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(255,120,80,0.22), rgba(255,210,190,0.22));
-            border-radius: 22px;
-            border: 1px solid rgba(255,120,80,0.26);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-        }
-
-        .product-card {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid #eee;
-            transition: .25s;
-            cursor: pointer;
-        }
-        .product-card:hover { transform: translateY(-6px); }
-
-        .product-card img { width: 100%; height: 220px; object-fit: cover; }
-
-        .pagination .page-link {
-            color: #d62828;
-            border-radius: 8px;
-            border-color: #ffcfcf;
-        }
-        .pagination .active .page-link {
-            background-color: #d62828;
-            border-color: #d62828;
-            color: #fff;
-        }
-    </style>
+    <link th:href="@{/css/header.css}" rel="stylesheet">
+    <link th:href="@{/css/product-pages.css}" rel="stylesheet">
 </head>
-
-<body>
-
-<!-- HEADER -->
+<body class="products-page">
 <div th:replace="~{fragments/header :: siteHeader}"></div>
-
-<main>
-
-    <!-- HERO -->
-    <div class="hero-soft">
-        <h1 th:text="${productType.name}"></h1>
-        <p>Sản phẩm thuộc loại này</p>
-    </div>
-
-    <div class="container py-4">
-        <div class="row">
-
-            <!-- SIDEBAR -->
-            <div class="col-lg-3">
-                <div th:replace="~{fragments/sidebar :: sidebar(
-                    categories=${categories},
-                    brandList=${brandList},
-                    productTypeList=${productTypeList}
-                )}"></div>
-            </div>
-
-            <!-- CONTENT -->
-            <div class="col-lg-9">
-
-                <!-- FILTER BAR -->
-                <form th:action="@{/products}" method="get">
-                    <div th:replace="~{fragments/filter :: filter(
-                        categories=${categories},
-                        brands=${brandList},
-                        productTypes=${productTypeList},
-                        selectedCategory=${selectedCategory},
-                        selectedBrand=${selectedBrand},
-                        selectedType=${selectedType},
-                        keyword=${keyword}
-                    )}"></div>
-                </form>
-
-                <!-- PRODUCT GRID -->
-                <div class="row g-4">
-                    <div class="col-md-4" th:each="p : ${products}">
-                        <div class="product-card"
-                             th:classappend="${p.stockStatus?.name() == 'OUT_OF_STOCK'} ? ' out-of-stock' : ''"
-                             th:onclick="'window.location.href=\'' + @{/{slug}(slug=${p.slug})} + '\';'">
-
-                            <div th:if="${p.stockStatus?.name() == 'OUT_OF_STOCK'}"
-                                 class="product-ribbon">Hết hàng</div>
-
-                            <img th:src="${#strings.isEmpty(p.image)?'/img/no-image.jpg':p.image}" />
-
-                            <div class="p-3">
-                                <div class="fw-bold" th:text="${p.name}"></div>
-
-                                <div class="text-muted small mb-2">
-                                    <span th:text="${p.brand?.name}"></span> |
-                                    <span th:text="${p.category?.name}"></span>
-                                </div>
-
-                                <div class="product-price fw-bold"
-                                     th:if="${p.priceDisplay?.name()=='SHOW'}"
-                                     th:text="${#numbers.formatDecimal(p.price,0,'COMMA',0,'POINT')} + ' ₫'">
-                                </div>
-
-                                <div th:if="${p.priceDisplay?.name()=='CONTACT'}"
-                                     class="text-muted fst-italic">Liên hệ</div>
-
-                                <a th:href="@{/{slug}(slug=${p.slug})}"
-                                   class="btn btn-outline-danger btn-sm mt-3">Xem chi tiết</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PAGINATION -->
-                <div class="mt-4 d-flex justify-content-center" th:if="${totalPages > 1}">
-                    <ul class="pagination">
-
-                        <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
-                            <a class="page-link"
-                               th:href="@{/{slug}(slug=${productType.slug}, page=${currentPage - 1})}">
-                                ← Trước
-                            </a>
-                        </li>
-
-                        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"
-                            th:classappend="${i == currentPage} ? 'active'">
-                            <a class="page-link"
-                               th:href="@{/{slug}(slug=${productType.slug}, page=${i})}"
-                               th:text="${i}"></a>
-                        </li>
-
-                        <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
-                            <a class="page-link"
-                               th:href="@{/{slug}(slug=${productType.slug}, page=${currentPage + 1})}">
-                                Sau →
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-</main>
-
+<main th:replace="~{fragments/catalog-results :: catalogResults('Loại sản phẩm', ${productType.name}, 'Khám phá các thiết bị cùng loại và chọn cấu hình phù hợp với nhu cầu sử dụng.', ${productType.slug})}"></main>
 <footer th:replace="~{fragments/footer :: siteFooter}"></footer>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/sidebar.js}"></script>
 </body>
 </html>

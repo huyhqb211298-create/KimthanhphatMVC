@@ -73,6 +73,7 @@ public class SlugController {
 
             addSidebar(model);
             addFilterDefaults(model);
+            model.addAttribute("selectedType", pt.getSlug());
 
             return "public/product_type";
         }
@@ -93,6 +94,7 @@ public class SlugController {
 
             addSidebar(model);
             addFilterDefaults(model);
+            model.addAttribute("selectedBrand", b.getSlug());
 
             return "public/brand";
         }
@@ -113,6 +115,7 @@ public class SlugController {
 
             addSidebar(model);
             addFilterDefaults(model);
+            model.addAttribute("selectedCategory", c.getSlug());
 
             return "public/category";
         }

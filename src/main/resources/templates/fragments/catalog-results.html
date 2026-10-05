@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<body>
+<th:block th:fragment="catalogResults(eyebrow, title, summary, activeSlug)">
+    <section class="catalog-hero catalog-hero-compact">
+        <div class="container">
+            <span class="catalog-eyebrow" th:text="${eyebrow}">Danh mục sản phẩm</span>
+            <h1 th:text="${title}">Tên danh mục</h1>
+            <p th:text="${summary}">Danh sách sản phẩm phù hợp.</p>
+        </div>
+    </section>
+
+    <section class="catalog-main">
+        <div class="container">
+            <div class="row g-4 catalog-layout">
+                <aside class="col-xl-3">
+                    <div class="catalog-sidebar">
+                        <div th:replace="~{fragments/sidebar :: sidebar(categories=${categories}, brandList=${brandList}, productTypeList=${productTypeList})}"></div>
+                    </div>
+                </aside>
+
+                <div class="col-xl-9">
+                    <div class="catalog-toolbar">
+                        <div class="catalog-toolbar-head">
+                            <h2>Sản phẩm trong nhóm này</h2>
+                            <span>Có thể kết hợp thêm bộ lọc để tìm nhanh hơn</span>
+                        </div>
+                        <form th:action="@{/products}" method="get">
+                            <div th:replace="~{fragments/filter :: filter(categories=${categories}, brands=${brandList}, productTypes=${productTypeList}, selectedCategory=${selectedCategory}, selectedBrand=${selectedBrand}, selectedType=${selectedType}, keyword=${keyword})}"></div>
+                        </form>
+                    </div>
+
+                    <div class="row g-4 catalog-grid" th:if="${!#lists.isEmpty(products)}">
+                        <div class="col-md-6 col-lg-4" th:each="p : ${products}">
+                            <a class="catalog-card" th:href="@{/products/{slug}(slug=${p.slug})}">
+                                <div class="catalog-card-media">
+                                    <span class="catalog-card-status is-stock" th:if="${p.stockStatus?.name() == 'IN_STOCK'}">Còn hàng</span>
+                                    <span class="catalog-card-status is-out" th:if="${p.stockStatus?.name() == 'OUT_OF_STOCK'}">Hết hàng</span>
+                                    <img th:src="${#strings.isEmpty(p.image) ? '/img/no-image.jpg' : p.image}" th:alt="${p.name}" loading="lazy">
+                                </div>
+                                <div class="catalog-card-body">
+                                    <div class="catalog-card-meta" th:text="${p.productType?.name ?: 'Thiết bị PCCC'}">Thiết bị PCCC</div>
+                                    <h3 th:text="${p.name}">Tên sản phẩm</h3>
+                                    <div class="catalog-card-sub">
+                                        <span th:if="${p.brand != null}"><i class="fa-regular fa-bookmark me-1"></i><span th:text="${p.brand.name}"></span></span>
+                                        <span th:if="${p.category != null}"><i class="fa-regular fa-folder me-1"></i><span th:text="${p.category.name}"></span></span>
+                                    </div>
+                                    <div class="catalog-card-price" th:if="${p.priceDisplay?.name() == 'SHOW' and p.price != null}" th:text="${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'">0 ₫</div>
+                                    <div class="catalog-card-price is-contact" th:if="${p.priceDisplay?.name() == 'CONTACT' or p.price == null}">Liên hệ để nhận báo giá</div>
+                                    <div class="catalog-card-link">Xem thông tin sản phẩm <i class="fa-solid fa-arrow-right"></i></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="catalog-empty mt-4" th:if="${#lists.isEmpty(products)}">
+                        <i class="fa-solid fa-box-open"></i>
+                        <h3>Chưa có sản phẩm trong nhóm này</h3>
+                        <p>Gửi nhu cầu để Kim Thành Phát hỗ trợ tìm thiết bị phù hợp với công trình của bạn.</p>
+                        <a class="btn btn-danger px-4" th:href="@{/contact}">Nhận tư vấn</a>
+                    </div>
+
+                    <nav class="mt-5 d-flex justify-content-center" th:if="${totalPages > 1}" aria-label="Phân trang sản phẩm">
+                        <ul class="pagination">
+                            <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                                <a class="page-link" aria-label="Trang trước" th:href="@{/{slug}(slug=${activeSlug}, page=${currentPage - 1})}"><i class="fa-solid fa-angle-left"></i></a>
+                            </li>
+                            <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}" th:classappend="${i == currentPage} ? 'active'">
+                                <a class="page-link" th:href="@{/{slug}(slug=${activeSlug}, page=${i})}" th:text="${i}">1</a>
+                            </li>
+                            <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                                <a class="page-link" aria-label="Trang sau" th:href="@{/{slug}(slug=${activeSlug}, page=${currentPage + 1})}"><i class="fa-solid fa-angle-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+</th:block>
+</body>
+</html>
