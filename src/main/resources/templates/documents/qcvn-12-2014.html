@@ -46,12 +46,20 @@
             margin-bottom: 1.5rem;
         }
     </style>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/documents.css}"></head>
 
-<body>
+<body class="documents-page">
 
 <!-- Header -->
 <div th:replace="~{fragments/header :: siteHeader}"></div>
+<div class="document-topline">
+    <div class="documents-shell">
+        <a th:href="@{/documents}"><i class="fa-solid fa-arrow-left"></i> Quay lại danh sách văn bản</a>
+    </div>
+</div>
 
 <!-- Banner -->
 <div class="container-fluid text-white py-5 mb-5"

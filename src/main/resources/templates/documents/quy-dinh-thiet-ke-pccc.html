@@ -15,7 +15,10 @@
     <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/header.css}">
 
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/documents.css}"></head>
 <style>
     .list-unstyled li {
         border-bottom: 1px solid #eee;
@@ -108,10 +111,15 @@
     }
 
 </style>
-<body>
+<body class="documents-page">
 <div class="container-fluid bg-white p-0">
     <!-- Header -->
     <div th:replace="~{fragments/header :: siteHeader}"></div>
+<div class="document-topline">
+    <div class="documents-shell">
+        <a th:href="@{/documents}"><i class="fa-solid fa-arrow-left"></i> Quay lại danh sách văn bản</a>
+    </div>
+</div>
     <!-- Page Header -->
     <div class="container-fluid text-white py-5 mb-5"
          style="background:
@@ -366,6 +374,6 @@
 <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
 
 <!-- JS chính -->
-<script th:src="@{/js/main.js}"></script>
+
 </body>
 </html>
