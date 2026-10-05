@@ -49,6 +49,7 @@ class HomePageTests {
                 .andExpect(content().string(containsString("Sản phẩm cho")))
                 .andExpect(content().string(containsString("Thiết bị chữa cháy ban đầu")))
                 .andExpect(content().string(containsString("Xem các sản phẩm")))
+                .andExpect(content().string(containsString("/img/fire-extinguisher-lineup-studio.png")))
                 .andExpect(content().string(containsString("Phát hiện &amp; cảnh báo GST")))
                 .andExpect(content().string(containsString("Xem sản phẩm GST")))
                 .andExpect(content().string(containsString("Bình chữa cháy DeFire")))
