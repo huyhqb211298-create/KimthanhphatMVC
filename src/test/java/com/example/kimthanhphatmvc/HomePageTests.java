@@ -47,8 +47,11 @@ class HomePageTests {
                 .andExpect(view().name("index"))
                 .andExpect(content().string(containsString("Xem toàn bộ sản phẩm")))
                 .andExpect(content().string(containsString("Sản phẩm cho")))
+                .andExpect(content().string(containsString("Thiết bị chữa cháy ban đầu")))
+                .andExpect(content().string(containsString("Xem các sản phẩm")))
+                .andExpect(content().string(containsString("Phát hiện &amp; cảnh báo GST")))
+                .andExpect(content().string(containsString("Xem sản phẩm GST")))
                 .andExpect(content().string(containsString("Bình chữa cháy DeFire")))
-                .andExpect(content().string(containsString("Hệ thống báo cháy GST")))
                 .andExpect(content().string(containsString("Khí sạch FM-200")))
                 .andExpect(content().string(containsString("/img/defire-df-abc4-studio.png")));
     }
