@@ -22,19 +22,44 @@
 
 <main>
     <section class="catalog-hero">
-        <div class="container">
-            <span class="catalog-eyebrow">Danh mục thiết bị PCCC</span>
-            <h1>Thiết bị phù hợp cho từng phương án an toàn.</h1>
-            <p>Khám phá các dòng thiết bị chữa cháy, báo cháy và phụ kiện được chọn lọc cho nhà ở, doanh nghiệp và công trình.</p>
-            <div class="catalog-proof" aria-label="Cam kết sản phẩm">
-                <span><i class="fa-solid fa-shield-halved"></i> Sản phẩm rõ nguồn gốc</span>
-                <span><i class="fa-solid fa-headset"></i> Tư vấn theo công trình</span>
-                <span><i class="fa-solid fa-screwdriver-wrench"></i> Hỗ trợ kỹ thuật</span>
+        <div class="container catalog-hero-grid">
+            <div class="catalog-hero-copy">
+                <span class="catalog-eyebrow">Danh mục thiết bị PCCC</span>
+                <h1>Thiết bị an toàn cho mọi công trình.</h1>
+                <p>Danh mục chữa cháy, báo cháy và phụ kiện được chọn lọc rõ ràng, giúp bạn dễ dàng tìm đúng thiết bị theo nhu cầu sử dụng.</p>
+                <div class="catalog-hero-actions">
+                    <a class="catalog-hero-primary" href="#product-catalog">Khám phá sản phẩm <i class="fa-solid fa-arrow-down"></i></a>
+                    <a class="catalog-hero-secondary" th:href="@{/contact}">Nhận tư vấn</a>
+                </div>
+                <div class="catalog-proof" aria-label="Cam kết sản phẩm">
+                    <span><i class="fa-solid fa-shield-halved"></i> Rõ nguồn gốc</span>
+                    <span><i class="fa-solid fa-headset"></i> Tư vấn theo công trình</span>
+                    <span><i class="fa-solid fa-screwdriver-wrench"></i> Hỗ trợ kỹ thuật</span>
+                </div>
+            </div>
+
+            <div class="catalog-showcase" aria-label="Các dòng thiết bị chữa cháy">
+                <div class="catalog-showcase-card">
+                    <div class="catalog-showcase-head">
+                        <span>Sản phẩm tiêu biểu</span>
+                        <strong>01</strong>
+                    </div>
+                    <img th:src="@{/img/fire-extinguisher-lineup-studio.png}" alt="Các loại bình chữa cháy bột, khí CO2 và bọt foam">
+                    <div class="catalog-showcase-tags">
+                        <span>Bình bột</span>
+                        <span>Khí CO₂</span>
+                        <span>Bọt Foam</span>
+                    </div>
+                </div>
+                <div class="catalog-showcase-note">
+                    <i class="fa-solid fa-fire-extinguisher"></i>
+                    <span><strong>Nhiều lựa chọn</strong> cho nhà ở, cửa hàng và công trình</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="catalog-main">
+    <section class="catalog-main" id="product-catalog">
         <div class="container">
             <div class="row g-4 catalog-layout">
                 <aside class="col-xl-3">
