@@ -46,33 +46,51 @@
                     <a class="news-lead" th:href="@{'/news/' + ${featured.slug}}">
                         <img th:src="${#strings.isEmpty(featured.thumbnail) ? '/img/about-banner.jpg' : featured.thumbnail}" th:alt="${featured.title}">
                         <div class="news-lead-copy">
-                            <span class="news-date"><i class="fa-regular fa-calendar"></i><span th:text="${#temporals.format(featured.createdAt,'dd/MM/yyyy')}"></span></span>
+                            <div class="news-lead-meta">
+                                <span class="news-featured-label"><i class="fa-solid fa-bolt"></i> Tiêu điểm</span>
+                                <span class="news-date"><i class="fa-regular fa-calendar"></i><span th:text="${#temporals.format(featured.createdAt,'dd/MM/yyyy')}"></span></span>
+                            </div>
                             <h2 th:text="${featured.title}"></h2>
                             <p th:if="${!#strings.isEmpty(featured.summary)}" th:text="${featured.summary}"></p>
+                            <span class="news-lead-more">Đọc câu chuyện <i class="fa-solid fa-arrow-right"></i></span>
                         </div>
                     </a>
 
                     <div class="news-side-list">
+                        <div class="news-side-head">
+                            <div><span>Đọc nhanh</span><strong>Tin đáng chú ý</strong></div>
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
                         <a class="news-side-card" th:each="n, stat : ${others}" th:if="${stat.index < 3}" th:href="@{'/news/' + ${n.slug}}">
                             <img th:src="${#strings.isEmpty(n.thumbnail) ? '/img/about-company.jpg' : n.thumbnail}" th:alt="${n.title}" loading="lazy">
                             <div>
                                 <span class="news-date"><i class="fa-regular fa-calendar"></i><span th:text="${#temporals.format(n.createdAt,'dd/MM/yyyy')}"></span></span>
                                 <h3 th:text="${n.title}"></h3>
                             </div>
+                            <span class="news-side-index" th:text="${#numbers.formatInteger(stat.count, 2)}">01</span>
                         </a>
                     </div>
                 </div>
 
-                <div class="news-grid" th:if="${others.size() > 3}">
-                    <a class="news-card" th:each="n, stat : ${others}" th:if="${stat.index >= 3}" th:href="@{'/news/' + ${n.slug}}">
-                        <img th:src="${#strings.isEmpty(n.thumbnail) ? '/img/about-pccc-2.jpg' : n.thumbnail}" th:alt="${n.title}" loading="lazy">
-                        <div class="news-card-copy">
-                            <span class="news-date"><i class="fa-regular fa-calendar"></i><span th:text="${#temporals.format(n.createdAt,'dd/MM/yyyy')}"></span></span>
-                            <h3 th:text="${n.title}"></h3>
-                            <p th:if="${!#strings.isEmpty(n.summary)}" th:text="${n.summary}"></p>
-                            <span class="news-more">Đọc bài viết <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-                    </a>
+                <div class="news-more-section" th:if="${others.size() > 3}">
+                    <div class="news-more-head">
+                        <div><span>Góc kiến thức</span><h2>Bài viết mới dành cho bạn</h2></div>
+                        <span class="news-more-line"></span>
+                    </div>
+                    <div class="news-grid">
+                        <a class="news-card" th:each="n, stat : ${others}" th:if="${stat.index >= 3}" th:href="@{'/news/' + ${n.slug}}">
+                            <div class="news-card-media">
+                                <img th:src="${#strings.isEmpty(n.thumbnail) ? '/img/about-pccc-2.jpg' : n.thumbnail}" th:alt="${n.title}" loading="lazy">
+                                <span>Kiến thức PCCC</span>
+                            </div>
+                            <div class="news-card-copy">
+                                <span class="news-date"><i class="fa-regular fa-calendar"></i><span th:text="${#temporals.format(n.createdAt,'dd/MM/yyyy')}"></span></span>
+                                <h3 th:text="${n.title}"></h3>
+                                <p th:if="${!#strings.isEmpty(n.summary)}" th:text="${n.summary}"></p>
+                                <span class="news-more">Đọc bài viết <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
                 <nav class="news-pagination" aria-label="Phân trang tin tức" th:if="${totalPages > 1}">
