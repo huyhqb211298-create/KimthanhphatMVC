@@ -70,7 +70,10 @@
             <h2>Bài viết liên quan</h2>
             <div class="news-grid">
                 <a class="news-card" th:each="item, stat : ${related}" th:if="${stat.index < 3}" th:href="@{'/news/' + ${item.slug}}">
-                    <img th:src="${#strings.isEmpty(item.thumbnail) ? '/img/about-pccc-2.jpg' : item.thumbnail}" th:alt="${item.title}" loading="lazy">
+                    <div class="news-card-media">
+                        <img th:src="${#strings.isEmpty(item.thumbnail) ? '/img/about-pccc-2.jpg' : item.thumbnail}" th:alt="${item.title}" loading="lazy">
+                        <span>Kiến thức PCCC</span>
+                    </div>
                     <div class="news-card-copy">
                         <span class="news-date"><i class="fa-regular fa-calendar"></i><span th:text="${#temporals.format(item.createdAt,'dd/MM/yyyy')}"></span></span>
                         <h3 th:text="${item.title}"></h3>

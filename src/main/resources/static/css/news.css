@@ -178,6 +178,11 @@
 
 .related-news { padding: 0 0 80px; }
 .related-news h2 { margin: 0 0 24px; font-size: 32px; font-weight: 900; }
+.related-news .news-grid { align-items: stretch; }
+.related-news .news-card { height: 100%; }
+.related-news .news-card-media { flex: 0 0 auto; }
+.related-news .news-card-copy { min-height: 218px; }
+.related-news .news-card h3 { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
 
 @media (max-width: 991px) {
     .news-lead-grid, .article-layout { grid-template-columns: 1fr; }

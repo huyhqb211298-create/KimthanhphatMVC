@@ -54,6 +54,7 @@ class NewsPageTests {
                 .andExpect(view().name("public/news_detail"))
                 .andExpect(content().string(containsString("Kiểm tra bình chữa cháy")))
                 .andExpect(content().string(containsString("Bài viết liên quan")))
+                .andExpect(content().string(containsString("class=\"news-card-media\"")))
                 .andExpect(content().string(containsString("/css/news.css")));
     }
 
