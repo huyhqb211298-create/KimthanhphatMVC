@@ -46,7 +46,8 @@
 
                 <!-- MEGA MENU -->
                 <li class="mega-dropdown">
-                    <a class="dropdown-toggle" th:href="@{/products}">SẢN PHẨM</a>
+                    <a class="dropdown-toggle" th:href="@{/products}"
+                       aria-haspopup="true">SẢN PHẨM</a>
 
                     <div class="mega-menu">
 
@@ -185,23 +186,31 @@
             const btnBrand = document.getElementById("btnBrand");
             const brandExtra = document.querySelectorAll(".brand-extra");
 
-            btnBrand.addEventListener("click", function () {
-                brandExtra.forEach(item => item.classList.toggle("d-none"));
-                btnBrand.textContent = brandExtra[0].classList.contains("d-none")
-                    ? "Xem thêm ▼"
-                    : "Thu gọn ▲";
-            });
+            if (btnBrand && brandExtra.length > 0) {
+                btnBrand.addEventListener("click", function () {
+                    brandExtra.forEach(item => item.classList.toggle("d-none"));
+                    btnBrand.textContent = brandExtra[0].classList.contains("d-none")
+                        ? "Xem thêm ▼"
+                        : "Thu gọn ▲";
+                });
+            } else if (btnBrand) {
+                btnBrand.hidden = true;
+            }
 
             // TOGGLE PRODUCT TYPE
             const btnType = document.getElementById("btnType");
             const typeExtra = document.querySelectorAll(".type-extra");
 
-            btnType.addEventListener("click", function () {
-                typeExtra.forEach(item => item.classList.toggle("d-none"));
-                btnType.textContent = typeExtra[0].classList.contains("d-none")
-                    ? "Xem thêm ▼"
-                    : "Thu gọn ▲";
-            });
+            if (btnType && typeExtra.length > 0) {
+                btnType.addEventListener("click", function () {
+                    typeExtra.forEach(item => item.classList.toggle("d-none"));
+                    btnType.textContent = typeExtra[0].classList.contains("d-none")
+                        ? "Xem thêm ▼"
+                        : "Thu gọn ▲";
+                });
+            } else if (btnType) {
+                btnType.hidden = true;
+            }
 
         });
 

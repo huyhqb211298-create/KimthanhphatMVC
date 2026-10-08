@@ -19,6 +19,8 @@
     background: linear-gradient(105deg,#c92700 0%,var(--pccc-red) 46%,#ff762f 100%);
     padding:10px 0;
     box-shadow:0 8px 24px rgba(89,23,3,.22);
+    position:relative;
+    z-index:1030;
 }
 
 .site-navbar .nav-content {
@@ -96,10 +98,9 @@
 .mega-dropdown { position:relative; }
 
 .mega-menu {
-    display:none;
+    display:grid;
     position:absolute;
-    top:120%;
-    left:0;
+    top:calc(100% + 8px);
     width:650px;
     background:#fff;
     padding:20px 25px;
@@ -108,10 +109,29 @@
     z-index:999;
     grid-template-columns: repeat(3,1fr);
     gap:20px;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translateY(6px);
+    transition:opacity .16s ease, transform .16s ease, visibility 0s linear .16s;
 }
 
-.mega-dropdown:hover .mega-menu {
-    display:grid;
+.mega-menu::before {
+    content:"";
+    position:absolute;
+    right:0;
+    bottom:100%;
+    width:100%;
+    height:12px;
+}
+
+.mega-dropdown:hover .mega-menu,
+.mega-dropdown:focus-within .mega-menu {
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateY(0);
+    transition-delay:0s;
 }
 
 .mega-dropdown .mega-menu {
@@ -133,6 +153,7 @@
     text-decoration:none;
     font-size:14px;
     border-radius:4px;
+    transform:none;
 }
 
 .mega-col a:hover {
@@ -140,6 +161,7 @@
     padding-left: 6px;     /* chỉ nhích nhẹ */
     border-radius: 4px;
     color: #e63600 !important;
+    transform:none;
 }
 
 
