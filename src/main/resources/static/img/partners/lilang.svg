@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" role="img" aria-labelledby="title">
+  <title id="title">LiLang</title>
+  <path fill="#d9271e" d="M60 57h58v143h120v58H60V57Z"/>
+  <path fill="#f05a28" d="M151 56h80l-88 104H76l75-104Z" opacity=".9"/>
+  <text x="278" y="211" fill="#d9271e" font-family="Arial,Helvetica,sans-serif" font-size="134" font-weight="900" font-style="italic" letter-spacing="3">LiLang</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" role="img" aria-labelledby="title">
+  <title id="title">Tomoken Fire Vietnam</title>
+  <path fill="#d9271e" d="M56 70h190v48h-68v142h-55V118H56V70Z"/>
+  <path fill="#d9271e" d="M198 55c28 28 35 58 8 91 0-23-10-35-26-47 7-15 12-29 18-44Z"/>
+  <text x="270" y="190" fill="#151e2b" font-family="Arial,Helvetica,sans-serif" font-size="112" font-weight="900" letter-spacing="2">TOMOKEN</text>
+  <text x="276" y="246" fill="#d9271e" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="700" letter-spacing="13">FIRE VIETNAM</text>
+</svg>

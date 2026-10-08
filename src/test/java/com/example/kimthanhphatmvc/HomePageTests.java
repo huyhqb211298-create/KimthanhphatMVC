@@ -56,6 +56,8 @@ class HomePageTests {
                 .andExpect(content().string(containsString("Khí sạch FM-200")))
                 .andExpect(content().string(containsString("/img/defire-df-abc4-studio.png")))
                 .andExpect(content().string(containsString("Thương hiệu đồng hành")))
-                .andExpect(content().string(containsString("/img/partners/gst.png")));
+                .andExpect(content().string(containsString("/img/partners/gst.png")))
+                .andExpect(content().string(containsString("/img/partners/protector.svg")))
+                .andExpect(content().string(containsString("/img/partners/mintai.svg")));
     }
 }

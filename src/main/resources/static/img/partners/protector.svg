@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" role="img" aria-labelledby="title">
+  <title id="title">Protector</title>
+  <path fill="#1766a3" d="M92 42 202 82v74c0 65-41 104-110 130C23 260-18 221-18 156V82L92 42Zm0 48-66 24v42c0 40 22 66 66 86 44-20 66-46 66-86v-42L92 90Z" transform="translate(42)"/>
+  <path fill="#ef3e33" d="m134 108 25 25-70 72-42-42 25-25 17 17 45-47Z"/>
+  <text x="245" y="199" fill="#153d63" font-family="Arial,Helvetica,sans-serif" font-size="98" font-weight="800" letter-spacing="2">PROTECTOR</text>
+</svg>
