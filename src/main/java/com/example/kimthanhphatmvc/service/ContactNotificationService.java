@@ -19,7 +19,7 @@ public class ContactNotificationService {
     public ContactNotificationService(
             ObjectProvider<JavaMailSender> mailSenderProvider,
             @Value("${contact.notification.enabled:false}") boolean enabled,
-            @Value("${contact.notification.email:info@kimthanhphatpccc.vn}") String recipient,
+            @Value("${contact.notification.email:pccckimthanhphat@gmail.com}") String recipient,
             @Value("${contact.notification.from:}") String from) {
         this.mailSenderProvider = mailSenderProvider;
         this.enabled = enabled;
