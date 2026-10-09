@@ -1,84 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Chính sách Cookie | Kim Thành Phát</title>
-
-    <!-- BOOTSTRAP -->
+    <meta name="description" content="Tìm hiểu cách website Kim Thành Phát sử dụng cookie và cách bạn có thể kiểm soát dữ liệu được lưu trên trình duyệt.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- FONT AWESOME -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-    <!-- CSS CHÍNH -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/support-pages.css}">
 </head>
-
-<body>
-
-<!-- HEADER -->
+<body class="support-page">
 <div th:replace="~{fragments/header :: siteHeader}"></div>
 
-<!-- BANNER -->
-<div class="container-fluid text-white py-5 mb-5"
-     style="background:
-            linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url('/img/about-banner.jpg') center/cover no-repeat;">
-    <div class="container text-center py-5">
-        <h1 class="display-4 fw-bold text-warning mb-3">Chính sách Cookie</h1>
-        <p class="lead mb-0">Cách chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn</p>
-    </div>
-</div>
+<main>
+    <section class="support-hero">
+        <div class="support-shell support-hero__content">
+            <p class="support-eyebrow">Quyền riêng tư trên website</p>
+            <h1>Chính sách Cookie</h1>
+            <p class="support-hero__lead">Thông tin minh bạch về cách cookie hỗ trợ hoạt động của website và cách bạn chủ động kiểm soát lựa chọn của mình.</p>
+        </div>
+    </section>
 
-<!-- CONTENT -->
-<div class="container my-5">
+    <section class="support-section">
+        <div class="support-shell support-layout">
+            <article class="policy-card">
+                <div class="policy-section" id="cookie-la-gi">
+                    <span class="policy-index">01</span>
+                    <div><h2>Cookie là gì?</h2><p>Cookie là các tệp nhỏ được lưu trên trình duyệt khi bạn truy cập website. Chúng giúp nhận diện thiết bị, ghi nhớ tùy chọn và cải thiện hiệu suất website.</p></div>
+                </div>
+                <div class="policy-section" id="muc-dich-su-dung">
+                    <span class="policy-index">02</span>
+                    <div>
+                        <h2>Chúng tôi sử dụng cookie để làm gì?</h2>
+                        <ul>
+                            <li>Ghi nhớ một số tùy chọn hiển thị trên website.</li>
+                            <li>Phân tích cách người dùng truy cập để cải thiện nội dung.</li>
+                            <li>Hỗ trợ tốc độ tải trang và trải nghiệm sử dụng.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="policy-section" id="kiem-soat-cookie">
+                    <span class="policy-index">03</span>
+                    <div><h2>Cách kiểm soát cookie</h2><p>Bạn có thể tắt cookie trong phần cài đặt của trình duyệt. Một số tính năng của website có thể hoạt động không đầy đủ nếu cookie bị tắt.</p></div>
+                </div>
+                <div class="policy-callout"><i class="fa-solid fa-circle-info"></i><span>Website có thể hiển thị thông báo chấp nhận cookie trong lần truy cập đầu tiên để ghi nhận lựa chọn về quyền riêng tư của bạn.</span></div>
+            </article>
 
-    <h3 class="text-danger fw-bold mb-3">1. Cookie là gì?</h3>
-    <p>
-        Cookie là các tệp nhỏ được lưu trữ trên trình duyệt của bạn khi truy cập website.
-        Chúng giúp nhận diện thiết bị, ghi nhớ tùy chọn và cải thiện hiệu suất website.
-    </p>
+            <aside class="support-aside">
+                <div class="support-aside__icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h2>Nội dung chính</h2>
+                <p>Chọn nhanh phần bạn muốn xem trong chính sách này.</p>
+                <nav class="policy-links" aria-label="Mục lục chính sách Cookie">
+                    <a href="#cookie-la-gi">Cookie là gì?</a>
+                    <a href="#muc-dich-su-dung">Mục đích sử dụng</a>
+                    <a href="#kiem-soat-cookie">Cách kiểm soát cookie</a>
+                </nav>
+            </aside>
+        </div>
+    </section>
 
-    <h3 class="text-danger fw-bold mt-4 mb-3">2. Chúng tôi sử dụng cookie để làm gì?</h3>
-    <ul>
-        <li>Ghi nhớ tùy chọn ngôn ngữ, bố cục giao diện.</li>
-        <li>Phân tích hành vi truy cập (Google Analytics).</li>
-        <li>Cải thiện tốc độ tải trang và trải nghiệm người dùng.</li>
-    </ul>
+    <div th:replace="~{fragments/related-news :: relatedNews}"></div>
+</main>
 
-    <h3 class="text-danger fw-bold mt-4 mb-3">3. Cách kiểm soát cookie</h3>
-    <p>
-        Bạn có thể tắt cookie trong phần cài đặt trình duyệt.
-        Tuy nhiên, một số tính năng của website có thể không hoạt động chính xác nếu cookie bị tắt.
-    </p>
-
-    <div class="alert alert-warning mt-4">
-        <i class="fa fa-info-circle me-2"></i>
-        Website Kim Thành Phát có thể hiển thị thông báo “Chấp nhận cookie” khi bạn truy cập lần đầu
-        để tuân thủ quy định về quyền riêng tư.
-    </div>
-
-    <!-- Related News -->
-    <div class="mt-5" th:replace="~{fragments/related-news :: relatedNews}"></div>
-</div>
-
-<!-- FOOTER -->
 <div th:replace="~{fragments/footer :: siteFooter}"></div>
-
-<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script th:src="@{/js/main.js}"></script>
-
-<!-- LIBS -->
-<script th:src="@{/lib/wow/wow.min.js}"></script>
-<script th:src="@{/lib/easing/easing.min.js}"></script>
-<script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
-<script th:src="@{/lib/counterup/counterup.min.js}"></script>
-<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
-
 </body>
 </html>

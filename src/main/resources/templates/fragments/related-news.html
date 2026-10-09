@@ -1,104 +1,81 @@
-<!-- fragments/related-news.html -->
-<style>
-    .related-card {
-        border-radius: 12px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        background-color: #fff;
-    }
-
-    .related-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .related-img {
-        height: 160px;
-        overflow: hidden;
-    }
-
-    .related-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.4s ease;
-    }
-
-    .related-card:hover .related-img img {
-        transform: scale(1.1);
-    }
-
-    .btn-outline-danger {
-        border-radius: 30px;
-        font-size: 0.85rem;
-        padding: 6px 14px;
-    }
-</style>
 <div th:fragment="relatedNews">
-    <section class="container my-5">
-        <h4 class="fw-bold text-danger mb-4 text-uppercase">
-            <i class="fa-solid fa-book-open me-2"></i>Tài liệu liên quan
-        </h4>
+    <style>
+        .related-resources { padding: 72px 0 82px; background: #eef2f5; font-family: "Be Vietnam Pro", sans-serif; }
+        .related-resources__shell { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+        .related-resources__head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 28px; }
+        .related-resources__eyebrow { margin: 0 0 8px; color: #d93412; font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+        .related-resources h2 { margin: 0; color: #102033; font-size: clamp(1.8rem, 3vw, 2.55rem); line-height: 1.15; letter-spacing: -.035em; font-weight: 850; }
+        .related-resources__all { flex: 0 0 auto; color: #a92b11; font-size: .88rem; font-weight: 750; text-decoration: none; }
+        .related-resources__all:hover { color: #d93412; }
+        .related-resources__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+        .related-resource {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            border: 1px solid #dce1e6;
+            border-radius: 18px;
+            color: #102033;
+            background: #fff;
+            text-decoration: none;
+            box-shadow: 0 10px 28px rgba(16, 32, 51, .045);
+            transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+        }
+        .related-resource:hover { color: #102033; transform: translateY(-5px); border-color: #e19b89; box-shadow: 0 18px 38px rgba(16, 32, 51, .1); }
+        .related-resource__icon { width: 48px; height: 48px; display: grid; place-items: center; margin-bottom: 28px; border-radius: 14px; color: #c83210; background: #fff0eb; font-size: 1.15rem; }
+        .related-resource__type { margin: 0 0 10px; color: #d93412; font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+        .related-resource h3 { margin: 0 0 12px; color: #102033; font-size: 1rem; line-height: 1.5; font-weight: 800; }
+        .related-resource__description { margin: 0; color: #6c7788; font-size: .85rem; line-height: 1.65; }
+        .related-resource__link { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 24px; color: #a92b11; font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+        @media (max-width: 991px) { .related-resources__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 575px) {
+            .related-resources { padding: 54px 0 60px; }
+            .related-resources__shell { width: min(100% - 28px, 1180px); }
+            .related-resources__head { align-items: flex-start; flex-direction: column; }
+            .related-resources__grid { grid-template-columns: 1fr; }
+            .related-resource { min-height: 270px; }
+        }
+    </style>
 
-        <div class="row g-4">
-            <!-- Bài 1 -->
-            <div class="col-md-3 col-sm-6">
-                <div class="related-card h-100 shadow-sm">
-                    <div class="related-img">
-                        <img src="/img/law.jpg" alt="Thông tư 47/2015" class="img-fluid">
-                    </div>
-                    <div class="p-3">
-                        <h6 class="fw-bold text-danger mb-1 text-uppercase">Thông tư 47/2015 hướng dẫn về bảo đảm an toàn PCCC</h6>
-                        <small class="text-muted d-block mb-2">Ngày 06/02/2017</small>
-                        <p class="small text-secondary">Hướng dẫn đảm bảo an toàn phòng cháy chữa cháy đối với cơ sở sản xuất, kinh doanh...</p>
-                        <a href="/documents/thong-tu-47" class="btn btn-outline-danger btn-sm">Chi tiết</a>
-                    </div>
+    <section class="related-resources">
+        <div class="related-resources__shell">
+            <div class="related-resources__head">
+                <div>
+                    <p class="related-resources__eyebrow">Tham khảo thêm</p>
+                    <h2>Tài liệu PCCC liên quan</h2>
                 </div>
+                <a class="related-resources__all" th:href="@{/documents}">Xem tất cả văn bản <i class="fa-solid fa-arrow-right ms-2"></i></a>
             </div>
 
-            <!-- Bài 2 -->
-            <div class="col-md-3 col-sm-6">
-                <div class="related-card h-100 shadow-sm">
-                    <div class="related-img">
-                        <img src="/img/law.jpg" alt="QCVN 12-2014" class="img-fluid">
-                    </div>
-                    <div class="p-3">
-                        <h6 class="fw-bold text-danger mb-1 text-uppercase">QCVN 12:2014/BXD – Hệ thống điện nhà ở</h6>
-                        <small class="text-muted d-block mb-2">Ngày 06/02/2017</small>
-                        <p class="small text-secondary">Quy chuẩn kỹ thuật quốc gia về hệ thống điện trong nhà ở và công trình công cộng...</p>
-                        <a href="/documents/qcvn-12-2014" class="btn btn-outline-danger btn-sm">Chi tiết</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bài 3 -->
-            <div class="col-md-3 col-sm-6">
-                <div class="related-card h-100 shadow-sm">
-                    <div class="related-img">
-                        <img src="/img/law.jpg" alt="QCVN 08-2009" class="img-fluid">
-                    </div>
-                    <div class="p-3">
-                        <h6 class="fw-bold text-danger mb-1 text-uppercase">QCVN 08:2009/BXD – Công trình ngầm đô thị</h6>
-                        <small class="text-muted d-block mb-2">Ngày 06/02/2017</small>
-                        <p class="small text-secondary">Quy chuẩn kỹ thuật quốc gia về công trình ngầm đô thị, phần 1 và phần 2...</p>
-                        <a href="/documents/qcvn-08-2009" class="btn btn-outline-danger btn-sm">Chi tiết</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bài 4 -->
-            <div class="col-md-3 col-sm-6">
-                <div class="related-card h-100 shadow-sm">
-                    <div class="related-img">
-                        <img src="/img/law.jpg" alt="Thông tư 66/2014" class="img-fluid">
-                    </div>
-                    <div class="p-3">
-                        <h6 class="fw-bold text-danger mb-1 text-uppercase">Thông tư 66/2014/TT-BCA – Quy định thi hành luật PCCC</h6>
-                        <small class="text-muted d-block mb-2">Ngày 31/07/2014</small>
-                        <p class="small text-secondary">Hướng dẫn chi tiết thi hành Luật Phòng cháy chữa cháy và Luật sửa đổi bổ sung...</p>
-                        <a href="/documents/thong-tu-66-2014" class="btn btn-outline-danger btn-sm">Chi tiết</a>
-                    </div>
-                </div>
+            <div class="related-resources__grid">
+                <a class="related-resource" th:href="@{/documents/thong-tu-47}">
+                    <span class="related-resource__icon"><i class="fa-solid fa-scale-balanced"></i></span>
+                    <p class="related-resource__type">Thông tư</p>
+                    <h3>Thông tư 47/2015 hướng dẫn về bảo đảm an toàn PCCC</h3>
+                    <p class="related-resource__description">Các yêu cầu bảo đảm an toàn PCCC đối với cơ sở sản xuất và kinh doanh.</p>
+                    <span class="related-resource__link">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a class="related-resource" th:href="@{/documents/qcvn-12-2014}">
+                    <span class="related-resource__icon"><i class="fa-solid fa-bolt"></i></span>
+                    <p class="related-resource__type">Quy chuẩn</p>
+                    <h3>QCVN 12:2014/BXD – Hệ thống điện nhà ở</h3>
+                    <p class="related-resource__description">Quy chuẩn kỹ thuật quốc gia về hệ thống điện trong nhà ở và công trình công cộng.</p>
+                    <span class="related-resource__link">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a class="related-resource" th:href="@{/documents/qcvn-08-2009}">
+                    <span class="related-resource__icon"><i class="fa-solid fa-building-shield"></i></span>
+                    <p class="related-resource__type">Quy chuẩn</p>
+                    <h3>QCVN 08:2009/BXD – Công trình ngầm đô thị</h3>
+                    <p class="related-resource__description">Quy định kỹ thuật áp dụng cho công trình ngầm đô thị và hạ tầng liên quan.</p>
+                    <span class="related-resource__link">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a class="related-resource" th:href="@{/documents/thong-tu-66-2014}">
+                    <span class="related-resource__icon"><i class="fa-solid fa-file-shield"></i></span>
+                    <p class="related-resource__type">Thông tư</p>
+                    <h3>Thông tư 66/2014/TT-BCA – Thi hành luật PCCC</h3>
+                    <p class="related-resource__description">Hướng dẫn chi tiết thi hành Luật Phòng cháy chữa cháy và các nội dung bổ sung.</p>
+                    <span class="related-resource__link">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
             </div>
         </div>
     </section>
