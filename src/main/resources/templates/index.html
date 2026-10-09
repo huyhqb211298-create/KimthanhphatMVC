@@ -159,8 +159,13 @@
             </div>
         </div>
 
-        <div class="home-partner-marquee">
-            <div class="home-partner-track">
+        <div class="container">
+            <div class="home-partner-slider">
+                <button class="home-partner-arrow home-partner-arrow-prev" type="button" data-partner-prev aria-label="Xem các thương hiệu trước">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <div class="home-partner-marquee" data-partner-marquee>
+                    <div class="home-partner-track">
                 <div class="home-partner-group">
                     <a class="home-partner-item home-partner-protector" th:href="@{/products(keyword='Protector')}" aria-label="Xem sản phẩm Protector"><img th:src="@{/img/partners/protector.png}" alt="Protector" loading="lazy"></a>
                     <a class="home-partner-item" th:href="@{/products(keyword='Kentom')}" aria-label="Xem sản phẩm Kentom"><img th:src="@{/img/partners/kentom.svg}" alt="Kentom" loading="lazy"></a>
@@ -183,6 +188,11 @@
                     <a class="home-partner-item" th:href="@{/hochiki}" tabindex="-1"><img th:src="@{/img/partners/hochiki.png}" alt="" loading="lazy"></a>
                     <a class="home-partner-item" th:href="@{/products(keyword='Mintai')}" tabindex="-1"><img th:src="@{/img/partners/mintai.svg}" alt="" loading="lazy"></a>
                 </div>
+                    </div>
+                </div>
+                <button class="home-partner-arrow home-partner-arrow-next" type="button" data-partner-next aria-label="Xem các thương hiệu tiếp theo">
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -199,6 +209,7 @@
 
 <div th:replace="~{fragments/footer :: siteFooter}"></div>
 <a href="#" class="home-back-top" aria-label="Về đầu trang"><i class="fa-solid fa-arrow-up"></i></a>
+<script th:src="@{/js/home-partners.js}" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
