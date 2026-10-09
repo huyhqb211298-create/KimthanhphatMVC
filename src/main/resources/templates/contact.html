@@ -1,166 +1,154 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="vi">
-
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Liên hệ - Kim Thành Phát</title>
-
-    <!-- BOOTSTRAP (DUY NHẤT 1 BẢN) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ Kim Thành Phát | Tư vấn thiết bị &amp; giải pháp PCCC</title>
+    <meta name="description" content="Liên hệ Kim Thành Phát để được tư vấn thiết bị, báo giá và giải pháp PCCC phù hợp cho nhà ở, doanh nghiệp và công trình tại Đà Nẵng.">
+    <link rel="canonical" href="https://kimthanhphatpccc.vn/contact">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- FONT AWESOME -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-    <!-- CSS CHÍNH -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/contact.css}">
 </head>
-
-<body>
-
-<!-- HEADER -->
+<body class="contact-page">
 <div th:replace="~{fragments/header :: siteHeader}"></div>
 
-<!-- PAGE HEADER -->
-<div class="container-fluid text-white py-5 mb-5"
-     style="background:
-            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-            url('/img/contact-banner.jpg') center/cover no-repeat;">
-    <div class="container text-center py-5">
-
-        <h1 class="display-4 fw-bold text-warning mb-3"
-            style="text-shadow:0 3px 6px rgba(0,0,0,0.7);">
-            Liên hệ với chúng tôi
-        </h1>
-
-        <p class="lead" style="font-size:1.4rem; text-shadow:0 2px 6px rgba(0,0,0,0.6);">
-            Kim Thành Phát – Giải pháp PCCC toàn diện cho mọi công trình
-        </p>
-    </div>
-</div>
-
-<!-- CONTACT SECTION -->
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="row g-5">
-
-            <!-- CONTACT INFO -->
-            <div class="col-lg-5 col-md-6">
-                <h6 class="section-title text-start text-warning text-uppercase">Thông tin liên hệ</h6>
-                <h2 class="mb-4">Kim Thành Phát PCCC</h2>
-
-                <p class="mb-4">
-                    Chúng tôi sẵn sàng hỗ trợ quý khách về mọi vấn đề liên quan đến thiết bị báo cháy,
-                    chữa cháy và bảo trì hệ thống PCCC.
-                </p>
-
-                <div class="d-flex align-items-center mb-3">
-                    <i class="fa fa-map-marker-alt text-danger me-3 fs-5"></i>
-                    <span>182 Lê Thanh Nghị, TP. Đà Nẵng</span>
-                </div>
-
-                <div class="d-flex align-items-center mb-3">
-                    <i class="fa fa-phone-alt text-danger me-3 fs-5"></i>
-                    <div>
-                        <span class="d-block">0777.54.2354 (Zalo)</span>
-                        <span class="d-block">0934.752.114</span>
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-center mb-3">
-                    <i class="fa fa-envelope text-danger me-3 fs-5"></i>
-                    <span>info@kimthanhphatpccc.vn</span>
-                </div>
-
-                <div class="d-flex align-items-center mt-4">
-                    <a class="btn btn-outline-danger btn-social me-2"
-                       href="https://www.facebook.com/profile.php?id=61581028044022" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="btn btn-outline-danger btn-social me-2"
-                       href="https://www.instagram.com/pccckimthanhphat/" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="btn btn-outline-danger btn-social"
-                       href="https://www.youtube.com" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                    </a>
+<main>
+    <section class="contact-hero">
+        <div class="contact-hero-shade"></div>
+        <div class="container position-relative">
+            <div class="contact-hero-content">
+                <p class="contact-eyebrow"><span></span>LIÊN HỆ KIM THÀNH PHÁT</p>
+                <h1>Bắt đầu từ nhu cầu <em>công trình của bạn.</em></h1>
+                <p>Chia sẻ loại công trình, thiết bị cần tìm hoặc vấn đề đang gặp. Đội ngũ Kim Thành Phát sẽ tiếp nhận và trao đổi phương án phù hợp.</p>
+                <div class="contact-hero-actions">
+                    <a class="contact-btn contact-btn-primary" href="#contact-form">Gửi yêu cầu <i class="fa-solid fa-arrow-down"></i></a>
+                    <a class="contact-btn contact-btn-ghost" href="tel:0934752114"><i class="fa-solid fa-phone"></i> 0934.752.114</a>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- CONTACT FORM -->
-            <div class="col-lg-7 col-md-6" id="contact-form">
-                <h6 class="section-title text-start text-warning text-uppercase">Gửi tin nhắn</h6>
-                <h2 class="mb-4">Liên hệ trực tuyến</h2>
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-grid">
+                <aside class="contact-info-card">
+                    <p class="contact-kicker contact-kicker-light">KẾT NỐI TRỰC TIẾP</p>
+                    <h2>Chúng tôi sẵn sàng hỗ trợ.</h2>
+                    <p class="contact-info-intro">Tư vấn thiết bị báo cháy, chữa cháy, bảo trì và cấu hình giải pháp theo điều kiện sử dụng thực tế.</p>
 
-                <div th:if="${contactSuccess}" class="alert alert-success" role="alert"
-                     th:text="${contactSuccess}"></div>
-                <div th:if="${contactError}" class="alert alert-danger" role="alert"
-                     th:text="${contactError}"></div>
+                    <div class="contact-info-list">
+                        <a href="https://maps.google.com/?q=182+Lê+Thanh+Nghị,+Đà+Nẵng" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span><small>ĐỊA CHỈ</small><strong>182 Lê Thanh Nghị, TP. Đà Nẵng</strong></span>
+                        </a>
+                        <a href="tel:0777542354">
+                            <i class="fa-solid fa-phone"></i>
+                            <span><small>TƯ VẤN QUA ZALO</small><strong>0777.54.2354 — Mr. Huy</strong></span>
+                        </a>
+                        <a href="tel:0934752114">
+                            <i class="fa-solid fa-headset"></i>
+                            <span><small>HOTLINE</small><strong>0934.752.114 — Ms. Phương</strong></span>
+                        </a>
+                        <a href="mailto:info@kimthanhphatpccc.vn">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span><small>EMAIL</small><strong>info@kimthanhphatpccc.vn</strong></span>
+                        </a>
+                    </div>
 
-                <form th:action="@{/contact/submit}" method="post" class="bg-light p-4 rounded shadow-sm">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <input type="text" name="name" class="form-control border-0 py-3"
-                                   placeholder="Họ và tên" autocomplete="name" minlength="2" maxlength="120"
-                                   th:value="${contactName}" required>
+                    <div class="contact-hours">
+                        <i class="fa-regular fa-clock"></i>
+                        <div><small>THỜI GIAN LÀM VIỆC</small><strong>08:00 – 17:30 · Thứ 2 đến Thứ 6</strong></div>
+                    </div>
+
+                    <div class="contact-socials" aria-label="Mạng xã hội">
+                        <a href="https://www.facebook.com/profile.php?id=61581028044022" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/pccckimthanhphat/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </aside>
+
+                <section class="contact-form-card" id="contact-form" aria-labelledby="contact-form-title">
+                    <p class="contact-kicker">GỬI THÔNG TIN TƯ VẤN</p>
+                    <h2 id="contact-form-title">Bạn cần hỗ trợ nội dung gì?</h2>
+                    <p class="contact-form-intro">Điền thông tin bên dưới, chúng tôi sẽ liên hệ lại để trao đổi chi tiết.</p>
+
+                    <div th:if="${contactSuccess}" class="contact-alert contact-alert-success" role="alert">
+                        <i class="fa-solid fa-circle-check"></i><span th:text="${contactSuccess}"></span>
+                    </div>
+                    <div th:if="${contactError}" class="contact-alert contact-alert-error" role="alert">
+                        <i class="fa-solid fa-circle-exclamation"></i><span th:text="${contactError}"></span>
+                    </div>
+
+                    <form th:action="@{/contact/submit}" method="post">
+                        <div class="contact-form-grid">
+                            <label>
+                                <span>Họ và tên <b>*</b></span>
+                                <input type="text" name="name" placeholder="Nguyễn Văn A" autocomplete="name"
+                                       minlength="2" maxlength="120" th:value="${contactName}" required>
+                            </label>
+                            <label>
+                                <span>Số điện thoại <b>*</b></span>
+                                <input type="tel" name="phone" placeholder="09xx xxx xxx" autocomplete="tel"
+                                       maxlength="30" th:value="${contactPhone}" required>
+                            </label>
+                            <label>
+                                <span>Email <b>*</b></span>
+                                <input type="email" name="email" placeholder="email@example.com" autocomplete="email"
+                                       maxlength="160" th:value="${contactEmail}" required>
+                            </label>
+                            <label>
+                                <span>Chủ đề</span>
+                                <input type="text" name="subject" placeholder="Thiết bị hoặc giải pháp cần tư vấn"
+                                       maxlength="200" th:value="${contactSubject}">
+                            </label>
+                            <label class="contact-field-wide">
+                                <span>Nội dung cần hỗ trợ <b>*</b></span>
+                                <textarea name="message" rows="6" placeholder="Mô tả công trình, thiết bị cần tìm hoặc yêu cầu của bạn..."
+                                          minlength="10" maxlength="5000" required th:text="${contactMessage}"></textarea>
+                            </label>
                         </div>
-                        <div class="col-md-6">
-                            <input type="email" name="email" class="form-control border-0 py-3"
-                                   placeholder="Email" autocomplete="email" maxlength="160"
-                                   th:value="${contactEmail}" required>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="phone" class="form-control border-0 py-3"
-                                   placeholder="Số điện thoại" autocomplete="tel" maxlength="30"
-                                   th:value="${contactPhone}" required>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="subject" class="form-control border-0 py-3"
-                                   placeholder="Chủ đề" maxlength="200" th:value="${contactSubject}">
-                        </div>
-                        <div class="col-12">
-                            <textarea name="message" rows="5"
-                                      class="form-control border-0 py-3"
-                                      placeholder="Nội dung tin nhắn..." minlength="10" maxlength="5000"
-                                      required th:text="${contactMessage}"></textarea>
-                        </div>
-                        <div class="position-absolute start-0 top-0 opacity-0" aria-hidden="true"
-                             style="width:1px;height:1px;overflow:hidden;pointer-events:none;">
+
+                        <div class="contact-honeypot" aria-hidden="true">
                             <label for="contact-website">Website</label>
                             <input id="contact-website" type="text" name="website" tabindex="-1" autocomplete="off">
                         </div>
-                        <div class="col-12 text-end">
-                            <button class="btn btn-danger py-3 px-5" type="submit">
-                                Gửi liên hệ <i class="fa fa-paper-plane ms-2"></i>
-                            </button>
+
+                        <div class="contact-form-footer">
+                            <p><i class="fa-solid fa-shield-halved"></i> Thông tin của bạn chỉ được dùng để tiếp nhận và phản hồi yêu cầu tư vấn.</p>
+                            <button type="submit">Gửi yêu cầu <i class="fa-solid fa-paper-plane"></i></button>
                         </div>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-
-        <!-- MAP -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <iframe class="w-100 rounded shadow-sm" height="400"
-                        src="https://www.google.com/maps?q=182%20Lê%20Thanh%20Nghị,%20Đà%20Nẵng&output=embed"
-                        allowfullscreen="" loading="lazy"></iframe>
+                    </form>
+                </section>
             </div>
         </div>
+    </section>
 
-    </div>
-</div>
+    <section class="contact-map-section">
+        <div class="container">
+            <div class="contact-map-heading">
+                <div><p class="contact-kicker">VỊ TRÍ CỦA CHÚNG TÔI</p><h2>Gặp trực tiếp tại Đà Nẵng.</h2></div>
+                <p>Văn phòng Kim Thành Phát tại 182 Lê Thanh Nghị. Vui lòng gọi trước để đội ngũ chuẩn bị nội dung tư vấn phù hợp.</p>
+            </div>
+            <div class="contact-map">
+                <iframe title="Bản đồ văn phòng Kim Thành Phát tại 182 Lê Thanh Nghị, Đà Nẵng"
+                        src="https://www.google.com/maps?q=182%20Lê%20Thanh%20Nghị,%20Đà%20Nẵng&amp;output=embed"
+                        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <a href="https://maps.google.com/?q=182+Lê+Thanh+Nghị,+Đà+Nẵng" target="_blank" rel="noopener">
+                    <i class="fa-solid fa-diamond-turn-right"></i> Mở chỉ đường
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
 
-<!-- FOOTER -->
 <div th:replace="~{fragments/footer :: siteFooter}"></div>
-
-<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script th:src="@{/js/main.js}"></script>
-
 </body>
 </html>
