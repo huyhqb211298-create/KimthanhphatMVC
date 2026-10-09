@@ -120,8 +120,8 @@ body.documents-page .section-block {
 }
 
 body.documents-page .section-block h4 { margin-bottom: 13px !important; color: var(--docs-ink) !important; font-size: 18px; font-weight: 850 !important; line-height: 1.45; text-transform: none !important; }
-body.documents-page ol, body.documents-page ul { padding-left: 1.35rem; }
-body.documents-page li { margin-bottom: 8px; }
+body.documents-page main ol, body.documents-page main ul { padding-left: 1.35rem; }
+body.documents-page main li { margin-bottom: 8px; }
 body.documents-page .alert { padding: 18px 20px; border: 0 !important; border-left: 4px solid var(--docs-red) !important; border-radius: 12px; background: #fff1ec; }
 body.documents-page .btn-outline-danger { border-color: var(--docs-red); border-radius: 10px !important; color: var(--docs-red); font-weight: 750; }
 body.documents-page .btn-outline-danger:hover { color: #fff; background: var(--docs-red); }

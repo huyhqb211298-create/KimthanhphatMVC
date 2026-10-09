@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
 :root {
     --pccc-red: #e63600;
     --pccc-orange: #ff6a2d;
@@ -7,24 +9,36 @@
 
 /* TOPBAR */
 .topbar {
+    height:30px;
+    min-height:30px;
+    display:flex;
+    align-items:center;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
     background:#fff;
     border-bottom:1px solid rgba(0,0,0,0.05);
     font-size:14px;
+    font-family:"Be Vietnam Pro",sans-serif;
+    line-height:1.4;
 }
+.topbar > .container { height:100%; }
 .topbar .info { color:#333; }
 .topbar .social a { color:var(--pccc-red); }
 
 /* NAVBAR */
 .site-navbar {
+    height:120px;
     background: linear-gradient(105deg,#c92700 0%,var(--pccc-red) 46%,#ff762f 100%);
     padding:10px 0;
     box-shadow:0 8px 24px rgba(89,23,3,.22);
     position:relative;
     z-index:1030;
+    font-family:"Be Vietnam Pro",sans-serif;
 }
 
 .site-navbar .nav-content {
-    min-height: 100px;
+    height:100px;
+    min-height:100px;
     gap: 18px;
     width: calc(100% - 32px);
     max-width: 1560px;
@@ -41,13 +55,16 @@
     box-shadow:0 9px 20px rgba(69,15,0,.22);
 }
 .logo-box img {
-    max-height:76px;
+    display:block;
+    width:auto;
+    height:76px;
+    max-height:none;
 }
 
 /* MENU */
 .navbar-brand { flex:0 0 auto; margin:0; }
-.main-menu { flex:1 1 auto; justify-content:center; gap:2px !important; padding:6px !important; min-width:0; overflow:visible; background:rgba(100,20,0,.18); border:1px solid rgba(255,255,255,.24); border-radius:16px; box-shadow:inset 0 1px rgba(255,255,255,.12); }
-.main-menu li { list-style:none; flex:0 0 auto; }
+.main-menu { flex:1 1 auto; min-height:52px; align-items:center; justify-content:center; gap:2px !important; margin:0 !important; padding:6px !important; min-width:0; overflow:visible; background:rgba(100,20,0,.18); border:1px solid rgba(255,255,255,.24); border-radius:16px; box-shadow:inset 0 1px rgba(255,255,255,.12); }
+.main-menu > li { list-style:none; flex:0 0 auto; margin:0 !important; padding:0 !important; }
 .main-menu a {
     display:inline-flex;
     align-items:center;
@@ -206,7 +223,7 @@
 @media (min-width:1400px) and (max-width:1599.98px) {
     .site-navbar .nav-content { gap:10px; }
     .logo-box { padding:6px 9px; }
-    .logo-box img { max-height:66px; }
+    .logo-box img { height:66px; max-height:none; }
     .main-menu { padding:5px !important; }
     .main-menu a { padding:10px 8px; font-size:14px; }
     .search-inline { display:none !important; }
@@ -219,7 +236,10 @@
     .search-inline,
     .call-btn { display:none !important; }
 
-    .site-navbar .nav-content { min-height:88px; }
+    .site-navbar { height:108px; }
+    .site-navbar .nav-content { height:88px; min-height:88px; }
+    .logo-box { padding:6px 9px; }
+    .logo-box img { height:66px; max-height:none; }
 
     .navbar-toggler {
         width:48px;
@@ -269,6 +289,14 @@
         background:#ffffff;
         color:#c92700;
     }
+}
+
+@media (max-width:767.98px) {
+    .topbar { display:none; }
+    .site-navbar { height:88px; padding:8px 0; }
+    .site-navbar .nav-content { height:72px; min-height:72px; }
+    .logo-box { padding:5px 8px; border-radius:12px; }
+    .logo-box img { height:56px; max-height:none; }
 }
 
 .hidden {
