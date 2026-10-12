@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!marquee || !firstGroup || !previousButton || !nextButton) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let paused = false;
-    let animationFrame;
+    const speed = 50 / 1000;
+    let animationFrame = 0;
     let lastTime = 0;
+    let pauseUntil = 0;
+    let pointerActive = false;
+    let sectionVisible = true;
 
     const groupWidth = () => firstGroup.getBoundingClientRect().width;
     const itemStep = () => {
@@ -20,45 +22,66 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const normalizePosition = () => {
-        if (reducedMotion.matches) return;
         const width = groupWidth();
         if (!width) return;
-        if (marquee.scrollLeft <= 1) marquee.scrollLeft += width;
-        if (marquee.scrollLeft >= width * 2 - marquee.clientWidth - 1) marquee.scrollLeft -= width;
+
+        while (marquee.scrollLeft > width) marquee.scrollLeft -= width;
+        while (marquee.scrollLeft <= 0) marquee.scrollLeft += width;
     };
 
-    const setInitialPosition = () => {
-        const width = groupWidth();
-        if (width) marquee.scrollLeft = reducedMotion.matches ? 0 : width;
+    const pauseBriefly = (duration = 1100) => {
+        pauseUntil = performance.now() + duration;
     };
 
     const move = (direction) => {
+        const width = groupWidth();
+        if (!width) return;
+
         normalizePosition();
+        if (direction < 0 && marquee.scrollLeft < itemStep()) marquee.scrollLeft += width;
         marquee.scrollBy({ left: direction * itemStep(), behavior: "smooth" });
-        window.setTimeout(normalizePosition, 500);
+        pauseBriefly();
+        window.setTimeout(normalizePosition, 650);
     };
 
     const tick = (time) => {
-        if (!paused && !reducedMotion.matches && lastTime) {
-            marquee.scrollLeft -= Math.min(time - lastTime, 32) * 0.025;
+        const elapsed = lastTime ? Math.min(time - lastTime, 50) : 0;
+
+        if (elapsed && sectionVisible && !pointerActive && !document.hidden && time >= pauseUntil) {
+            marquee.scrollLeft -= elapsed * speed;
             normalizePosition();
         }
+
         lastTime = time;
         animationFrame = window.requestAnimationFrame(tick);
     };
 
     previousButton.addEventListener("click", () => move(-1));
     nextButton.addEventListener("click", () => move(1));
-    marquee.addEventListener("mouseenter", () => { paused = true; });
-    marquee.addEventListener("mouseleave", () => { paused = false; });
-    marquee.addEventListener("focusin", () => { paused = true; });
-    marquee.addEventListener("focusout", () => { paused = false; });
-    marquee.addEventListener("pointerdown", () => { paused = true; });
-    marquee.addEventListener("pointerup", () => { paused = false; });
-    window.addEventListener("resize", setInitialPosition);
-    reducedMotion.addEventListener("change", setInitialPosition);
 
-    setInitialPosition();
+    marquee.addEventListener("pointerdown", () => {
+        pointerActive = true;
+    });
+    ["pointerup", "pointercancel", "pointerleave"].forEach((eventName) => {
+        marquee.addEventListener(eventName, () => {
+            pointerActive = false;
+            pauseBriefly(500);
+        });
+    });
+
+    marquee.addEventListener("focusin", () => pauseBriefly(1600));
+    marquee.addEventListener("focusout", () => pauseBriefly(400));
+
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(([entry]) => {
+            sectionVisible = entry.isIntersecting;
+            lastTime = performance.now();
+        }, { threshold: 0.05 });
+        observer.observe(marquee);
+    }
+
+    window.addEventListener("resize", normalizePosition);
+    marquee.scrollLeft = groupWidth();
     animationFrame = window.requestAnimationFrame(tick);
     window.addEventListener("pagehide", () => window.cancelAnimationFrame(animationFrame), { once: true });
 });
