@@ -44,7 +44,7 @@ class ProductPageTests {
                 .andExpect(content().string(containsString("class=\"products-page\"")))
                 .andExpect(content().string(containsString("/css/product-pages.css")))
                 .andExpect(content().string(containsString("Thiết bị an toàn cho mọi công trình")))
-                .andExpect(content().string(containsString("fire-extinguisher-lineup-studio.png")))
+                .andExpect(content().string(containsString("fire-extinguisher-lineup-studio.webp")))
                 .andExpect(content().string(containsString("href=\"/products/binh-chua-chay-mau\"")));
     }
 

@@ -32,7 +32,7 @@ class CapabilityProfilePageTests {
                 .andExpect(content().string(containsString("Hồ sơ năng lực Kim Thành Phát")))
                 .andExpect(content().string(containsString("/files/hoso-nang-luc-kim-thanh-phat.pdf")))
                 .andExpect(content().string(containsString("class=\"document-viewer\"")))
-                .andExpect(content().string(containsString("/img/hsnl/hoso-nang-luc-6.jpg")))
+                .andExpect(content().string(containsString("/img/hsnl/hoso-nang-luc-6.webp")))
                 .andExpect(content().string(containsString("Tải PDF")));
     }
 

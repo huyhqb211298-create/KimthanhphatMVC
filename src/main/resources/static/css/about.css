@@ -5,7 +5,7 @@
 .about-section { padding:110px 0; }
 .about-kicker,.about-eyebrow { margin:0; color:var(--about-red); font-size:.75rem; font-weight:800; letter-spacing:.15em; }
 .about-kicker-light { color:#ff9b7c; }
-.about-hero { position:relative; min-height:640px; display:flex; align-items:center; color:#fff; background:url('/img/about-banner.jpg') center 47%/cover no-repeat; }
+.about-hero { position:relative; min-height:640px; display:flex; align-items:center; color:#fff; background:url('/img/about-banner.webp') center 47%/cover no-repeat; }
 .about-hero-shade { position:absolute; inset:0; background:linear-gradient(90deg,rgba(8,21,35,.95) 0%,rgba(8,21,35,.82) 42%,rgba(8,21,35,.25) 78%,rgba(8,21,35,.08) 100%); }
 .about-hero-content { max-width:760px; padding:72px 0; }
 .about-eyebrow { display:flex; align-items:center; gap:12px; margin-bottom:24px; color:#ffad92; }

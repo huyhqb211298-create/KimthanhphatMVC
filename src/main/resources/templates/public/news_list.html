@@ -44,7 +44,7 @@
             <div th:if="${featured != null}">
                 <div class="news-lead-grid">
                     <a class="news-lead" th:href="@{'/news/' + ${featured.slug}}">
-                        <img th:src="${#strings.isEmpty(featured.thumbnail) ? '/img/about-banner.jpg' : featured.thumbnail}" th:alt="${featured.title}" fetchpriority="high" decoding="async">
+                        <img th:src="${#strings.isEmpty(featured.thumbnail) ? '/img/about-banner.webp' : featured.thumbnail}" th:alt="${featured.title}" fetchpriority="high" decoding="async">
                         <div class="news-lead-copy">
                             <div class="news-lead-meta">
                                 <span class="news-featured-label"><i class="fa-solid fa-bolt"></i> Tiêu điểm</span>
@@ -62,7 +62,7 @@
                             <i class="fa-regular fa-bookmark"></i>
                         </div>
                         <a class="news-side-card" th:each="n, stat : ${others}" th:if="${stat.index < 3}" th:href="@{'/news/' + ${n.slug}}">
-                            <img th:src="${#strings.isEmpty(n.thumbnail) ? '/img/about-company.jpg' : n.thumbnail}" th:alt="${n.title}" loading="lazy">
+                            <img th:src="${#strings.isEmpty(n.thumbnail) ? '/img/about-company.webp' : n.thumbnail}" th:alt="${n.title}" loading="lazy">
                             <div>
                                 <span class="news-date"><i class="fa-regular fa-calendar"></i><span th:text="${#temporals.format(n.createdAt,'dd/MM/yyyy')}"></span></span>
                                 <h3 th:text="${n.title}"></h3>

@@ -36,7 +36,7 @@
     color: #fff;
     background:
         linear-gradient(90deg, rgba(7, 21, 36, .97) 0%, rgba(7, 21, 36, .88) 48%, rgba(7, 21, 36, .42) 100%),
-        url('/img/about-banner.jpg') center 42% / cover;
+        url('/img/about-banner.webp') center 42% / cover;
 }
 
 .news-hero::after {

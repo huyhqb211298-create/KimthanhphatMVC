@@ -39,7 +39,7 @@
     <div class="news-shell article-layout">
         <article class="article-main">
             <img class="article-main-image"
-                 th:src="${#strings.isEmpty(news.thumbnail) ? '/img/about-banner.jpg' : news.thumbnail}"
+                 th:src="${#strings.isEmpty(news.thumbnail) ? '/img/about-banner.webp' : news.thumbnail}"
                  th:alt="${news.title}" fetchpriority="high" decoding="async">
             <div class="article-content" th:utext="${news.content}"></div>
         </article>
@@ -48,7 +48,7 @@
             <section class="latest-panel">
                 <h2>Tin mới nhất</h2>
                 <a class="latest-item" th:each="item, stat : ${latest}" th:if="${stat.index < 5}" th:href="@{'/news/' + ${item.slug}}">
-                    <img th:src="${#strings.isEmpty(item.thumbnail) ? '/img/about-company.jpg' : item.thumbnail}" th:alt="${item.title}" loading="lazy">
+                    <img th:src="${#strings.isEmpty(item.thumbnail) ? '/img/about-company.webp' : item.thumbnail}" th:alt="${item.title}" loading="lazy">
                     <div>
                         <span class="news-date"><i class="fa-regular fa-calendar"></i><span th:text="${#temporals.format(item.createdAt,'dd/MM')}"></span></span>
                         <h3 th:text="${item.title}"></h3>
