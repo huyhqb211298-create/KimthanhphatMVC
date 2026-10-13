@@ -69,9 +69,11 @@
                 <i class="fa-solid fa-user-shield me-1"></i> Admin đang đăng nhập
             </span>
 
-            <a href="/logout" class="btn btn-danger btn-sm px-3">
-                <i class="fa-solid fa-right-from-bracket me-1"></i> Đăng xuất
-            </a>
+            <form th:action="@{/logout}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-danger btn-sm px-3">
+                    <i class="fa-solid fa-right-from-bracket me-1"></i> Đăng xuất
+                </button>
+            </form>
         </div>
 
     </div>
@@ -150,11 +152,13 @@
                 <a th:href="@{'/admin/products/edit/' + ${p.id}}" class="btn btn-sm btn-warning">
                     <i class="fa fa-edit"></i> Sửa
                 </a>
-                <a th:href="@{'/admin/products/delete/' + ${p.id}}"
-                   onclick="return confirm('Bạn chắc chắn muốn xoá sản phẩm này?');"
-                   class="btn btn-sm btn-danger mt-1">
-                    <i class="fa fa-trash"></i> Xoá
-                </a>
+                <form th:action="@{/admin/products/delete/{id}(id=${p.id})}"
+                      method="post" class="d-inline"
+                      onsubmit="return confirm('Bạn chắc chắn muốn xoá sản phẩm này?');">
+                    <button type="submit" class="btn btn-sm btn-danger mt-1">
+                        <i class="fa fa-trash"></i> Xoá
+                    </button>
+                </form>
             </td>
         </tr>
         </tbody>

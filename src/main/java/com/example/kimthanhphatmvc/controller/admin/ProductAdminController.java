@@ -124,7 +124,7 @@ public class ProductAdminController {
     }
 
     // ===== Xóa =====
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes ra) {
         try {
             productService.deleteById(id);

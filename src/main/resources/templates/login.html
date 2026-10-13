@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Đăng nhập</title>
@@ -22,7 +22,7 @@
             Đã đăng xuất thành công.
         </div>
 
-        <form action="/do-login" method="post">
+        <form th:action="@{/do-login}" method="post">
 
             <div class="mb-3">
                 <label class="form-label">Tên đăng nhập</label>

@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
     <title th:text="${isEdit} ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm mới'">Form sản phẩm</title>
 
     <!-- Bootstrap CSS -->
@@ -302,6 +304,17 @@
 <!-- ========== ★★★ AJAX ADD CATEGORY / BRAND / TYPE (No Reload) ========== -->
 
 <script>
+    const csrfToken = document.querySelector('meta[name="_csrf"]').content;
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
+    const csrfHeaders = { [csrfHeader]: csrfToken };
+
+    async function readSavedEntity(response) {
+        if (!response.ok) {
+            throw new Error("Không thể lưu dữ liệu. Vui lòng tải lại trang và thử lại.");
+        }
+        return response.json();
+    }
+
     async function addCategory() {
         const name = document.getElementById("newCategoryInput").value.trim();
         if (!name) return alert("Vui lòng nhập tên danh mục!");
@@ -311,10 +324,11 @@
 
         const res = await fetch("/admin/categories/save-ajax", {
             method: "POST",
+            headers: csrfHeaders,
             body: formData
         });
 
-        const saved = await res.json();
+        const saved = await readSavedEntity(res);
 
         const select = document.getElementById("categorySelect");
         const opt = new Option(saved.name, saved.id, true, true);
@@ -331,10 +345,11 @@
 
         const res = await fetch("/admin/product-types/save-ajax", {
             method: "POST",
+            headers: csrfHeaders,
             body: formData
         });
 
-        const saved = await res.json();
+        const saved = await readSavedEntity(res);
 
         const select = document.getElementById("productTypeSelect");
         const opt = new Option(saved.name, saved.id, true, true);
@@ -353,10 +368,11 @@
 
         const res = await fetch("/admin/brands/save-ajax", {
             method: "POST",
+            headers: csrfHeaders,
             body: formData
         });
 
-        const saved = await res.json();
+        const saved = await readSavedEntity(res);
 
         const select = document.getElementById("brandSelect");
         const opt = new Option(saved.name, saved.id, true, true);

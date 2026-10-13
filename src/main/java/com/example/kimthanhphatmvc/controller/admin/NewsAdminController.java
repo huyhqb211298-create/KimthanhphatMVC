@@ -106,7 +106,7 @@ public class NewsAdminController {
     }
 
     // ===================== DELETE =====================
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes ra) {
         try {
             newsService.delete(id);
