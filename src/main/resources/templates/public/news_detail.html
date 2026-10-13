@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${news.title} + ' | Kim Thành Phát'">Tin tức | Kim Thành Phát</title>
     <meta name="description" th:content="${#strings.isEmpty(news.summary) ? news.plainContent : news.summary}">
-    <link rel="canonical" th:href="@{'https://pccckimthanhphat.com/news/' + ${news.slug}}">
+    <link rel="canonical" th:href="@{'https://kimthanhphatpccc.vn/news/' + ${news.slug}}">
     <meta property="og:type" content="article">
     <meta property="og:title" th:content="${news.title}">
     <meta property="og:description" th:content="${#strings.isEmpty(news.summary) ? news.plainContent : news.summary}">
-    <meta property="og:image" th:content="${#strings.isEmpty(news.thumbnail) ? 'https://pccckimthanhphat.com/img/about-banner.jpg' : news.thumbnail}">
+    <meta property="og:image" th:content="${#strings.isEmpty(news.thumbnail) ? 'https://kimthanhphatpccc.vn/img/about-banner.jpg' : news.thumbnail}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">

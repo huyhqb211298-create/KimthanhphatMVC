@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /login
+Disallow: /do-login
+Disallow: /redirect-by-role
+Disallow: /actuator/
+Disallow: /news/load
+
+Sitemap: https://kimthanhphatpccc.vn/sitemap.xml
