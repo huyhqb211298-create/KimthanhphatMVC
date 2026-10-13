@@ -976,6 +976,296 @@ footer a {
 footer a:hover {
     color: #ffcc00 !important; /* màu hover tùy bạn */
 }
+
+/* Shared site footer */
+.site-footer {
+    --footer-accent: #f04a23;
+    margin-top: 64px;
+    color: #dce3eb;
+    background:
+        radial-gradient(circle at 92% 0, rgba(240, 74, 35, .12), transparent 28%),
+        #111922 !important;
+    border-top: 4px solid var(--footer-accent);
+    text-align: left;
+}
+
+.site-footer-main {
+    padding-top: 50px;
+    padding-bottom: 42px;
+}
+
+.site-footer .row { text-align: left; }
+
+.footer-brand-panel {
+    height: 100%;
+    min-height: 226px;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .045);
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    color: #fff !important;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+}
+
+.footer-brand-mark {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    flex: 0 0 48px;
+    place-items: center;
+    border-radius: 12px;
+    color: #fff;
+    background: linear-gradient(135deg, #f04a23, #c92514);
+    font-size: .82rem;
+    letter-spacing: .06em;
+    box-shadow: 0 12px 26px rgba(240, 74, 35, .2);
+}
+
+.footer-brand-panel > p {
+    margin: 24px 0 22px;
+    color: #aeb9c5;
+    font-size: .9rem;
+    line-height: 1.75;
+}
+
+.footer-brand-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-size: .77rem;
+    font-weight: 700;
+}
+
+.footer-brand-note i { color: var(--footer-accent); }
+
+.site-footer .footer-heading {
+    position: relative;
+    margin: 3px 0 25px;
+    padding-bottom: 13px;
+    color: #fff;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.site-footer .footer-heading::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 38px;
+    height: 2px;
+    background: var(--footer-accent);
+}
+
+.footer-contact-list {
+    display: grid;
+    gap: 13px;
+}
+
+.site-footer .footer-contact-item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    color: #dce3eb !important;
+    font-size: .84rem;
+    line-height: 1.5;
+}
+
+.footer-contact-item > i {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    margin-top: -4px;
+    border-radius: 8px;
+    color: var(--footer-accent);
+    background: rgba(240, 74, 35, .1);
+    font-size: .72rem;
+}
+
+.footer-contact-item small {
+    display: block;
+    margin-top: 1px;
+    color: #82909f;
+    font-size: .72rem;
+}
+
+.footer-contact-email span { overflow-wrap: anywhere; }
+.site-footer .footer-contact-email { font-size: .75rem; }
+
+.footer-socials {
+    display: flex;
+    gap: 9px;
+    margin-top: 20px;
+}
+
+.site-footer .footer-socials a {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 10px;
+    color: #fff !important;
+    background: rgba(255, 255, 255, .04);
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.site-footer .footer-socials a:hover {
+    transform: translateY(-2px);
+    border-color: var(--footer-accent);
+    background: var(--footer-accent);
+}
+
+.footer-socials img {
+    display: block;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.footer-nav {
+    display: grid;
+    gap: 2px;
+}
+
+.site-footer .footer-nav a {
+    position: relative;
+    padding: 7px 0 7px 18px;
+    color: #dce3eb !important;
+    font-size: .86rem;
+    transition: color .2s ease, transform .2s ease;
+}
+
+.footer-nav a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-top: 2px solid var(--footer-accent);
+    border-right: 2px solid var(--footer-accent);
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.site-footer .footer-nav a:hover {
+    color: #fff !important;
+    transform: translateX(3px);
+}
+
+.site-footer .footer-fanpage {
+    width: 100%;
+    max-width: 342px;
+    margin: 0;
+    text-align: left;
+}
+
+.site-footer .footer-facebook-card {
+    width: 100%;
+    min-height: 130px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: none;
+}
+
+.site-footer .footer-facebook-card iframe {
+    display: block;
+    width: 100%;
+    min-height: 130px;
+}
+
+.site-footer .footer-facebook-link {
+    width: 100%;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+    color: #fff !important;
+    background: rgba(255, 255, 255, .04);
+    font-size: .76rem;
+    font-weight: 700;
+}
+
+.site-footer .footer-facebook-link span { flex: 1; }
+.site-footer .footer-facebook-link .fa-facebook-f { flex: 0 0 25px; }
+
+.site-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    background: rgba(0, 0, 0, .12);
+}
+
+.site-footer-bottom > .container {
+    min-height: 68px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.site-footer-bottom p {
+    margin: 0;
+    color: #82909f;
+    font-size: .76rem;
+}
+
+.site-footer-bottom p a {
+    color: #fff !important;
+    font-weight: 700;
+}
+
+.site-footer .footer-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.site-footer .footer-menu a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: #aeb9c5 !important;
+    font-size: .76rem;
+}
+
+@media (max-width: 1199px) {
+    .site-footer .footer-fanpage { max-width: none; }
+}
+
+@media (max-width: 767px) {
+    .site-footer {
+        margin-top: 44px;
+        text-align: left;
+    }
+
+    .site-footer-main {
+        padding-top: 40px;
+        padding-bottom: 36px;
+    }
+
+    .footer-brand-panel { min-height: 0; }
+    .site-footer .footer-facebook-card,
+    .site-footer .footer-facebook-link { max-width: 342px; }
+    .site-footer-bottom > .container { min-height: 86px; }
+}
 /* RIBBON HẾT HÀNG */
 .product-ribbon {
     position: absolute;
