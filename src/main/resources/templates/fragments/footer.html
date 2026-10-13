@@ -3,8 +3,8 @@
         style="padding-top: 80px; border-top: 5px solid #ff4d00;">
     <!-- Footer Start -->
     <div class="container pb-5">
-        <div class="row g-5">
-            <div class="col-md-6 col-lg-4">
+        <div class="row g-5 align-items-start">
+            <div class="col-md-6 col-lg-3">
                 <div class="bg-danger rounded p-4 text-center shadow-sm">
 
                     <a th:href="@{/}">
@@ -40,20 +40,35 @@
 
                 </div>
             </div>
-            <div class="col-lg-5 col-md-12">
-                <div class="row gy-5 g-4">
-                    <div class="col-md-6">
-                        <h6 class="section-title text-start text-warning text-uppercase mb-4">Công ty</h6>
-                        <a class="btn btn-link text-white" th:href="@{/about}">Giới thiệu</a>
-                        <a class="btn btn-link text-white" th:href="@{/contact}">Liên hệ</a>
-                        <a class="btn btn-link text-white" th:href="@{/contact}">Điều khoản</a>
+            <div class="col-md-6 col-lg-2">
+                <h6 class="section-title text-start text-warning text-uppercase mb-4">Khám phá</h6>
+                <a class="btn btn-link text-white" th:href="@{/about}">Giới thiệu</a>
+                <a class="btn btn-link text-white" th:href="@{/products}">Sản phẩm</a>
+                <a class="btn btn-link text-white" th:href="@{/news}">Tin tức</a>
+                <a class="btn btn-link text-white" th:href="@{/documents}">Văn bản</a>
+                <a class="btn btn-link text-white" th:href="@{/contact}">Liên hệ</a>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="footer-fanpage">
+                    <h6 class="section-title text-start text-warning text-uppercase mb-4">Fanpage</h6>
+                    <div class="footer-facebook-card">
+                        <iframe
+                                title="Fanpage PCCC Kim Thành Phát"
+                                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61581028044022&amp;tabs=&amp;width=340&amp;height=140&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId="
+                                width="340"
+                                height="140"
+                                style="border:none;overflow:hidden"
+                                scrolling="no"
+                                frameborder="0"
+                                allowfullscreen="true"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                loading="lazy"></iframe>
                     </div>
-                    <div class="col-md-6">
-                        <h6 class="section-title text-start text-warning text-uppercase mb-4">Dịch vụ</h6>
-                        <a class="btn btn-link text-white" th:href="@{/contact}">Bảo trì</a>
-                        <a class="btn btn-link text-white" th:href="@{/products}">Sản phẩm</a>
-                        <a class="btn btn-link text-white" th:href="@{/about}">Dự án</a>
-                    </div>
+                    <a class="footer-facebook-link" href="https://www.facebook.com/profile.php?id=61581028044022" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        Mở Fanpage Kim Thành Phát
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
                 </div>
             </div>
         </div>

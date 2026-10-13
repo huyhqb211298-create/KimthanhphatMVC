@@ -516,6 +516,60 @@ html, body {
     box-shadow: none;
 }
 
+.footer-fanpage {
+    width: 100%;
+    max-width: 380px;
+    margin-left: auto;
+    text-align: left;
+}
+
+.footer-facebook-card {
+    width: 100%;
+    min-height: 140px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, .2);
+}
+
+.footer-facebook-card iframe {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 140px;
+}
+
+.footer-facebook-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 14px;
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+.footer-facebook-link .fa-facebook-f {
+    width: 25px;
+    height: 25px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #1877f2;
+}
+
+.footer-facebook-link .fa-arrow-up-right-from-square {
+    font-size: .66rem;
+    opacity: .75;
+}
+
+@media (max-width: 991px) {
+    .footer-fanpage {
+        margin-inline: auto;
+    }
+}
+
 .footer .copyright {
     padding: 25px 0;
     font-size: 15px;
