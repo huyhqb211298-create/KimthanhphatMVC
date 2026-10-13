@@ -25,8 +25,11 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.containsString;
 
 @WebMvcTest(controllers = {ContactController.class, ContactAdminController.class})
 @Import(SecurityConfig.class)
@@ -79,6 +82,15 @@ class SecurityCsrfTests {
                 "0905 123 456",
                 "Tư vấn hệ thống PCCC",
                 "Tôi cần tư vấn cho nhà xưởng.");
+    }
+
+    @Test
+    void secureResponsesIncludeBrowserProtectionHeaders() throws Exception {
+        mockMvc.perform(get("/contact").secure(true))
+                .andExpect(header().string("Strict-Transport-Security", containsString("max-age=31536000")))
+                .andExpect(header().string("Referrer-Policy", "strict-origin-when-cross-origin"))
+                .andExpect(header().string("Permissions-Policy", "camera=(), microphone=(), geolocation=()"))
+                .andExpect(header().string("X-Content-Type-Options", "nosniff"));
     }
 
     @Test
