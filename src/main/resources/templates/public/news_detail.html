@@ -40,7 +40,7 @@
         <article class="article-main">
             <img class="article-main-image"
                  th:src="${#strings.isEmpty(news.thumbnail) ? '/img/about-banner.jpg' : news.thumbnail}"
-                 th:alt="${news.title}">
+                 th:alt="${news.title}" fetchpriority="high" decoding="async">
             <div class="article-content" th:utext="${news.content}"></div>
         </article>
 

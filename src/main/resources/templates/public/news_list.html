@@ -44,7 +44,7 @@
             <div th:if="${featured != null}">
                 <div class="news-lead-grid">
                     <a class="news-lead" th:href="@{'/news/' + ${featured.slug}}">
-                        <img th:src="${#strings.isEmpty(featured.thumbnail) ? '/img/about-banner.jpg' : featured.thumbnail}" th:alt="${featured.title}">
+                        <img th:src="${#strings.isEmpty(featured.thumbnail) ? '/img/about-banner.jpg' : featured.thumbnail}" th:alt="${featured.title}" fetchpriority="high" decoding="async">
                         <div class="news-lead-copy">
                             <div class="news-lead-meta">
                                 <span class="news-featured-label"><i class="fa-solid fa-bolt"></i> Tiêu điểm</span>

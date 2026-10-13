@@ -49,7 +49,7 @@
                     <div class="product-visual">
                         <span class="product-stock-badge" th:if="${product.stockStatus?.name() == 'IN_STOCK'}">Còn hàng</span>
                         <span class="product-stock-badge is-out" th:if="${product.stockStatus?.name() == 'OUT_OF_STOCK'}">Hết hàng</span>
-                        <img th:src="${#strings.isEmpty(product.image) ? '/img/no-image.jpg' : product.image}" th:alt="${product.name}">
+                        <img th:src="${#strings.isEmpty(product.image) ? '/img/no-image.jpg' : product.image}" th:alt="${product.name}" fetchpriority="high" decoding="async">
                     </div>
                 </div>
                 <div class="col-lg-6">
