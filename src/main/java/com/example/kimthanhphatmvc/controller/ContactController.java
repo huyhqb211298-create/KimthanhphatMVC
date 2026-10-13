@@ -1,6 +1,8 @@
 package com.example.kimthanhphatmvc.controller;
 
 import com.example.kimthanhphatmvc.service.ContactRequestService;
+import com.example.kimthanhphatmvc.service.ContactSubmissionGuard;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +20,11 @@ public class ContactController {
     private static final Pattern PHONE_PATTERN = Pattern.compile("^[+0-9][0-9 .()-]{7,24}$");
 
     private final ContactRequestService contactRequestService;
+    private final ContactSubmissionGuard submissionGuard;
 
-    public ContactController(ContactRequestService contactRequestService) {
+    public ContactController(ContactRequestService contactRequestService, ContactSubmissionGuard submissionGuard) {
         this.contactRequestService = contactRequestService;
+        this.submissionGuard = submissionGuard;
     }
 
     @PostMapping("/contact/submit")
@@ -31,6 +35,8 @@ public class ContactController {
             @RequestParam(required = false, defaultValue = "") String subject,
             @RequestParam String message,
             @RequestParam(required = false, defaultValue = "") String website,
+            @RequestParam(required = false, defaultValue = "0") long formStartedAt,
+            HttpServletRequest request,
             RedirectAttributes redirectAttributes) {
 
         if (StringUtils.hasText(website)) {
@@ -43,6 +49,26 @@ public class ContactController {
         if (validationError != null) {
             redirectAttributes.addFlashAttribute("contactError", validationError);
             preserveForm(redirectAttributes, name, email, phone, subject, message);
+            return "redirect:/contact#contact-form";
+        }
+
+        ContactSubmissionGuard.Decision decision = submissionGuard.evaluate(
+                clientAddress(request), formStartedAt, name, email, phone, subject, message);
+        if (decision == ContactSubmissionGuard.Decision.RATE_LIMITED) {
+            redirectAttributes.addFlashAttribute("contactError",
+                    "Bạn đã gửi nhiều yêu cầu trong thời gian ngắn. Vui lòng thử lại sau ít phút.");
+            preserveForm(redirectAttributes, name, email, phone, subject, message);
+            return "redirect:/contact#contact-form";
+        }
+        if (decision == ContactSubmissionGuard.Decision.TOO_FAST) {
+            redirectAttributes.addFlashAttribute("contactError",
+                    "Vui lòng chờ vài giây rồi gửi lại yêu cầu.");
+            preserveForm(redirectAttributes, name, email, phone, subject, message);
+            return "redirect:/contact#contact-form";
+        }
+        if (decision == ContactSubmissionGuard.Decision.DUPLICATE) {
+            redirectAttributes.addFlashAttribute("contactSuccess",
+                    "Cảm ơn bạn. Chúng tôi đã nhận được thông tin và sẽ liên hệ sớm.");
             return "redirect:/contact#contact-form";
         }
 
@@ -84,6 +110,15 @@ public class ContactController {
         }
         int length = value.strip().length();
         return length >= min && length <= max;
+    }
+
+    private String clientAddress(HttpServletRequest request) {
+        String forwardedFor = request.getHeader("X-Forwarded-For");
+        if (StringUtils.hasText(forwardedFor)) {
+            return forwardedFor.split(",", 2)[0].strip();
+        }
+        String realIp = request.getHeader("X-Real-IP");
+        return StringUtils.hasText(realIp) ? realIp.strip() : request.getRemoteAddr();
     }
 
     private void preserveForm(RedirectAttributes attributes, String name, String email,

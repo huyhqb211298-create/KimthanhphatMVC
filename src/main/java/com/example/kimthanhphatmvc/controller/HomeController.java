@@ -30,7 +30,8 @@ public class HomeController {
         return "hsnl";
     }
     @GetMapping("/contact")
-    public String contact() {
+    public String contact(Model model) {
+        model.addAttribute("contactFormStartedAt", System.currentTimeMillis());
         return "contact";
     }
 

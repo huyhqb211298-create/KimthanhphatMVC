@@ -87,6 +87,7 @@
                     </div>
 
                     <form th:action="@{/contact/submit}" method="post">
+                        <input type="hidden" name="formStartedAt" th:value="${contactFormStartedAt}">
                         <div class="contact-form-grid">
                             <label>
                                 <span>Họ và tên <b>*</b></span>
