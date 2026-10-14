@@ -35,38 +35,58 @@
                 <li><a th:href="@{/news}">TIN TỨC</a></li>
                 <li><a th:href="@{/documents}">VĂN BẢN</a></li>
 
-                <li>
-                    <a class="gas-nav-link" th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}">
-                        <i class="fa-solid fa-shield-halved me-1"></i> S-TEC VINA
-                    </a>
+                <li class="solution-dropdown">
+                    <button type="button" class="solution-toggle" aria-haspopup="true" aria-expanded="false">
+                        GIẢI PHÁP <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="solution-menu" aria-label="Giải pháp nổi bật">
+                        <a th:href="@{/he-thong-bao-chay-gst}">
+                            <i class="fa-solid fa-bell"></i>
+                            <span><strong>Hệ báo cháy GST</strong><small>Phát hiện và cảnh báo cháy</small></span>
+                        </a>
+                        <a th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span><strong>S-TEC VINA</strong><small>Hệ chữa cháy khí FM-200</small></span>
+                        </a>
+                        <a th:href="@{/thiet-bi-chua-chay-tomoken}">
+                            <i class="fa-solid fa-fire-extinguisher"></i>
+                            <span><strong>Chữa cháy Tomoken</strong><small>Bình, vòi, van và phụ kiện</small></span>
+                        </a>
+                    </div>
                 </li>
 
                 <!-- MEGA MENU -->
-                <li><a th:href="@{/he-thong-bao-chay-gst}">GST</a></li>
-
-                <!-- MEGA MENU -->
                 <li class="mega-dropdown">
-                    <a class="dropdown-toggle" th:href="@{/products}"
-                       aria-haspopup="true">SẢN PHẨM</a>
+                    <button type="button" class="product-toggle" aria-haspopup="true" aria-expanded="false">
+                        SẢN PHẨM <i class="fa-solid fa-chevron-down"></i>
+                    </button>
 
                     <div class="mega-menu">
 
                         <!-- DANH MỤC -->
                         <div class="mega-col">
-                            <h6>DANH MỤC</h6>
-                            <a th:each="c : ${categories}"
-                               th:if="${c.name == 'Hệ chữa cháy khí'}"
+                            <h6><i class="fa-solid fa-folder-open"></i>DANH MỤC</h6>
+                            <a th:each="c, cStat : ${categories}"
+                               th:if="${c.name == 'Hệ chữa cháy khí' and cStat.index < 5}"
                                th:text="${c.name}"
                                th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}"></a>
-                            <a th:each="c : ${categories}"
-                               th:unless="${c.name == 'Hệ chữa cháy khí'}"
+                            <a th:each="c, cStat : ${categories}"
+                               th:if="${c.name != 'Hệ chữa cháy khí' and cStat.index < 5}"
                                th:text="${c.name}"
                                th:href="@{'/' + ${c.slug}}"></a>
+                            <a class="category-extra d-none"
+                               th:each="c, cStat : ${categories}"
+                               th:if="${cStat.index >= 5}"
+                               th:text="${c.name}"
+                               th:href="${c.name == 'Hệ chữa cháy khí'} ? @{/he-thong-chua-chay-khi-fm-200-stec-vina} : @{'/' + ${c.slug}}"></a>
+                            <button type="button" class="see-more-btn" id="btnCategory">
+                                Xem thêm <i class="fa-solid fa-chevron-down"></i>
+                            </button>
                         </div>
 
                         <!-- THƯƠNG HIỆU -->
                         <div class="mega-col">
-                            <h6>THƯƠNG HIỆU</h6>
+                            <h6><i class="fa-solid fa-certificate"></i>THƯƠNG HIỆU</h6>
 
                             <!-- 5 mục đầu -->
                             <a th:each="b, iStat : ${brandList}"
@@ -83,13 +103,13 @@
 
                             <!-- nút xem thêm -->
                             <button type="button" class="see-more-btn" id="btnBrand">
-                                Xem thêm ▼
+                                Xem thêm <i class="fa-solid fa-chevron-down"></i>
                             </button>
                         </div>
 
                         <!-- LOẠI SẢN PHẨM -->
                         <div class="mega-col">
-                            <h6>LOẠI SẢN PHẨM</h6>
+                            <h6><i class="fa-solid fa-fire-extinguisher"></i>LOẠI SẢN PHẨM</h6>
 
                             <!-- 5 mục đầu -->
                             <a th:each="t, iStat : ${productTypeList}"
@@ -105,9 +125,13 @@
                                th:href="${t.name == 'Hệ chữa cháy khí'} ? @{/he-thong-chua-chay-khi-fm-200-stec-vina} : @{'/' + ${t.slug}}"></a>
 
                             <button type="button" class="see-more-btn" id="btnType">
-                                Xem thêm ▼
+                                Xem thêm <i class="fa-solid fa-chevron-down"></i>
                             </button>
                         </div>
+
+                        <a class="mega-all-products" th:href="@{/products}">
+                            <span>Xem toàn bộ sản phẩm</span><i class="fa-solid fa-arrow-right"></i>
+                        </a>
 
                     </div>
                 </li>
@@ -143,14 +167,19 @@
                 <li><a th:href="@{/news}">Tin tức</a></li>
                 <li><a th:href="@{/documents}">Văn bản</a></li>
 
-                <li>
-                    <a class="gas-nav-link" th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}">
-                        <i class="fa-solid fa-shield-halved me-1"></i> S-TEC VINA
-                    </a>
+                <li class="mobile-solution-dropdown">
+                    <button type="button" class="mobile-solution-toggle" aria-expanded="false">
+                        <span><i class="fa-solid fa-layer-group me-2"></i>Giải pháp</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="mobile-solution-menu">
+                        <a th:href="@{/he-thong-bao-chay-gst}">Hệ báo cháy GST</a>
+                        <a th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}">Chữa cháy khí S-TEC VINA</a>
+                        <a th:href="@{/thiet-bi-chua-chay-tomoken}">Thiết bị chữa cháy Tomoken</a>
+                    </div>
                 </li>
 
                 <li class="mt-3 fw-bold text-white ps-3">SẢN PHẨM</li>
-                <li><a th:href="@{/he-thong-bao-chay-gst}">Báo cháy GST</a></li>
 
                 <li th:each="c : ${categories}" th:if="${c.name == 'Hệ chữa cháy khí'}">
                     <a th:text="${c.name}" th:href="@{/he-thong-chua-chay-khi-fm-200-stec-vina}"></a>
@@ -174,12 +203,60 @@
         document.addEventListener("DOMContentLoaded", function() {
 
             const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
-            document.querySelectorAll(".main-menu > li > a, .mobile-nav > li > a").forEach(function (link) {
+            document.querySelectorAll(".main-menu > li > a, .solution-menu a, .mega-menu a, .mobile-nav a").forEach(function (link) {
                 const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/+$/, "") || "/";
                 if (linkPath === currentPath) {
                     link.classList.add("active");
                     link.setAttribute("aria-current", "page");
                 }
+            });
+
+            const solutionDropdown = document.querySelector(".solution-dropdown");
+            const solutionToggle = solutionDropdown?.querySelector(".solution-toggle");
+            if (solutionDropdown?.querySelector(".solution-menu a.active")) {
+                solutionToggle?.classList.add("active");
+            }
+
+            const productDropdown = document.querySelector(".mega-dropdown");
+            const productToggle = productDropdown?.querySelector(".product-toggle");
+            if (productDropdown?.querySelector(".mega-menu a.active")) {
+                productToggle?.classList.add("active");
+            }
+
+            productToggle?.addEventListener("click", function () {
+                const isOpen = productDropdown.classList.toggle("is-open");
+                productToggle.setAttribute("aria-expanded", String(isOpen));
+                solutionDropdown?.classList.remove("is-open");
+                solutionToggle?.setAttribute("aria-expanded", "false");
+            });
+
+            solutionToggle?.addEventListener("click", function () {
+                const isOpen = solutionDropdown.classList.toggle("is-open");
+                solutionToggle.setAttribute("aria-expanded", String(isOpen));
+                productDropdown?.classList.remove("is-open");
+                productToggle?.setAttribute("aria-expanded", "false");
+            });
+
+            document.addEventListener("click", function (event) {
+                if (solutionDropdown && !solutionDropdown.contains(event.target)) {
+                    solutionDropdown.classList.remove("is-open");
+                    solutionToggle?.setAttribute("aria-expanded", "false");
+                }
+                if (productDropdown && !productDropdown.contains(event.target)) {
+                    productDropdown.classList.remove("is-open");
+                    productToggle?.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            const mobileSolutionToggle = document.querySelector(".mobile-solution-toggle");
+            const mobileSolutionDropdown = mobileSolutionToggle?.closest(".mobile-solution-dropdown");
+            if (mobileSolutionDropdown?.querySelector("a.active")) {
+                mobileSolutionDropdown.classList.add("is-open");
+                mobileSolutionToggle.setAttribute("aria-expanded", "true");
+            }
+            mobileSolutionToggle?.addEventListener("click", function () {
+                const isOpen = mobileSolutionDropdown.classList.toggle("is-open");
+                mobileSolutionToggle.setAttribute("aria-expanded", String(isOpen));
             });
 
             // TOGGLE BRAND
@@ -189,9 +266,9 @@
             if (btnBrand && brandExtra.length > 0) {
                 btnBrand.addEventListener("click", function () {
                     brandExtra.forEach(item => item.classList.toggle("d-none"));
-                    btnBrand.textContent = brandExtra[0].classList.contains("d-none")
-                        ? "Xem thêm ▼"
-                        : "Thu gọn ▲";
+                    btnBrand.innerHTML = brandExtra[0].classList.contains("d-none")
+                        ? 'Xem thêm <i class="fa-solid fa-chevron-down"></i>'
+                        : 'Thu gọn <i class="fa-solid fa-chevron-up"></i>';
                 });
             } else if (btnBrand) {
                 btnBrand.hidden = true;
@@ -204,12 +281,27 @@
             if (btnType && typeExtra.length > 0) {
                 btnType.addEventListener("click", function () {
                     typeExtra.forEach(item => item.classList.toggle("d-none"));
-                    btnType.textContent = typeExtra[0].classList.contains("d-none")
-                        ? "Xem thêm ▼"
-                        : "Thu gọn ▲";
+                    btnType.innerHTML = typeExtra[0].classList.contains("d-none")
+                        ? 'Xem thêm <i class="fa-solid fa-chevron-down"></i>'
+                        : 'Thu gọn <i class="fa-solid fa-chevron-up"></i>';
                 });
             } else if (btnType) {
                 btnType.hidden = true;
+            }
+
+            // TOGGLE CATEGORY
+            const btnCategory = document.getElementById("btnCategory");
+            const categoryExtra = document.querySelectorAll(".category-extra");
+
+            if (btnCategory && categoryExtra.length > 0) {
+                btnCategory.addEventListener("click", function () {
+                    categoryExtra.forEach(item => item.classList.toggle("d-none"));
+                    btnCategory.innerHTML = categoryExtra[0].classList.contains("d-none")
+                        ? 'Xem thêm <i class="fa-solid fa-chevron-down"></i>'
+                        : 'Thu gọn <i class="fa-solid fa-chevron-up"></i>';
+                });
+            } else if (btnCategory) {
+                btnCategory.hidden = true;
             }
 
         });

@@ -60,5 +60,10 @@ public class HomeController {
         return "gst-fire-alarm";
     }
 
+    @GetMapping("/thiet-bi-chua-chay-tomoken")
+    public String tomokenFireEquipment() {
+        return "tomoken-fire-equipment";
+    }
+
 
 }

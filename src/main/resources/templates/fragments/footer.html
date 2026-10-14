@@ -1,67 +1,65 @@
-<footer id="site-footer" th:fragment="siteFooter" class="footer site-footer">
-    <div class="container site-footer-main">
-        <div class="row g-4 g-xl-5 align-items-stretch">
-            <div class="col-md-6 col-xl-3">
-                <div class="footer-brand-panel">
-                    <a class="footer-brand" th:href="@{/}" aria-label="Về trang chủ Kim Thành Phát">
-                        <span class="footer-brand-mark">KTP</span>
-                        <span>Kim Thành Phát</span>
+
+<footer id="site-footer" th:fragment="siteFooter" class="container-fluid bg-dark text-light footer footer-refined">
+    <!-- Footer Start -->
+    <div class="container footer-main">
+        <div class="row g-4 g-xl-5 align-items-start">
+            <div class="col-md-6 col-lg-3">
+                <div class="footer-company-card">
+
+                    <a th:href="@{/}">
+                        <span class="footer-company-kicker">Đơn vị thiết bị PCCC</span>
+                        <h2>
+                            Kim Thành Phát
+                        </h2>
                     </a>
-                    <p>Thiết bị và giải pháp phòng cháy chữa cháy cho nhà ở, doanh nghiệp và công trình.</p>
-                    <span class="footer-brand-note"><i class="fa-solid fa-shield-halved"></i> Tư vấn theo nhu cầu thực tế</span>
+
+                    <p>
+                        Cung cấp thiết bị PCCC chính hãng – tư vấn & hỗ trợ an toàn PCCC.<br>
+                        Địa chỉ: 182 Lê Thanh Nghị, TP. Đà Nẵng.
+                    </p>
+
+                </div>
+
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6 class="footer-title">Liên hệ</h6>
+                <div class="footer-contact">
+                    <p><i class="fa fa-map-marker-alt"></i><span>182 Lê Thanh Nghị, TP. Đà Nẵng</span></p>
+                    <p><i class="fa fa-phone-alt"></i><span>0777.54.2354 <small>Mr. Huy · Zalo</small></span></p>
+                    <p><i class="fa fa-phone-alt"></i><span>0934.752.114 <small>Ms. Phương · Zalo</small></span></p>
+                    <p><i class="fa fa-envelope"></i><span>pccckimthanhphat@gmail.com</span></p>
+                </div>
+                <div class="footer-social-list">
+                    <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/profile.php?id=61581028044022"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/pccckimthanhphat/"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social"
+                       href="https://zalo.me/0934752114"
+                       target="_blank" title="Chat Zalo">
+                        <img th:src="@{/img/zalo-blue.png}" alt="Zalo"
+                             style="width: 20px; height: 20px; object-fit: contain; border-radius: 5px;">
+                    </a>
+
                 </div>
             </div>
-
-            <div class="col-md-6 col-xl-3">
-                <h2 class="footer-heading">Liên hệ</h2>
-                <div class="footer-contact-list">
-                    <div class="footer-contact-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>182 Lê Thanh Nghị, TP. Đà Nẵng</span>
-                    </div>
-                    <a class="footer-contact-item" href="tel:0777542354">
-                        <i class="fa-solid fa-phone"></i>
-                        <span>0777.54.2354 <small>Mr. Huy · Zalo</small></span>
-                    </a>
-                    <a class="footer-contact-item" href="tel:0934752114">
-                        <i class="fa-solid fa-phone"></i>
-                        <span>0934.752.114 <small>Ms. Phương · Zalo</small></span>
-                    </a>
-                    <a class="footer-contact-item footer-contact-email" href="mailto:pccckimthanhphat@gmail.com">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>pccckimthanhphat@gmail.com</span>
-                    </a>
-                </div>
-                <div class="footer-socials" aria-label="Mạng xã hội">
-                    <a href="https://www.facebook.com/profile.php?id=61581028044022" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/pccckimthanhphat/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://zalo.me/0934752114" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
-                        <img th:src="@{/img/zalo-blue.png}" alt="" width="18" height="18">
-                    </a>
-                </div>
+            <div class="col-md-6 col-lg-2">
+                <h6 class="footer-title">Khám phá</h6>
+                <a class="btn btn-link text-white" th:href="@{/about}">Giới thiệu</a>
+                <a class="btn btn-link text-white" th:href="@{/products}">Sản phẩm</a>
+                <a class="btn btn-link text-white" th:href="@{/news}">Tin tức</a>
+                <a class="btn btn-link text-white" th:href="@{/documents}">Văn bản</a>
+                <a class="btn btn-link text-white" th:href="@{/contact}">Liên hệ</a>
             </div>
-
-            <div class="col-md-6 col-xl-2">
-                <h2 class="footer-heading">Khám phá</h2>
-                <nav class="footer-nav" aria-label="Liên kết cuối trang">
-                    <a th:href="@{/about}">Giới thiệu</a>
-                    <a th:href="@{/products}">Sản phẩm</a>
-                    <a th:href="@{/news}">Tin tức</a>
-                    <a th:href="@{/documents}">Văn bản</a>
-                    <a th:href="@{/contact}">Liên hệ</a>
-                </nav>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
+            <div class="col-md-6 col-lg-4">
                 <div class="footer-fanpage">
-                    <h2 class="footer-heading">Fanpage</h2>
+                    <h6 class="footer-title">Fanpage</h6>
                     <div class="footer-facebook-card">
                         <iframe
                                 title="Fanpage PCCC Kim Thành Phát"
-                                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61581028044022&amp;tabs=&amp;width=340&amp;height=130&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false&amp;appId="
+                                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61581028044022&amp;tabs=&amp;width=340&amp;height=140&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId="
                                 width="340"
-                                height="130"
+                                height="140"
+                                style="border:none;overflow:hidden"
                                 scrolling="no"
                                 frameborder="0"
                                 allowfullscreen="true"
@@ -70,7 +68,7 @@
                     </div>
                     <a class="footer-facebook-link" href="https://www.facebook.com/profile.php?id=61581028044022" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-facebook-f"></i>
-                        <span>Theo dõi Kim Thành Phát</span>
+                        Mở Fanpage Kim Thành Phát
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </a>
                 </div>
@@ -78,14 +76,20 @@
         </div>
     </div>
 
-    <div class="site-footer-bottom">
-        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
-            <p>&copy; 2026 <a th:href="@{/}">Kim Thành Phát</a>. Thiết bị và giải pháp PCCC.</p>
-            <nav class="footer-menu" aria-label="Liên kết hỗ trợ">
-                <a th:href="@{/}">Trang chủ</a>
-                <a th:href="@{/contact}">Hỗ trợ</a>
-                <a th:href="@{/faq}">FAQ</a>
-            </nav>
+    <div class="container footer-bottom">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0 small">
+                &copy; <a class="border-bottom text-white" th:href="@{/}">Kim Thành Phát</a>. Thiết kế bởi đội ngũ nội bộ.
+            </div>
+            <div class="col-md-6 text-center text-md-end small">
+                <div class="footer-menu">
+                    <a th:href="@{/}">Trang chủ</a>
+                    <a th:href="@{/cookies}">Cookies</a>
+                    <a th:href="@{/contact}">Hỗ trợ</a>
+                    <a th:href="@{/faq}">FAQ</a>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- Footer End -->
 </footer>
