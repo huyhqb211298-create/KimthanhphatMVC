@@ -23,6 +23,7 @@ public class SitemapController {
     private static final List<String> STATIC_PATHS = List.of(
             "/", "/about", "/contact", "/products", "/news", "/documents", "/faq", "/hsnl",
             "/he-thong-chua-chay-khi-fm-200-stec-vina", "/he-thong-bao-chay-gst", "/thiet-bi-chua-chay-tomoken",
+            "/den-su-co-exit-kentom", "/den-su-co-exit-lilang",
             "/documents/quy-dinh-thiet-ke-pccc", "/documents/thu-tuc-phe-duyet-phuong-an-pccc",
             "/documents/ho-so-tham-duyet-pccc", "/documents/ho-so-nghiem-thu-pccc",
             "/documents/thong-tu-47", "/documents/thong-tu-66-2014",

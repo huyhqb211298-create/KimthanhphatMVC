@@ -65,5 +65,15 @@ public class HomeController {
         return "tomoken-fire-equipment";
     }
 
+    @GetMapping("/den-su-co-exit-kentom")
+    public String kentomEmergencyLight() {
+        return "kentom-emergency-light";
+    }
+
+    @GetMapping("/den-su-co-exit-lilang")
+    public String lilangEmergencyLight() {
+        return "lilang-emergency-light";
+    }
+
 
 }
